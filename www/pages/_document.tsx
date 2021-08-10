@@ -10,7 +10,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           ></link>
         </Head>
-        <body className="font-space">
+        <body className="font-space bg-what-mushroom">
           <Main />
           <NextScript />
         </body>

@@ -3,7 +3,8 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: { space: ['Space Grotesk'] },
-    extend: {},
+
+    extend: { colors: { 'what-mushroom': '#EBEBEB' } },
   },
   variants: {
     extend: {},
