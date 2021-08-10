@@ -1,11 +1,8 @@
 {
-  "name": "what",
+  "name": "what_admin",
   "private": true,
-  "version": "1.0.0",
-  "description": "whats.se - Website for What! Arkitektur",
+  "version": "0.0.0",
   "main": "package.json",
-  "author": "Ella Wirstad G <ella.wg@hotmail.com>",
-  "license": "UNLICENSED",
   "scripts": {
     "start": "sanity start",
     "build": "sanity build"
@@ -13,6 +10,9 @@
   "keywords": [
     "sanity"
   ],
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "@sanity/base": "^2.13.1",
     "@sanity/components": "^2.13.0",
