@@ -1,12 +1,22 @@
+import React from 'react';
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
-import Layout from '../src/components/Layout';
+import { siteTitle } from '../src/config/defaults';
+import Nav from '../src/components/Nav';
+import Footer from '../src/components/Footer';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <Layout>
+const App = ({ Component, pageProps }: AppProps) => (
+  <div className="w-screen min-h-screen flex flex-row justify-center">
+    <div className="max-w-screen-xl w-full flex flex-col border border-white">
+      <Head>
+        <title>{siteTitle}</title>
+      </Head>
+      <Nav />
       <Component {...pageProps} />
-    </Layout>
-  );
-}
-export default MyApp;
+      <Footer />
+    </div>
+  </div>
+);
+
+export default App;
