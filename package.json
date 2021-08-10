@@ -1,0 +1,19 @@
+{
+    "name": "what",
+    "version": "0.0.0",
+    "description": "Website for What Arkitektur",
+    "repository": "git@github.com:minimizelab/what.git",
+    "author": "mini_dev <hello@minimize.se>",
+    "private": true,
+    "workspaces": [
+      "www",
+      "admin"
+    ],
+    "engines": {
+      "node": "14.x"
+    },
+    "scripts": {
+      "dev": "vercel dev --listen 3333"
+    }
+  }
+  
