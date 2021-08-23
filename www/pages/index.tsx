@@ -3,7 +3,9 @@ import React, { FC } from 'react';
 import FilterBar from '../src/components/FilterBar';
 import Page from '../src/components/Page';
 import ProjectsGrid from '../src/components/ProjectsGrid';
+import { getCategories, getProjects } from '../src/services/sanity';
 import { Category, Project } from '../src/types';
+import { revalidate } from '../src/config/defaults';
 
 type Props = {
   categories: Category[];
@@ -17,24 +19,14 @@ const Home: FC<Props> = ({ categories, projects }) => (
   </Page>
 );
 
-export const getStaticProps: GetStaticProps<Props> = () => {
-  const categories = [
-    { title: 'Featured', id: '1' },
-    { title: 'Bostad', id: '2' },
-    { title: 'Verksamhet', id: '3' },
-    { title: 'Stad & Land', id: '4' },
-  ];
-  const projects = [
-    {
-      id: '1',
-      title: 'Test projects',
-      img: 'some img',
-      category: 'Bostad',
-      featured: true,
-    },
-  ];
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const [categories, projects] = await Promise.all([
+    getCategories(),
+    getProjects({ featured: true }),
+  ]);
   return {
     props: { categories, projects },
+    revalidate,
   };
 };
 
