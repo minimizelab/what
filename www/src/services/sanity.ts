@@ -37,12 +37,20 @@ const projects: Project[] = [
   },
 ];
 
-export const getCategories = () => categories;
-export const getCategory = (slug?: string) =>
+const getCategories = () => categories;
+const getCategory = (slug?: string) =>
   categories.find((cat) => cat.slug === slug);
 
-export const getProjects: GetProjects = ({ category, featured }) =>
+const getProjects: GetProjects = ({ category, featured }) =>
   projects
     .filter((proj) => (category ? proj.categorySlug === category : true))
     .filter((proj) => (featured ? proj.featured : true))
     .map((proj) => ({ ...proj, category: getCategory(proj.categorySlug) }));
+
+const sanityService = {
+  getCategories,
+  getCategory,
+  getProjects,
+};
+
+export default sanityService;

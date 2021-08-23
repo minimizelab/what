@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import FilterBar from '../src/components/FilterBar';
 import Page from '../src/components/Page';
 import ProjectsGrid from '../src/components/ProjectsGrid';
-import { getCategories, getProjects } from '../src/services/sanity';
+import sanity from '../src/services/sanity';
 import { Category, Project } from '../src/types';
 import { revalidate } from '../src/config/defaults';
 
@@ -21,8 +21,8 @@ const Home: FC<Props> = ({ categories, projects }) => (
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const [categories, projects] = await Promise.all([
-    getCategories(),
-    getProjects({ featured: true }),
+    sanity.getCategories(),
+    sanity.getProjects({ featured: true }),
   ]);
   return {
     props: { categories, projects },
