@@ -4,11 +4,7 @@ import FilterBar from '../src/components/FilterBar';
 import Page from '../src/components/Page';
 import ProjectsGrid from '../src/components/ProjectsGrid';
 import { siteTitle, revalidate } from '../src/config/defaults';
-import {
-  getCategories,
-  getCategory,
-  getProjects,
-} from '../src/services/sanity';
+import sanity from '../src/services/sanity';
 import { Category, Project } from '../src/types';
 
 type Params = { category: string };
@@ -26,7 +22,7 @@ const CategoryPage: FC<Props> = ({ categories, projects, category }) => (
 );
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const categories = await getCategories();
+  const categories = await sanity.getCategories();
   const paths = categories.map(({ slug }) => ({ params: { category: slug } }));
   return {
     paths,
@@ -38,9 +34,9 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
 }) => {
   const [categories, projects, category] = await Promise.all([
-    getCategories(),
-    getProjects({ category: params?.category }),
-    getCategory(params?.category),
+    sanity.getCategories(),
+    sanity.getProjects({ category: params?.category }),
+    sanity.getCategory(params?.category),
   ]);
   return {
     props: { categories, projects, category },
