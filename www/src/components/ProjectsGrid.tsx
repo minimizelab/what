@@ -10,7 +10,7 @@ const ProjectsGrid: FC<Props> = ({ projects }) => (
     <h1>Projects Grid</h1>
     <ul>
       {projects.map((project) => (
-        <li key={project.id}>{project.title}</li>
+        <li key={project._id}>{project.title}</li>
       ))}
     </ul>
   </div>

@@ -1,13 +1,16 @@
 export type Category = {
+  path: Path;
   title: string;
-  slug: string;
-  id: string;
+  _id: string;
 };
 export type Project = {
-  id: string;
   title: string;
-  img: string;
-  category?: Category;
-  categorySlug: string;
-  featured: boolean;
+  path: Path;
+  subtitle?: string;
+  description: string;
+  _id: string;
+};
+
+type Path = {
+  current: string;
 };
