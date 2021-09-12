@@ -1,3 +1,5 @@
+import { SanityImageAssetDocument } from '@sanity/client';
+
 export type Category = {
   path: Path;
   title: string;
@@ -6,8 +8,11 @@ export type Category = {
 export type Project = {
   title: string;
   path: Path;
-  subtitle?: string;
+  subTitle?: string;
+  mainImage?: SanityImageAssetDocument;
   description: string;
+  content: any;
+  category: Category;
   _id: string;
 };
 

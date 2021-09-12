@@ -9,9 +9,14 @@ const ProjectsGrid: FC<Props> = ({ projects }) => (
   <div>
     <h1>Projects Grid</h1>
     <ul>
-      {projects.map((project) => (
-        <li key={project._id}>{project.title}</li>
-      ))}
+      {projects.map((project) => {
+        return (
+          <>
+            <img src={project.mainImage?.url} alt="Main image" />
+            <li key={project._id}>{project.title}</li>
+          </>
+        );
+      })}
     </ul>
   </div>
 );

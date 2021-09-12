@@ -20,10 +20,15 @@ const getCategory = (slug?: string): Promise<Category> =>
   });
 
 const getProjects = (): Promise<Project[]> =>
-  client.fetch('*[_type == "project"]');
+  client.fetch(
+    '*[_type == "project"]{_id, title, path, subTitle, description, "mainImage":mainImage.asset->, category->{_id, title, path}, content}'
+  );
 
 const getProjectsByCategory = (category: string): Promise<Project[]> =>
-  client.fetch('*[_type == "project" && references($category)]', { category });
+  client.fetch(
+    '*[_type == "project" && references($category)]{_id, title, path, subTitle, description, "mainImage":mainImage.asset->, category->{_id, title, path}, content}',
+    { category }
+  );
 
 const sanityService = {
   getCategories,
