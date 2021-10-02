@@ -11,6 +11,7 @@ const ProjectsGrid: FC<Props> = ({ projects }) => (
     {projects.map((project) => (
       <ProjectCard
         key={project._id}
+        category={project.category}
         img={project.mainImage?.url}
         title={project.title}
       />
