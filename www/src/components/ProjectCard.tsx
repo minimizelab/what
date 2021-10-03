@@ -12,12 +12,11 @@ type Props = {
 
 const ProjectCard: FC<Props> = ({ img, title, category }) => {
   return (
-    <div className="h-96 w-96 shadow-xl bg-white flex flex-col">
+    <div className="h-96 bg-white flex flex-col shadow-md hover:shadow-2xl transition ease-in-out duration-300">
       <div className="pt-8 px-8 pb-6 flex-1">
         <H1>{title}</H1>
         <TextUppercase>{category?.title}</TextUppercase>
       </div>
-
       <div className="w-full h-3/4 relative">
         {img && (
           <Image
