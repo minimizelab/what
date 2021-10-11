@@ -12,7 +12,7 @@ const FilterBar: FC<Props> = ({ categories }) => (
       <a className="mr-3 underline">Featured</a>
     </Link>
     {categories.map((category) => (
-      <Link key={category.id} href={category.slug}>
+      <Link key={category._id} href={`/${category.path.current}`}>
         <a className="mr-3 underline">{category.title}</a>
       </Link>
     ))}

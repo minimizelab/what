@@ -1,56 +1,40 @@
 import { Project, Category } from '../types';
 
-type GetProjectsFilters = {
-  category?: string;
-  featured?: boolean;
+import sanityClient from '@sanity/client';
+
+const client = sanityClient({
+  projectId: 'lu0lnnx1',
+  dataset: 'production',
+  apiVersion: '2019-01-29', // use current UTC date - see "specifying API version"!
+  useCdn: true, // `false` if you want to ensure fresh data
+});
+
+const getCategories = async (): Promise<Category[]> => {
+  const categories = await client.fetch('*[_type == "category"]');
+  return categories;
 };
 
-type GetProjects = (filters: GetProjectsFilters) => Project[];
+const getCategory = (slug?: string): Promise<Category> =>
+  client.fetch('*[_type == "category" && path.current == $slug][0]', {
+    slug,
+  });
 
-const categories: Category[] = [
-  { title: 'Bostad', id: '2', slug: 'bostad' },
-  { title: 'Verksamhet', id: '3', slug: 'verksamhet' },
-  { title: 'Stad & Land', id: '4', slug: 'stad-land' },
-];
+const getProjects = (): Promise<Project[]> =>
+  client.fetch(
+    '*[_type == "project"]{_id, title, path, subTitle, description, "mainImage":mainImage.asset->, category->{_id, title, path}, content}'
+  );
 
-const projects: Project[] = [
-  {
-    id: '1',
-    title: 'Test project 1',
-    img: 'some img',
-    categorySlug: 'bostad',
-    featured: true,
-  },
-  {
-    id: '2',
-    title: 'Test project 2',
-    img: 'some img',
-    categorySlug: 'verksamhet',
-    featured: false,
-  },
-  {
-    id: '2',
-    title: 'Test project 3',
-    img: 'some img',
-    categorySlug: 'stad-land',
-    featured: true,
-  },
-];
-
-const getCategories = () => categories;
-const getCategory = (slug?: string) =>
-  categories.find((cat) => cat.slug === slug);
-
-const getProjects: GetProjects = ({ category, featured }) =>
-  projects
-    .filter((proj) => (category ? proj.categorySlug === category : true))
-    .filter((proj) => (featured ? proj.featured : true))
-    .map((proj) => ({ ...proj, category: getCategory(proj.categorySlug) }));
+const getProjectsByCategory = (category: string): Promise<Project[]> =>
+  client.fetch(
+    '*[_type == "project" && references($category)]{_id, title, path, subTitle, description, "mainImage":mainImage.asset->, category->{_id, title, path}, content}',
+    { category }
+  );
 
 const sanityService = {
   getCategories,
   getCategory,
   getProjects,
+  getProjectsByCategory,
 };
 
 export default sanityService;
