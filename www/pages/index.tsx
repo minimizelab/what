@@ -22,7 +22,7 @@ const Home: FC<Props> = ({ categories, projects }) => (
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const [categories, projects] = await Promise.all([
     sanity.getCategories(),
-    sanity.getProjects({ featured: true }),
+    sanity.getProjects(),
   ]);
   return {
     props: { categories, projects },

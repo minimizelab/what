@@ -23,7 +23,9 @@ const CategoryPage: FC<Props> = ({ categories, projects, category }) => (
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
   const categories = await sanity.getCategories();
-  const paths = categories.map(({ slug }) => ({ params: { category: slug } }));
+  const paths = categories.map(({ path }) => ({
+    params: { category: path.current },
+  }));
   return {
     paths,
     fallback: 'blocking',
@@ -33,10 +35,10 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
 }) => {
-  const [categories, projects, category] = await Promise.all([
+  const category = await sanity.getCategory(params?.category);
+  const [categories, projects] = await Promise.all([
     sanity.getCategories(),
-    sanity.getProjects({ category: params?.category }),
-    sanity.getCategory(params?.category),
+    sanity.getProjectsByCategory(category._id),
   ]);
   return {
     props: { categories, projects, category },
