@@ -8,7 +8,7 @@ import Footer from '../src/components/Footer';
 
 const App = ({ Component, pageProps }: AppProps) => (
   <div className="w-screen min-h-screen flex flex-row justify-center">
-    <div className="max-w-screen-xl w-full flex flex-col border border-white px-8 md:px-16 lg:px-32">
+    <div className="max-w-screen-xl w-full flex flex-col border border-white">
       <Head>
         <title>{siteTitle}</title>
       </Head>
