@@ -1,7 +1,10 @@
 import React, { FC } from 'react';
+import Section from './Section';
 
 const Nav: FC = () => (
-  <nav className="border border-blue-500 px-8 md:px-16 lg:px-32">What</nav>
+  <nav className="border border-blue-500">
+    <Section>What</Section>
+  </nav>
 );
 
 export default Nav;
