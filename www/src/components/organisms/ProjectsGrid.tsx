@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
 import { Project } from '../../types';
-import Section from '../atoms/Section';
 import ProjectCard from '../molecules/ProjectCard';
 
 type Props = {
@@ -9,7 +8,7 @@ type Props = {
 };
 
 const ProjectsGrid: FC<Props> = ({ projects }) => (
-  <Section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16 md:grid-flow-col">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16 md:grid-flow-col">
     {projects.map((project) => (
       <Link href={`projects/${project.path.current}`} key={project._id}>
         <a>
@@ -21,7 +20,7 @@ const ProjectsGrid: FC<Props> = ({ projects }) => (
         </a>
       </Link>
     ))}
-  </Section>
+  </div>
 );
 
 export default ProjectsGrid;

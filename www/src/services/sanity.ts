@@ -1,40 +1,41 @@
+import { getClient } from '../lib/sanity.server';
+import { groq } from 'next-sanity';
 import { Project, Category } from '../types';
 
-import sanityClient from '@sanity/client';
-
-const client = sanityClient({
-  projectId: 'lu0lnnx1',
-  dataset: 'production',
-  apiVersion: '2019-01-29', // use current UTC date - see "specifying API version"!
-  useCdn: true, // `false` if you want to ensure fresh data
-});
-
-const getCategories = async (): Promise<Category[]> => {
-  const categories = await client.fetch('*[_type == "category"]');
+const getCategories = async (preview = false): Promise<Category[]> => {
+  const categories = await getClient(preview).fetch(
+    groq`*[_type == "category"]`
+  );
   return categories;
 };
 
-const getCategory = (slug?: string): Promise<Category> =>
-  client.fetch('*[_type == "category" && path.current == $slug][0]', {
-    slug,
-  });
-
-const getProjects = (): Promise<Project[]> =>
-  client.fetch(
-    '*[_type == "project"]{_id, title, path, subTitle, description, "mainImage":mainImage.asset->, category->{_id, title, path}, content}'
-  );
-
-const getProject = (slug?: string): Promise<Project> =>
-  client.fetch(
-    '*[_type == "project" && path.current == $slug][0]{_id, title, path, subTitle, description, "mainImage":mainImage.asset->, category->{_id, title, path}}',
+const getCategory = (slug?: string, preview = false): Promise<Category> =>
+  getClient(preview).fetch(
+    groq`*[_type == "category" && path.current == $slug][0]`,
     {
       slug,
     }
   );
 
-const getProjectsByCategory = (category: string): Promise<Project[]> =>
-  client.fetch(
-    '*[_type == "project" && references($category)]{_id, title, path, subTitle, description, "mainImage":mainImage.asset->, category->{_id, title, path}, content}',
+const getProjects = (preview = false): Promise<Project[]> =>
+  getClient(preview).fetch(
+    groq`*[_type == "project"]{_id, title, path, subTitle, description, "mainImage":mainImage.asset->, category->{_id, title, path}, content}`
+  );
+
+const getProject = (slug?: string, preview = false): Promise<Project> =>
+  getClient(preview).fetch(
+    groq`*[_type == "project" && path.current == $slug][0]{_id, title, path, subTitle, description, "mainImage":mainImage.asset->, category->{_id, title, path}}`,
+    {
+      slug,
+    }
+  );
+
+const getProjectsByCategory = (
+  category: string,
+  preview = false
+): Promise<Project[]> =>
+  getClient(preview).fetch(
+    groq`*[_type == "project" && references($category)]{_id, title, path, subTitle, description, "mainImage":mainImage.asset->, category->{_id, title, path}, content}`,
     { category }
   );
 

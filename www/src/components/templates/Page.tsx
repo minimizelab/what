@@ -1,15 +1,17 @@
 import React, { FC } from 'react';
-import Header from './Header';
+import { siteTitle } from '../../config/defaults';
+import Section from '../atoms/Section';
+import Header from '../organisms/Header';
 
 type Props = {
-  title: string;
+  title?: string;
 };
 
 const Page: FC<Props> = ({ children, title }) => (
-  <>
-    <Header title={title} />
+  <Section className="flex flex-col flex-1">
+    <Header title={title ?? siteTitle} />
     <main className="flex-1">{children}</main>
-  </>
+  </Section>
 );
 
 export default Page;
