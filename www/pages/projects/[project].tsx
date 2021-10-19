@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import React, { FC } from 'react';
+import ProjectHeader from '../../src/components/organisms/ProjectHeader';
 import Page from '../../src/components/templates/Page';
 import { siteTitle, revalidate } from '../../src/config/defaults';
 import sanity from '../../src/services/sanity';
@@ -8,12 +9,17 @@ import { Category, Project } from '../../src/types';
 type Params = { project: string };
 type Props = {
   project: Project;
+  projectCategory?: Category;
 };
 
 const ProjectPage: FC<Props> = ({ project }) => (
   <Page title={project?.title ?? siteTitle}>
-    {project && console.log('project', project)}
-    <div>project {project?.title}</div>
+    <ProjectHeader
+      title={project.title}
+      category={project.category}
+      description={project.description}
+      subTitle={project.subTitle}
+    />
   </Page>
 );
 

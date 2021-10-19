@@ -25,9 +25,12 @@ const getProjects = (): Promise<Project[]> =>
   );
 
 const getProject = (slug?: string): Promise<Project> =>
-  client.fetch('*[_type == "project" && path.current == $slug][0]', {
-    slug,
-  });
+  client.fetch(
+    '*[_type == "project" && path.current == $slug][0]{_id, title, path, subTitle, description, "mainImage":mainImage.asset->, category->{_id, title, path}}',
+    {
+      slug,
+    }
+  );
 
 const getProjectsByCategory = (category: string): Promise<Project[]> =>
   client.fetch(
