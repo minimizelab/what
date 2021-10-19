@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { Category } from '../../types';
 import H1 from '../atoms/H1';
-import H2 from '../atoms/H2';
 import TextLarge from '../atoms/TextLarge';
 import TextUppercase from '../atoms/TextUppercase';
 

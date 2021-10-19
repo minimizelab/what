@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Section from './Section';
+import Section from '../atoms/Section';
 
 type Props = { title: string; className?: string };
 

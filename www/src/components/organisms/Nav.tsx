@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Section from './Section';
+import Section from '../atoms/Section';
 
 const Nav: FC = () => (
   <nav className="border border-blue-500">
