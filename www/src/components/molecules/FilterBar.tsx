@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
-import { Category } from '../types';
-import Section from './Section';
+import Section from '../Section';
+import { Category } from '../../types';
 
 type Props = {
   categories: Category[];

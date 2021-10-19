@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Project } from '../types';
-import ProjectCard from './ProjectCard';
+import ProjectCard from './molecules/ProjectCard';
 import Section from './Section';
 
 type Props = {
