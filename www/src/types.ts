@@ -9,7 +9,7 @@ export type Project = {
   title: string;
   path: Path;
   slug: string;
-  subTitle?: string;
+  subTitle: string;
   mainImage?: SanityImageAssetDocument;
   description: string;
   content: any;
