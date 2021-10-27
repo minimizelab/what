@@ -8,7 +8,8 @@ export type Category = {
 export type Project = {
   title: string;
   path: Path;
-  subTitle?: string;
+  slug: string;
+  subTitle: string;
   mainImage?: SanityImageAssetDocument;
   description: string;
   content: any;

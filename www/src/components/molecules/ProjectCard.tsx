@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
-import { Category } from '../types';
-import H1 from './atoms/H1';
-import TextUppercase from './atoms/TextUppercase';
+import { Category } from '../../types';
+import H1 from '../atoms/H1';
+import TextUppercase from '../atoms/TextUppercase';
 
 type Props = {
   img?: string;

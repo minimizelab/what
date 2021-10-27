@@ -1,9 +1,9 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import React, { FC } from 'react';
-import FilterBar from '../src/components/FilterBar';
-import Page from '../src/components/Page';
-import ProjectsGrid from '../src/components/ProjectsGrid';
-import { siteTitle, revalidate } from '../src/config/defaults';
+import FilterBar from '../src/components/molecules/FilterBar';
+import Page from '../src/components/templates/Page';
+import ProjectsGrid from '../src/components/organisms/ProjectsGrid';
+import { revalidate } from '../src/config/defaults';
 import sanity from '../src/services/sanity';
 import { Category, Project } from '../src/types';
 
@@ -11,11 +11,11 @@ type Params = { category: string };
 type Props = {
   categories: Category[];
   projects: Project[];
-  category?: Category;
+  category: Category;
 };
 
 const CategoryPage: FC<Props> = ({ categories, projects, category }) => (
-  <Page title={category?.title ?? siteTitle}>
+  <Page title={category.title}>
     <FilterBar categories={categories} />
     <ProjectsGrid projects={projects} />
   </Page>
