@@ -1,3 +1,5 @@
+const categorySlugBlacklist = ['projects'];
+
 export default {
   title: 'Category',
   name: 'category',
@@ -16,9 +18,15 @@ export default {
       name: 'path',
       type: 'slug',
       description: 'The unique url name for the category',
-      validation: (R) => R.required(),
+      validation: (R) =>
+        R.required().custom((slug) => {
+          if (!slug) return true;
+          return categorySlugBlacklist.includes(slug.current)
+            ? 'Path not allowed, try another one!'
+            : true;
+        }),
       options: {
-        source: (doc) => doc.title.replaceAll(' ', '-'),
+        source: 'title',
       },
     },
   ],

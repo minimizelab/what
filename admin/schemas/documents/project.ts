@@ -18,7 +18,7 @@ export default {
       description: 'The unique url name for the project',
       validation: (R) => R.required(),
       options: {
-        source: (doc) => doc.title.replaceAll(' ', '-'),
+        source: 'title',
       },
     },
     {
@@ -48,6 +48,16 @@ export default {
       to: [{ type: 'category' }],
       description: 'The category of the project',
       validation: (R) => R.required(),
+    },
+    {
+      title: 'Tags',
+      name: 'tags',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'The tags of the project',
+      options: {
+        layout: 'tags',
+      },
     },
     {
       title: 'Content',
