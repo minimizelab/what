@@ -24,7 +24,7 @@ const getProjects = (preview = false): Promise<Project[]> =>
 
 const getProject = (slug?: string, preview = false): Promise<Project> =>
   getClient(preview).fetch(
-    groq`*[_type == "project" && path.current == $slug][0]{_id, title, path, subTitle, description, "mainImage":mainImage.asset->, category->{_id, title, path}}`,
+    groq`*[_type == "project" && path.current == $slug][0]{_id, title, path, subTitle, description, "mainImage":mainImage.asset->, category->{_id, title, path}, content}`,
     {
       slug,
     }

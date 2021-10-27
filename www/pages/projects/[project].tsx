@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import ProjectHeader from '../../src/components/organisms/ProjectHeader';
 import Page from '../../src/components/templates/Page';
 import { revalidate } from '../../src/config/defaults';
+import { PortableText } from '../../src/lib/sanity.client';
 import sanity from '../../src/services/sanity';
 import { Category, Project } from '../../src/types';
 
@@ -20,6 +21,7 @@ const ProjectPage: FC<Props> = ({ project }) => (
       description={project.description}
       subTitle={project.subTitle}
     />
+    <PortableText blocks={project.content} />
   </Page>
 );
 
