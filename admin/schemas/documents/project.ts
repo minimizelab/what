@@ -31,7 +31,7 @@ export default {
     {
       title: 'Description',
       name: 'description',
-      type: 'string',
+      type: 'text',
       description: 'The description of the project',
       validation: (R) => R.required(),
     },
@@ -46,18 +46,8 @@ export default {
       name: 'categories',
       type: 'array',
       of: [{ type: 'reference', to: { type: 'category' } }],
-      description: 'The category of the project',
+      description: 'The categories of the project',
       validation: (R) => R.required(),
-    },
-    {
-      title: 'Tags',
-      name: 'tags',
-      type: 'array',
-      of: [{ type: 'string' }],
-      description: 'The tags of the project',
-      options: {
-        layout: 'tags',
-      },
     },
     {
       title: 'Content',
