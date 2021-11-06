@@ -13,7 +13,7 @@ export type Project = {
   mainImage?: SanityImageAssetDocument;
   description: string;
   content: any;
-  category: Category;
+  categories: Category[];
   _id: string;
 };
 

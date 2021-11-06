@@ -10,10 +10,10 @@ type Props = {
 const ProjectsGrid: FC<Props> = ({ projects }) => (
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16 md:grid-flow-col">
     {projects.map((project) => (
-      <Link href={`projects/${project.path.current}`} key={project._id}>
+      <Link href={`/projects/${project.path.current}`} key={project._id}>
         <a>
           <ProjectCard
-            category={project.category}
+            categories={project.categories}
             img={project.mainImage?.url}
             title={project.title}
           />
