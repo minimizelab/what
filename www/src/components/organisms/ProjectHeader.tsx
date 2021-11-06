@@ -6,14 +6,14 @@ import TextUppercase from '../atoms/TextUppercase';
 
 type Props = {
   title: string;
-  category: Category;
+  categories: Category[];
   description: string;
   subTitle: string;
 };
 
 const ProjectHeader: FC<Props> = ({
   title,
-  category,
+  categories,
   description,
   subTitle,
 }) => {
@@ -21,7 +21,9 @@ const ProjectHeader: FC<Props> = ({
     <div>
       <H1>{title}</H1>
       <div className="border-b border-white" />
-      <TextUppercase>{category.title}</TextUppercase>
+      <TextUppercase>
+        {categories.map((category) => category.title)}
+      </TextUppercase>
       <H1>{subTitle}</H1>
       <TextLarge className={'text-what-mushroom'}>{description}</TextLarge>
     </div>

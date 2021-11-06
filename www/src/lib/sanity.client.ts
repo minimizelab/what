@@ -6,6 +6,7 @@ import {
   createPreviewSubscriptionHook,
   createCurrentUserHook,
 } from 'next-sanity';
+import serializers from '../serializers';
 import config from './config';
 
 /**
@@ -25,7 +26,7 @@ export const PortableText = createPortableTextComponent({
   ...config.sanity,
   // Serializers passed to @sanity/block-content-to-react
   // (https://github.com/sanity-io/block-content-to-react)
-  serializers: {},
+  serializers,
 });
 
 // Helper function for using the current logged in user account

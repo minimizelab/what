@@ -1,7 +1,8 @@
 {
   "root": true,
   "project": {
-    "name": "what"
+    "name": "what",
+    "basePath": "/"
   },
   "api": {
     "projectId": "lu0lnnx1",
@@ -16,9 +17,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [
