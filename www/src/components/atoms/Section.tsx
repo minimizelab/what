@@ -4,7 +4,7 @@ import classNames from 'classnames';
 type Props = { className?: string };
 
 const Section: FC<Props> = ({ children, className }) => (
-  <section className={classNames('mx-8 md:mx-16 lg:mx-32', className)}>
+  <section className={classNames('mx-8', className)}>
     {children}
   </section>
 );
