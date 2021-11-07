@@ -10,7 +10,7 @@ type Props = {
 const Page: FC<Props> = ({ children, title }) => (
   <Section className="flex flex-col flex-1">
     <Header title={title ?? siteTitle} />
-    <main className="flex-1">{children}</main>
+    <main className="flex flex-col flex-1">{children}</main>
   </Section>
 );
 

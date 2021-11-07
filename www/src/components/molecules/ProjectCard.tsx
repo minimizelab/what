@@ -12,12 +12,8 @@ type Props = {
 
 const ProjectCard: FC<Props> = ({ img, title, categories }) => {
   return (
-    <div className="h-96 bg-white flex flex-col shadow-md hover:shadow-2xl transition ease-in-out duration-300">
-      <div className="pt-8 px-8 pb-6 flex-1">
-        <H1>{title}</H1>
-        <TextUppercase>{categories?.map(({ title }) => title)}</TextUppercase>
-      </div>
-      <div className="w-full h-3/4 relative">
+    <div className="h-500 flex flex-col">
+      <div className="relative flex-1">
         {img && (
           <Image
             layout="fill"
@@ -28,6 +24,12 @@ const ProjectCard: FC<Props> = ({ img, title, categories }) => {
           />
         )}
       </div>
+      <H1>{title}</H1>
+      <TextUppercase className="text-opacity-50">
+        {categories?.map(({ title }, i) =>
+          i === categories.length - 1 ? title : `${title} / `
+        )}
+      </TextUppercase>
     </div>
   );
 };
