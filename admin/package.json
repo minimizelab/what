@@ -5,7 +5,7 @@
   "main": "package.json",
   "scripts": {
     "start": "sanity start",
-    "build": "sanity build"
+    "build": "sanity build public -y"
   },
   "keywords": [
     "sanity"
@@ -14,23 +14,27 @@
     "node": "14.x"
   },
   "dependencies": {
-    "@sanity/base": "^2.21.7",
+    "@sanity/base": "^2.21.9",
+    "@sanity/color": "^2.1.5",
     "@sanity/components": "^2.14.0",
-    "@sanity/core": "^2.21.7",
-    "@sanity/default-layout": "^2.21.7",
-    "@sanity/default-login": "^2.21.7",
-    "@sanity/desk-tool": "^2.21.7",
-    "@sanity/vision": "^2.21.7",
+    "@sanity/core": "^2.21.8",
+    "@sanity/default-layout": "^2.21.9",
+    "@sanity/default-login": "^2.21.9",
+    "@sanity/desk-tool": "^2.21.9",
+    "@sanity/vision": "^2.21.9",
     "prop-types": "^15.7",
-    "react": "^17.0",
-    "react-dom": "^17.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "styled-components": "^5.2.0"
-  },
-  "devDependencies": {
-    "@sanity/cli": "^2.21.7"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/minimizelab/what.git"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@sanity/cli": "^2.21.7",
+    "caniuse-lite": "^1.0.30001278",
+    "webpack": "^5.62.1"
   }
 }
