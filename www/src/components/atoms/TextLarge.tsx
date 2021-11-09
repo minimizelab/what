@@ -5,7 +5,7 @@ interface Props {
   white?: boolean;
 }
 
-const TextLarge: FunctionComponent<Props> = ({ className, children }) => (
+const TextLarge: FunctionComponent<Props> = ({ children }) => (
   <p className="text-lg">{children}</p>
 );
 

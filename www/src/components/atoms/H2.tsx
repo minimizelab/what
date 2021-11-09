@@ -1,4 +1,6 @@
-const H2: React.FC = ({ children }) => {
+import { FC } from 'react';
+
+const H2: FC = ({ children }) => {
   return <h2 className="text-xl">{children}</h2>;
 };
 

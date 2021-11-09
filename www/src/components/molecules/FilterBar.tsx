@@ -15,8 +15,8 @@ const FilterBar: FC<Props> = ({ categories }) => (
       /
     </span>
     {categories.map((category, i) => (
-      <span>
-        <Link key={category._id} href={`/${category.path.current}`}>
+      <span key={category._id}>
+        <Link href={`/${category.path.current}`}>
           <a className="mr-2 ml-2">{category.title}</a>
         </Link>
         {i !== categories.length - 1 && '/'}
