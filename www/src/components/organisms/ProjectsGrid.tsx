@@ -8,7 +8,7 @@ type Props = {
 };
 
 const ProjectsGrid: FC<Props> = ({ projects }) => (
-  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:grid-flow-col mb-6">
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:grid-flow-col">
     {projects.map((project) => (
       <Link href={`/projects/${project.path.current}`} key={project._id}>
         <a>
