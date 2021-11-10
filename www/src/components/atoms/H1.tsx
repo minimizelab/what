@@ -1,7 +1,8 @@
+import classNames from 'classnames';
 import { FC } from 'react';
 
-const H1: FC = ({ children }) => {
-  return <h1 className="text-2xl">{children}</h1>;
+const H1: FC<{ className?: string }> = ({ children, className }) => {
+  return <h1 className={classNames('text-2xl', className)}>{children}</h1>;
 };
 
 export default H1;

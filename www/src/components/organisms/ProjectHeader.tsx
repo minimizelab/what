@@ -18,7 +18,7 @@ const ProjectHeader: FC<Props> = ({
   subTitle,
 }) => {
   return (
-    <div>
+    <div className="mb-6">
       <H1>{title}</H1>
       <div className="border-b border-white" />
       <TextUppercase>
