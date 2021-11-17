@@ -1,7 +1,9 @@
+import { Document } from '../../types';
+
 const categorySlugBlacklist = ['projects'];
 
-export default {
-  title: 'Category',
+const Category: Document = {
+  title: 'Kategorier',
   name: 'category',
   type: 'document',
   description: 'A content category',
@@ -31,3 +33,5 @@ export default {
     },
   ],
 };
+
+export default Category;
