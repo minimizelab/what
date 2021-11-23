@@ -7,6 +7,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 // Import document types
 import category from './documents/category';
 import project from './documents/project';
+import employee from './documents/employee';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -14,5 +15,5 @@ export default createSchema({
   name: 'what',
   // Then proceed to concatenate our document type
   // to the ones provided by any plugins that are installed
-  types: schemaTypes.concat([category, project]),
+  types: schemaTypes.concat([category, project, employee]),
 });

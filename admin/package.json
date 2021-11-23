@@ -26,7 +26,8 @@
     "react": "^16.0.2",
     "react-dom": "^16.0.2",
     "react-is": "^16.0.2",
-    "styled-components": "^5.2.0"
+    "styled-components": "^5.2.0",
+    "yup": "^0.32.11"
   },
   "repository": {
     "type": "git",
