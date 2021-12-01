@@ -12,7 +12,7 @@ export type Project = {
   subTitle: string;
   mainImage?: SanityImageAssetDocument;
   description: string;
-  content: any;
+  images: { asset: SanityImageAssetDocument }[];
   categories: Category[];
   _id: string;
 };

@@ -5,6 +5,9 @@
     "./**/*.tsx"
   ],
   "compilerOptions": {
-    "jsx": "react"
+    "jsx": "react",
+    "strict": true,
+    "importHelpers": true,
+    "forceConsistentCasingInFileNames": true
   }
 }
