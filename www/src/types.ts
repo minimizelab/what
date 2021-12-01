@@ -3,6 +3,7 @@ import { SanityImageAssetDocument } from '@sanity/client';
 export type Category = {
   path: Path;
   title: string;
+  sortedProjects?: Project[];
   _id: string;
 };
 export type Project = {

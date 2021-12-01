@@ -31,6 +31,17 @@ const Category: Document = {
         source: 'title',
       },
     },
+    {
+      title: 'Prioriterade projekt',
+      name: 'sortedProjects',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'project' }],
+        },
+      ],
+    },
   ],
 };
 

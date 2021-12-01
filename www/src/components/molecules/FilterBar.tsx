@@ -8,12 +8,6 @@ type Props = {
 
 const FilterBar: FC<Props> = ({ categories }) => (
   <div className="flex flex-row my-8 ">
-    <span>
-      <Link href="/">
-        <a className="mr-2">Featured </a>
-      </Link>
-      /
-    </span>
     {categories.map((category, i) => (
       <span key={category._id}>
         <Link href={`/${category.path.current}`}>
