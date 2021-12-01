@@ -21,7 +21,7 @@ const Employee: Document = {
       type: 'image',
     },
     {
-      title: 'Epost',
+      title: 'Email',
       name: 'email',
       type: 'string',
       validation: (R) =>
@@ -35,7 +35,7 @@ const Employee: Document = {
       type: 'string',
     },
     {
-      title: 'Title',
+      title: 'Titlar',
       name: 'titles',
       type: 'string',
     },
