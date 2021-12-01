@@ -13,9 +13,8 @@ type Props = {
 };
 
 const ProjectPage: FC<Props> = ({ project }) => {
-  console.log(project);
   return (
-    <Page title={project.title}>
+    <Page>
       <ProjectHeader
         title={project.title}
         categories={project.categories}

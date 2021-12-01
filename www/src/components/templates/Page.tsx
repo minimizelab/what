@@ -5,13 +5,12 @@ import Section from '../atoms/Section';
 import Header from '../organisms/Header';
 
 type Props = {
-  title?: string;
   className?: string;
 };
 
-const Page: FC<Props> = ({ children, title, className }) => (
+const Page: FC<Props> = ({ children, className }) => (
   <Section className="flex flex-col flex-1">
-    <Header title={title ?? siteTitle} />
+    <Header />
     <main className={classNames('flex flex-col flex-1', className)}>
       {children}
     </main>

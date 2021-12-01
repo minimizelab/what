@@ -20,3 +20,11 @@ export type Project = {
 type Path = {
   current: string;
 };
+
+export type Employee = {
+  email: string;
+  name: string;
+  phone: string;
+  image: SanityImageAssetDocument;
+  titles: string;
+};

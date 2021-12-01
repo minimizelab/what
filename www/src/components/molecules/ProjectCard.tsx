@@ -12,11 +12,13 @@ type Props = {
 
 const ProjectCard: FC<Props> = ({ img, title, categories }) => {
   return (
-    <div className="h-500 flex flex-col">
+    <div className="flex flex-col">
       <div className="relative flex-1">
         {img && (
           <Image
-            layout="fill"
+            layout="responsive"
+            width="300"
+            height="200"
             objectFit="cover"
             objectPosition="center"
             src={img}

@@ -6,9 +6,7 @@ interface Props {
 }
 
 const TextMedium: FunctionComponent<Props> = ({ children, className }) => (
-  <p className={classNames('uppercase tracking-wider text-xs', className)}>
-    {children}
-  </p>
+  <p className={classNames('text-md', className)}>{children}</p>
 );
 
 export default TextMedium;

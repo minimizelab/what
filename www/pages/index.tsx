@@ -13,7 +13,7 @@ type Props = {
 };
 
 const Home: FC<Props> = ({ categories, projects }) => (
-  <Page className="pb-8" title="Welcome to What! web page">
+  <Page className="pb-8">
     <FilterBar categories={categories} />
     <ProjectsGrid projects={projects} />
   </Page>
