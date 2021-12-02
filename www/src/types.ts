@@ -15,9 +15,16 @@ export type Project = {
   description: string;
   images: { asset: SanityImageAssetDocument }[];
   categories: Category[];
+  credits?: string;
   _id: string;
 };
 
 type Path = {
   current: string;
+};
+
+export type Settings = {
+  title: string;
+  contactEmail?: string;
+  featuredProjects?: Project[];
 };
