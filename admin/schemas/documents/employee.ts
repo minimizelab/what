@@ -1,8 +1,6 @@
 import { Document } from '../../types';
-import * as yup from 'yup';
-import { string } from 'prop-types';
+import { emailSchema } from '../../utils';
 
-const emailSchema = yup.string().email();
 
 const Employee: Document = {
   title: 'Medarbetare',

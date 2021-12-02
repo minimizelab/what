@@ -1,4 +1,5 @@
 import { ElementType, ReactNode } from 'react';
+import { IconType } from 'react-icons';
 
 type Meta = {
   parent: { [key: string]: any };
@@ -217,11 +218,15 @@ export type ObjectField<Name extends string = string> = CommonFieldProps & {
   options?: { collapsible?: boolean; collapsed?: boolean };
 };
 
+type Action = 'update' | 'publish' | 'delete' | 'create';
+
 export type Document = {
   type: 'document';
   name: string;
+  icon?: IconType;
   fields: FieldCollection;
   title?: string;
+  __experimental_actions?: Action[];
   validation?: Validation;
   preview?: Preview;
   fieldsets?: Fieldset[];
