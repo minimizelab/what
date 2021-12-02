@@ -12,14 +12,14 @@ const Category: Document = {
       title: 'Title',
       name: 'title',
       type: 'string',
-      description: 'The title of the category',
+      description: 'Namn på kategori',
       validation: (R) => R.required(),
     },
     {
       title: 'Path',
       name: 'path',
       type: 'slug',
-      description: 'The unique url name for the category',
+      description: 'Kategorins unika sökväg',
       validation: (R) =>
         R.required().custom((slug) => {
           if (!slug) return true;
@@ -30,6 +30,18 @@ const Category: Document = {
       options: {
         source: 'title',
       },
+    },
+    {
+      title: 'Prioriterade projekt',
+      name: 'sortedProjects',
+      type: 'array',
+      description: 'Projekt som visas först',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'project' }],
+        },
+      ],
     },
   ],
 };

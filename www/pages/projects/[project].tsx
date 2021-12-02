@@ -37,6 +37,7 @@ const ProjectPage: FC<Props> = ({ project }) => {
           </div>
         ))}
       </div>
+      <p>{project.credits}</p>
     </Page>
   );
 };

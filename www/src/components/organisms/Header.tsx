@@ -16,7 +16,7 @@ const Header: FC<Props> = ({ children, className, filterBar }) => (
         </Link>
       </div>
     </div>
-    {filterBar && filterBar}
+    {filterBar}
   </header>
 );
 

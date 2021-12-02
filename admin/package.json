@@ -14,18 +14,20 @@
     "node": "14.x"
   },
   "dependencies": {
-    "@sanity/base": "^2.22.0",
+    "@sanity/base": "^2.22.3",
     "@sanity/color": "^2.1.5",
     "@sanity/components": "^2.14.0",
-    "@sanity/core": "^2.22.0",
-    "@sanity/default-layout": "^2.22.0",
-    "@sanity/default-login": "^2.22.0",
-    "@sanity/desk-tool": "^2.22.1",
-    "@sanity/vision": "^2.22.0",
+    "@sanity/core": "^2.22.3",
+    "@sanity/default-layout": "^2.22.4",
+    "@sanity/default-login": "^2.22.3",
+    "@sanity/desk-tool": "^2.22.3",
+    "@sanity/vision": "^2.22.3",
     "prop-types": "^15.7",
     "react": "^16.0.2",
     "react-dom": "^16.0.2",
+    "react-icons": "^4.3.1",
     "react-is": "^16.0.2",
+    "sanity-plugin-media": "^1.4.4",
     "styled-components": "^5.2.0",
     "yup": "^0.32.11"
   },
@@ -35,8 +37,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
-    "@sanity/cli": "^2.22.0",
-    "caniuse-lite": "^1.0.30001278",
-    "webpack": "^5.62.1"
+    "@sanity/cli": "^2.22.3",
+    "caniuse-lite": "^1.0.30001283",
+    "webpack": "^5.64.4"
   }
 }

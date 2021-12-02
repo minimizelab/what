@@ -1,8 +1,6 @@
 import { Document } from '../../types';
-import * as yup from 'yup';
-import { string } from 'prop-types';
+import { emailSchema } from '../../utils';
 
-const emailSchema = yup.string().email();
 
 const Employee: Document = {
   title: 'Medarbetare',
@@ -21,7 +19,7 @@ const Employee: Document = {
       type: 'image',
     },
     {
-      title: 'Epost',
+      title: 'Email',
       name: 'email',
       type: 'string',
       validation: (R) =>
@@ -35,7 +33,7 @@ const Employee: Document = {
       type: 'string',
     },
     {
-      title: 'Title',
+      title: 'Titlar',
       name: 'titles',
       type: 'string',
     },
