@@ -6,16 +6,22 @@ import Section from '../atoms/Section';
 import Header from '../organisms/Header';
 
 type Props = {
-  title?: string;
   className?: string;
+  filterBar?: React.ReactNode;
+  title?: string;
 };
 
-const Page: FC<Props> = ({ children, title = siteTitle, className }) => (
+const Page: FC<Props> = ({
+  children,
+  title = siteTitle,
+  className,
+  filterBar,
+}) => (
   <Section className="flex flex-col flex-1">
     <Head>
       <title>{title}</title>
     </Head>
-    <Header title={title} />
+    <Header filterBar={filterBar} />
     <main className={classNames('flex flex-col flex-1', className)}>
       {children}
     </main>

@@ -14,7 +14,7 @@ type Props = {
 
 const ProjectPage: FC<Props> = ({ project }) => {
   return (
-    <Page title={project.title}>
+    <Page>
       <ProjectHeader
         title={project.title}
         categories={project.categories}

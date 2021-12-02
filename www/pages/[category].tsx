@@ -15,9 +15,8 @@ type Props = {
   category: Category;
 };
 
-const CategoryPage: FC<Props> = ({ categories, projects, category }) => (
-  <Page title={category.title}>
-    <FilterBar categories={categories} />
+const CategoryPage: FC<Props> = ({ categories, projects }) => (
+  <Page filterBar={<FilterBar categories={categories} />}>
     <ProjectsGrid projects={projects} />
   </Page>
 );

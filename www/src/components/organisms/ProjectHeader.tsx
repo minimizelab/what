@@ -20,7 +20,6 @@ const ProjectHeader: FC<Props> = ({
   return (
     <div className="mb-6">
       <H1>{title}</H1>
-      <div className="border-b border-white" />
       <TextUppercase>
         {categories.map((category) => category.title)}
       </TextUppercase>

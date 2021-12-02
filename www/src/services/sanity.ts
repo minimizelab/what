@@ -1,6 +1,6 @@
 import { getClient } from '../lib/sanity.server';
 import { groq } from 'next-sanity';
-import { Project, Category, Settings } from '../types';
+import { Project, Category, Settings, Employee } from '../types';
 
 const getCategories = async (preview = false): Promise<Category[]> => {
   const categories = await getClient(preview).fetch(
@@ -44,6 +44,11 @@ const getSettings = (preview = false): Promise<Settings> =>
     groq`*[_type == "settings"][0]{...,featuredProjects[]->{..., "mainImage":mainImage.asset->, categories[]->}}`
   );
 
+const getEmployees = (preview = false): Promise<Employee[]> =>
+  getClient(preview).fetch(
+    groq`*[_type == "employee"]{_id, name, email, phone, titles, "image":image.asset->}`
+  );
+
 const sanityService = {
   getCategories,
   getCategory,
@@ -51,6 +56,7 @@ const sanityService = {
   getProject,
   getProjectsByCategory,
   getSettings,
+  getEmployees,
 };
 
 export default sanityService;

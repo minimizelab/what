@@ -28,3 +28,11 @@ export type Settings = {
   contactEmail?: string;
   featuredProjects?: Project[];
 };
+
+export type Employee = {
+  email: string;
+  name: string;
+  phone: string;
+  image: SanityImageAssetDocument;
+  titles: string;
+};
