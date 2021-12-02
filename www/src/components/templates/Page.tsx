@@ -5,11 +5,12 @@ import Header from '../organisms/Header';
 
 type Props = {
   className?: string;
+  filterBar?: React.ReactNode;
 };
 
-const Page: FC<Props> = ({ children, className }) => (
+const Page: FC<Props> = ({ children, className, filterBar }) => (
   <Section className="flex flex-col flex-1">
-    <Header />
+    <Header filterBar={filterBar} />
     <main className={classNames('flex flex-col flex-1', className)}>
       {children}
     </main>
