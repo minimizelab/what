@@ -12,7 +12,7 @@ const Studio: FC<Props> = ({ employees }) => (
   <Page className="pb-8">
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:grid-flow-col">
       {employees.map((employee) => (
-        <EmployeeCard employee={employee}></EmployeeCard>
+        <EmployeeCard key={employee.email} employee={employee}></EmployeeCard>
       ))}
     </div>
   </Page>

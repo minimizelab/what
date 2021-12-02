@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import React, { FC } from 'react';
-import { siteTitle } from '../../config/defaults';
 import Section from '../atoms/Section';
 import Header from '../organisms/Header';
 
