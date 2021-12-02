@@ -18,7 +18,6 @@ const Home: FC<Props> = ({ categories, settings }) => (
     title={settings.title}
     filterBar={<FilterBar categories={categories} />}
   >
-    <FilterBar categories={categories} />
     <ProjectsGrid projects={settings.featuredProjects || []} />
   </Page>
 );
