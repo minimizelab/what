@@ -107,7 +107,6 @@ const Project: Document = {
       options: {
         source: 'title',
       },
-      hidden: true,
     },
     {
       title: 'Credits',
