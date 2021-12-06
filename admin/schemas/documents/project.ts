@@ -67,8 +67,7 @@ const Project: Document = {
     {
       title: 'År',
       name: 'year',
-      type: 'number',
-      validation: (R) => R.integer().greaterThan(999).lessThan(2999),
+      type: 'string',
       fieldset: 'data',
     },
     {
