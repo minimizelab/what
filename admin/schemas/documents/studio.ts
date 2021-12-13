@@ -15,6 +15,20 @@ const Studio: Document = {
       validation: (R) => R.required(),
     },
     {
+      title: 'Text',
+      name: 'textContent',
+      type: 'text',
+      description: 'Sidans textinnehåll',
+      rows: 5,
+    },
+    {
+      title: 'Bilder',
+      name: 'images',
+      type: 'array',
+      of: [{ type: 'image' }],
+      options: { layout: 'grid' },
+    },
+    {
       title: 'Medarbetare som visas först',
       name: 'sortedEmployees',
       type: 'array',

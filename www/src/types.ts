@@ -41,4 +41,6 @@ export type Employee = {
 export type Studio = {
   title: string;
   employees: Employee[];
+  textContent: string;
+  images: { asset: SanityImageAssetDocument }[];
 };

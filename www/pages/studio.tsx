@@ -9,8 +9,11 @@ import getSortedArray from '../src/utils/getSortedArray';
 
 type Props = { employees: Employee[]; studio: Studio };
 
-const StudioPage: FC<Props> = ({ employees }) => (
+const StudioPage: FC<Props> = ({ employees, studio }) => (
   <Page className="pb-8">
+    <div className="flex flex-row justify-center my-16">
+      <p className="lg:w-2/3 w-full text-3xl">{studio.textContent}</p>
+    </div>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
       {employees.map((employee) => (
         <EmployeeCard key={employee.email} employee={employee}></EmployeeCard>
