@@ -20,7 +20,7 @@ const FilterBar: FC<Props> = ({ categories }) => {
           Alla{' '}
         </a>
       </Link>
-      {categories.map((category, i) => (
+      {categories.map((category) => (
         <span key={category._id}>
           <Link href={`/${category.path.current}`}>
             <a
