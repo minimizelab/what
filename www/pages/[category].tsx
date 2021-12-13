@@ -6,7 +6,7 @@ import ProjectsGrid from '../src/components/organisms/ProjectsGrid';
 import { revalidate } from '../src/config/defaults';
 import sanity from '../src/services/sanity';
 import { Category, Project } from '../src/types';
-import getProjectArray from '../src/utils/getProjectArray';
+import getSortedArray from '../src/utils/getSortedArray';
 
 type Params = { category: string };
 type Props = {
@@ -40,7 +40,10 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
     sanity.getCategories(),
     sanity.getProjectsByCategory(category._id),
   ]);
-  const projects = getProjectArray(allProjects, category.sortedProjects);
+  const projects = getSortedArray<Project>(
+    allProjects,
+    category.sortedProjects
+  );
   return {
     props: { categories, projects, category },
     revalidate,
