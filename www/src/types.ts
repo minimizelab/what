@@ -30,9 +30,15 @@ export type Settings = {
 };
 
 export type Employee = {
+  _id: string;
   email: string;
   name: string;
   phone: string;
   image: SanityImageAssetDocument;
   titles: string;
+};
+
+export type Studio = {
+  title: string;
+  employees: Employee[];
 };
