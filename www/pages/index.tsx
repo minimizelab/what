@@ -12,7 +12,7 @@ type Props = {
   settings: Settings;
 };
 
-const Home: FC<Props> = ({ categories, settings }) => (
+const HomePage: FC<Props> = ({ categories, settings }) => (
   <Page
     className="pb-8"
     title={settings.title}
@@ -33,4 +33,4 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   };
 };
 
-export default Home;
+export default HomePage;
