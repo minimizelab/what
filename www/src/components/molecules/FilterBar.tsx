@@ -10,7 +10,6 @@ type Props = {
 
 const FilterBar: FC<Props> = ({ categories }) => {
   const router = useRouter();
-  console.log(router.asPath);
   return (
     <div className="flex flex-row flex-wrap my-8 gap-x-3 gap-y-2">
       <Link href={`/`}>
@@ -19,7 +18,7 @@ const FilterBar: FC<Props> = ({ categories }) => {
             underline: router.asPath === '/' || router.asPath === '',
           })}
         >
-          Alla {console.log(router.asPath)}
+          Alla
         </a>
       </Link>
       {categories.map((category) => (
