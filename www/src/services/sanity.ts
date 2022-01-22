@@ -41,7 +41,7 @@ const getProjectsByCategory = (
 
 const getSettings = (preview = false): Promise<Settings> =>
   getClient(preview).fetch(
-    groq`*[_type == "settings"][0]{...,featuredProjects[]->{..., "mainImage":mainImage.asset->, categories[]->}}`
+    groq`*[_type == "settings"][0]{...,featuredProjects[]->{..., "mainImage":mainImage.asset->, categories[]->}, categoriesOrder[]->{...}}`
   );
 
 const getEmployees = (preview = false): Promise<Employee[]> =>

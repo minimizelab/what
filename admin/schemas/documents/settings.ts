@@ -33,6 +33,14 @@ const Settings: Document = {
       description: 'Projekt som visas på förstasidan',
       of: [{ type: 'reference', to: [{ type: 'project' }] }],
     },
+    {
+      title: 'Kategorier projektfilter',
+      name: 'categoriesOrder',
+      type: 'array',
+      description: 'Kategorier i projektfilter på förstasidan',
+      of: [{ type: 'reference', to: [{ type: 'category' }] }],
+      validation: (R) => R.required().min(1),
+    },
   ],
 };
 

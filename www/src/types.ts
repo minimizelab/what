@@ -27,6 +27,7 @@ export type Settings = {
   title: string;
   contactEmail?: string;
   featuredProjects?: Project[];
+  categoriesOrder: Category[];
 };
 
 export type Employee = {

@@ -14,8 +14,8 @@ const FilterBar: FC<Props> = ({ categories }) => {
     <div className="flex flex-row flex-wrap my-8 gap-x-3 gap-y-2">
       <Link href={`/`}>
         <a
-          className={classNames('underline-offset-4 cursor-pointer', {
-            underline: router.asPath === '/' || router.asPath === '',
+          className={classNames('cursor-pointer', {
+            'text-what-brick': router.asPath === '/' || router.asPath === '',
           })}
         >
           Alla
@@ -26,8 +26,9 @@ const FilterBar: FC<Props> = ({ categories }) => {
           <Link href={`/${category.path.current}`}>
             <a
               className={`${
-                router.asPath === '/' + category.path.current && 'underline'
-              } underline-offset-4 cursor-pointer
+                router.asPath === '/' + category.path.current &&
+                'text-what-brick'
+              } cursor-pointer
                 `}
             >
               {category.title}

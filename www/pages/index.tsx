@@ -4,31 +4,27 @@ import FilterBar from '../src/components/molecules/FilterBar';
 import Page from '../src/components/templates/Page';
 import ProjectsGrid from '../src/components/organisms/ProjectsGrid';
 import sanity from '../src/services/sanity';
-import { Category, Settings } from '../src/types';
+import { Settings } from '../src/types';
 import { revalidate } from '../src/config/defaults';
 
 type Props = {
-  categories: Category[];
   settings: Settings;
 };
 
-const HomePage: FC<Props> = ({ categories, settings }) => (
+const HomePage: FC<Props> = ({ settings }) => (
   <Page
     className="pb-8"
     title={settings.title}
-    filterBar={<FilterBar categories={categories} />}
+    filterBar={<FilterBar categories={settings.categoriesOrder || []} />}
   >
     <ProjectsGrid projects={settings.featuredProjects || []} />
   </Page>
 );
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const [settings, categories] = await Promise.all([
-    sanity.getSettings(),
-    sanity.getCategories(),
-  ]);
+  const [settings] = await Promise.all([sanity.getSettings()]);
   return {
-    props: { categories, settings },
+    props: { settings },
     revalidate,
   };
 };
