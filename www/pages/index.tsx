@@ -15,6 +15,7 @@ const HomePage: FC<Props> = ({ settings }) => (
   <Page
     className="pb-8"
     title={settings.title}
+    settings={settings}
     filterBar={<FilterBar categories={settings.categoriesOrder || []} />}
   >
     <ProjectsGrid projects={settings.featuredProjects || []} />

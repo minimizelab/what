@@ -1,18 +1,17 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
 import Section from '../atoms/Section';
+import TextLarge from '../atoms/TextLarge';
 import TextUppercase from '../atoms/TextUppercase';
 
 const Nav: FC = () => (
-  <nav className="mt-8 sm:mt-12 relative">
-    <Section className="absolute">
-      <TextUppercase className="!text-lg">
-        <Link href="/">PROJEKT</Link>
-      </TextUppercase>
-      <TextUppercase className="!text-lg">
-        <Link href="/studio">STUDIO </Link>
-      </TextUppercase>
-    </Section>
+  <nav className="flex flex-row space-x-6 flex-wrap sm:flex-nowrap h-full items-end">
+    <TextLarge className="!text-2xl hover:text-what-brick">
+      <Link href="/">projekt</Link>
+    </TextLarge>
+    <TextLarge className="!text-2xl hover:text-what-brick">
+      <Link href="/studio">studio </Link>
+    </TextLarge>
   </nav>
 );
 

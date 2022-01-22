@@ -27,6 +27,12 @@ const Settings: Document = {
         ),
     },
     {
+      title: 'Logotyp',
+      name: 'logotype',
+      type: 'image',
+      validation: (R) => R.required(),
+    },
+    {
       title: 'Projekt förstasidan',
       name: 'featuredProjects',
       type: 'array',
