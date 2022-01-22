@@ -3,10 +3,14 @@ module.exports = {
   theme: {
     fontFamily: { space: ['Space Grotesk'] },
     extend: {
-      colors: { 'what-mushroom': '#EBEBEB', 'what-forest': '#2C4431' },
+      colors: {
+        'what-mushroom': '#EBEBEB',
+        'what-forest': '#2C4431',
+        'what-brick': '#e73c29',
+      },
       height: { 500: '500px' },
       screens: {
-        1920: '1920px',
+        content: '1440px',
       },
     },
   },

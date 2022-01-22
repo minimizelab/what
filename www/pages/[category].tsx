@@ -5,25 +5,25 @@ import Page from '../src/components/templates/Page';
 import ProjectsGrid from '../src/components/organisms/ProjectsGrid';
 import { revalidate } from '../src/config/defaults';
 import sanity from '../src/services/sanity';
-import { Category, Project } from '../src/types';
+import { Category, Project, Settings } from '../src/types';
 import getSortedArray from '../src/utils/getSortedArray';
 
 type Params = { category: string };
 type Props = {
-  categories: Category[];
+  settings: Settings;
   projects: Project[];
   category: Category;
 };
 
-const CategoryPage: FC<Props> = ({ categories, projects }) => (
-  <Page filterBar={<FilterBar categories={categories} />}>
+const CategoryPage: FC<Props> = ({ settings, projects }) => (
+  <Page filterBar={<FilterBar categories={settings.categoriesOrder} />}>
     <ProjectsGrid projects={projects} />
   </Page>
 );
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const categories = await sanity.getCategories();
-  const paths = categories.map(({ path }) => ({
+  const settings = await sanity.getSettings();
+  const paths = settings.categoriesOrder.map(({ path }) => ({
     params: { category: path.current },
   }));
   return {
@@ -36,8 +36,8 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
 }) => {
   const category = await sanity.getCategory(params?.category);
-  const [categories, allProjects] = await Promise.all([
-    sanity.getCategories(),
+  const [settings, allProjects] = await Promise.all([
+    sanity.getSettings(),
     sanity.getProjectsByCategory(category._id),
   ]);
   const projects = getSortedArray<Project>(
@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
     category.sortedProjects
   );
   return {
-    props: { categories, projects, category },
+    props: { settings, projects, category },
     revalidate,
   };
 };
