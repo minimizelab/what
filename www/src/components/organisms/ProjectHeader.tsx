@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Category, Project } from '../../types';
+import { Project } from '../../types';
 import H1 from '../atoms/H1';
 import TextLarge from '../atoms/TextLarge';
 import TextUppercase from '../atoms/TextUppercase';
