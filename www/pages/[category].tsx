@@ -16,7 +16,10 @@ type Props = {
 };
 
 const CategoryPage: FC<Props> = ({ settings, projects }) => (
-  <Page filterBar={<FilterBar categories={settings.categoriesOrder} />}>
+  <Page
+    settings={settings}
+    filterBar={<FilterBar categories={settings.categoriesOrder} />}
+  >
     <ProjectsGrid projects={projects} />
   </Page>
 );

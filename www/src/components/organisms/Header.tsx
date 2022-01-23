@@ -1,20 +1,37 @@
+import { SanityImageAssetDocument } from '@sanity/client';
 import classNames from 'classnames';
 import Link from 'next/link';
 import React, { FC } from 'react';
+import Image from 'next/image';
+import Nav from './Nav';
 
-type Props = { className?: string; filterBar?: React.ReactNode };
+type Props = {
+  className?: string;
+  filterBar?: React.ReactNode;
+  logotype: SanityImageAssetDocument;
+};
 
-const Header: FC<Props> = ({ children, className, filterBar }) => (
+const Header: FC<Props> = ({ className, filterBar, logotype }) => (
   <header
     className={classNames('h-64 flex flex-col justify-between', className)}
   >
-    <div className="flex flex-row justify-between">
-      <div>{children}</div>
-      <div className="flex flex-col content-between text-right justify-between pb-8">
+    <div className="flex flex-row justify-between items-start w-100 mt-8">
+      <div className="w-40 flex flex-col justify-items-end">
         <Link href="/">
-          <a className="text-2xl">WHAT</a>
+          <a>
+            <Image
+              layout="responsive"
+              width="300"
+              height="200"
+              objectFit="cover"
+              objectPosition="center"
+              src={logotype.url}
+              alt="Logotype"
+            />
+          </a>
         </Link>
       </div>
+      <Nav />
     </div>
     {filterBar}
   </header>

@@ -5,16 +5,17 @@ import ProjectHeader from '../../src/components/organisms/ProjectHeader';
 import Page from '../../src/components/templates/Page';
 import { revalidate } from '../../src/config/defaults';
 import sanity from '../../src/services/sanity';
-import { Project } from '../../src/types';
+import { Project, Settings } from '../../src/types';
 
 type Params = { project: string };
 type Props = {
   project: Project;
+  settings: Settings;
 };
 
-const ProjectPage: FC<Props> = ({ project }) => {
+const ProjectPage: FC<Props> = ({ project, settings }) => {
   return (
-    <Page>
+    <Page settings={settings}>
       <ProjectHeader
         title={project.title}
         categories={project.categories}
@@ -56,9 +57,12 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
 }) => {
-  const project = await sanity.getProject(params?.project);
+  const [project, settings] = await Promise.all([
+    sanity.getProject(params?.project),
+    sanity.getSettings(),
+  ]);
   return {
-    props: { project },
+    props: { project, settings },
     revalidate,
   };
 };

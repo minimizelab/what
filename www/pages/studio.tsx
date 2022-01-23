@@ -3,14 +3,14 @@ import Page from '../src/components/templates/Page';
 import sanity from '../src/services/sanity';
 import { GetStaticProps } from 'next';
 import { revalidate } from '../src/config/defaults';
-import { Employee, Studio } from '../src/types';
+import { Employee, Settings, Studio } from '../src/types';
 import EmployeeCard from '../src/components/molecules/EmployeeCard';
 import getSortedArray from '../src/utils/getSortedArray';
 
-type Props = { employees: Employee[]; studio: Studio };
+type Props = { employees: Employee[]; studio: Studio; settings: Settings };
 
-const StudioPage: FC<Props> = ({ employees, studio }) => (
-  <Page className="pb-8">
+const StudioPage: FC<Props> = ({ employees, studio, settings }) => (
+  <Page className="pb-8" settings={settings}>
     <div className="flex flex-row justify-center my-16">
       <p className="lg:w-2/3 w-full text-3xl">{studio.textContent}</p>
     </div>
@@ -23,13 +23,14 @@ const StudioPage: FC<Props> = ({ employees, studio }) => (
 );
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const [allEmployees, studio] = await Promise.all([
+  const [allEmployees, studio, settings] = await Promise.all([
     sanity.getEmployees(),
     sanity.getStudio(),
+    sanity.getSettings(),
   ]);
   const employees = getSortedArray<Employee>(allEmployees, studio.employees);
   return {
-    props: { employees, studio },
+    props: { employees, studio, settings },
     revalidate,
   };
 };

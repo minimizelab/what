@@ -28,6 +28,7 @@ export type Settings = {
   contactEmail?: string;
   featuredProjects?: Project[];
   categoriesOrder: Category[];
+  logotype: SanityImageAssetDocument;
 };
 
 export type Employee = {
