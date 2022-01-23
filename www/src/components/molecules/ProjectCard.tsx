@@ -26,14 +26,6 @@ const ProjectCard: FC<Props> = ({ img, title, categories }) => {
           />
         )}
       </div>
-      <div className="py-4">
-        <H1>{title}</H1>
-        <TextUppercase className="opacity-50">
-          {categories?.map(({ title }, i) =>
-            i === categories.length - 1 ? title : `${title} / `
-          )}
-        </TextUppercase>
-      </div>
     </div>
   );
 };
