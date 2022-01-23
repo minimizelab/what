@@ -1,16 +1,11 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
-import { Category } from '../../types';
-import H1 from '../atoms/H1';
-import TextUppercase from '../atoms/TextUppercase';
 
 type Props = {
   img?: string;
-  title: string;
-  categories?: Category[];
 };
 
-const ProjectCard: FC<Props> = ({ img, title, categories }) => {
+const ProjectCard: FC<Props> = ({ img }) => {
   return (
     <div className="flex flex-col">
       <div className="relative flex-1">
