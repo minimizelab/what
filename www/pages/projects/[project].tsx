@@ -24,7 +24,7 @@ const ProjectPage: FC<Props> = ({ project, settings }) => {
         subTitle={project.subTitle}
       />
       <ImageGrid images={images} />
-      <p>{project.credits}</p>
+      <p className="mt-4">{project.credits}</p>
     </Page>
   );
 };
