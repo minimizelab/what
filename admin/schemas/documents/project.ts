@@ -37,7 +37,8 @@ const Project: Document = {
     {
       title: 'Uppdrag',
       name: 'assignment',
-      type: 'string',
+      type: 'array',
+      of: [{ type: 'string' }],
       fieldset: 'data',
     },
     {
@@ -48,8 +49,9 @@ const Project: Document = {
     },
     {
       title: 'Beställare',
-      name: 'client',
-      type: 'string',
+      name: 'clients',
+      type: 'array',
+      of: [{ type: 'string' }],
       fieldset: 'data',
     },
     {
@@ -60,8 +62,9 @@ const Project: Document = {
     },
     {
       title: 'Samarbetspartner',
-      name: 'collaborator',
-      type: 'string',
+      name: 'collaborators',
+      type: 'array',
+      of: [{ type: 'string' }],
       fieldset: 'data',
     },
     {
@@ -73,8 +76,9 @@ const Project: Document = {
     {
       title: 'Utmärkelser',
       name: 'awards',
+      type: 'array',
+      of: [{ type: 'string' }],
       fieldset: 'data',
-      type: 'string',
     },
     {
       title: 'Huvudbild',

@@ -16,12 +16,8 @@ type Props = {
 const ProjectPage: FC<Props> = ({ project, settings }) => {
   return (
     <Page settings={settings}>
-      <ProjectHeader
-        title={project.title}
-        categories={project.categories}
-        description={project.description}
-        subTitle={project.subTitle}
-      />
+      <ProjectHeader project={project} />
+
       <div className="mb-6">
         {project.images.map(({ asset: { _id, url, metadata } }) => (
           <div key={_id} className="mb-2 mt-4">

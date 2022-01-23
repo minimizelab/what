@@ -17,6 +17,16 @@ export type Project = {
   categories: Category[];
   credits?: string;
   _id: string;
+} & ProjectData;
+
+type ProjectData = {
+  assignment?: string;
+  location?: string;
+  clients?: string[];
+  size?: string;
+  collaborators?: string[];
+  year?: string;
+  awards?: string[];
 };
 
 type Path = {
