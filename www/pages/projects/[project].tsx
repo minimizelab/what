@@ -17,12 +17,7 @@ const ProjectPage: FC<Props> = ({ project, settings }) => {
   const images = project.images.map((obj) => obj.asset);
   return (
     <Page settings={settings}>
-      <ProjectHeader
-        title={project.title}
-        categories={project.categories}
-        description={project.description}
-        subTitle={project.subTitle}
-      />
+      <ProjectHeader project={project} />
       <ImageGrid images={images} />
       <p className="mt-4">{project.credits}</p>
     </Page>
