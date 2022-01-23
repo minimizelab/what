@@ -18,15 +18,17 @@ const Header: FC<Props> = ({ className, filterBar, logotype }) => (
     <div className="flex flex-row justify-between items-start w-100 mt-8">
       <div className="w-40 flex flex-col justify-items-end">
         <Link href="/">
-          <Image
-            layout="responsive"
-            width="300"
-            height="200"
-            objectFit="cover"
-            objectPosition="center"
-            src={logotype.url}
-            alt="Logotype"
-          />
+          <a>
+            <Image
+              layout="responsive"
+              width="300"
+              height="200"
+              objectFit="cover"
+              objectPosition="center"
+              src={logotype.url}
+              alt="Logotype"
+            />
+          </a>
         </Link>
       </div>
       <Nav />
