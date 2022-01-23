@@ -12,11 +12,7 @@ const ProjectsGrid: FC<Props> = ({ projects }) => (
     {projects.map((project) => (
       <Link href={`/projects/${project.path.current}`} key={project._id}>
         <a>
-          <ProjectCard
-            categories={project.categories}
-            img={project.mainImage?.url}
-            title={project.title}
-          />
+          <ProjectCard img={project.mainImage?.url} />
         </a>
       </Link>
     ))}
