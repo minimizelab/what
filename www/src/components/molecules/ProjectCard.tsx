@@ -11,6 +11,7 @@ const ProjectCard: FC<Props> = ({ img }) => {
       <div className="relative flex-1">
         {img && (
           <Image
+            sizes="(max-width: 1000px) 50vw, 1440px"
             layout="responsive"
             width="300"
             height="200"

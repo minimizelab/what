@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import Image from 'next/image';
 import React, { FC } from 'react';
+import { ImageGrid } from '../../src/components/molecules/ImageGrid';
 import ProjectHeader from '../../src/components/organisms/ProjectHeader';
 import Page from '../../src/components/templates/Page';
 import { revalidate } from '../../src/config/defaults';
@@ -14,6 +14,7 @@ type Props = {
 };
 
 const ProjectPage: FC<Props> = ({ project, settings }) => {
+  const images = project.images.map((obj) => obj.asset);
   return (
     <Page settings={settings}>
       <ProjectHeader
@@ -22,23 +23,8 @@ const ProjectPage: FC<Props> = ({ project, settings }) => {
         description={project.description}
         subTitle={project.subTitle}
       />
-      <div className="mb-6">
-        {project.images.map(({ asset: { _id, url, metadata } }) => (
-          <div key={_id} className="mb-2 mt-4">
-            <Image
-              src={url}
-              alt=""
-              placeholder={metadata.lqip ? 'blur' : 'empty'}
-              layout="responsive"
-              width={metadata.dimensions.width}
-              height={metadata.dimensions.height}
-              objectFit="contain"
-              blurDataURL={metadata.lqip}
-            />
-          </div>
-        ))}
-      </div>
-      <p>{project.credits}</p>
+      <ImageGrid images={images} />
+      <p className="mt-4">{project.credits}</p>
     </Page>
   );
 };

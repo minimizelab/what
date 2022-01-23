@@ -14,19 +14,20 @@
     "node": "14.x"
   },
   "dependencies": {
-    "@sanity/base": "^2.23.0",
+    "@sanity/base": "^2.25.0",
     "@sanity/color": "^2.1.6",
     "@sanity/components": "^2.14.0",
-    "@sanity/core": "^2.23.0",
-    "@sanity/default-layout": "^2.23.0",
-    "@sanity/default-login": "^2.23.0",
-    "@sanity/desk-tool": "^2.23.0",
-    "@sanity/vision": "^2.23.0",
-    "prop-types": "^15.7",
+    "@sanity/core": "^2.25.0",
+    "@sanity/default-layout": "^2.25.0",
+    "@sanity/default-login": "^2.24.1",
+    "@sanity/desk-tool": "^2.25.0",
+    "@sanity/vision": "^2.25.0",
+    "prop-types": "^15.8.1",
     "react": "^16.0.2",
     "react-dom": "^16.0.2",
     "react-icons": "^4.3.1",
     "react-is": "^16.0.2",
+    "redux": "^4.1.2",
     "sanity-plugin-media": "^1.4.4",
     "styled-components": "^5.2.0",
     "yup": "^0.32.11"
@@ -36,9 +37,9 @@
     "url": "https://github.com/minimizelab/what.git"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.5",
-    "@sanity/cli": "^2.22.3",
+    "@babel/core": "^7.16.12",
+    "@sanity/cli": "^2.25.0",
     "caniuse-lite": "^1.0.30001286",
-    "webpack": "^5.65.0"
+    "webpack": "^5.67.0"
   }
 }
