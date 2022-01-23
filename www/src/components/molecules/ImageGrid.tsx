@@ -25,6 +25,7 @@ export const ImageGrid: FC<{ images: SanityImageAssetDocument[] }> = ({
           <Image
             src={img.url}
             alt=""
+            sizes="(max-width: 1440px) 100vw, 1440px"
             placeholder={img.metadata.lqip ? 'blur' : 'empty'}
             layout="responsive"
             width={img.metadata.dimensions.width}
