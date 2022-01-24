@@ -10,7 +10,6 @@ type Props = {
 
 const FilterBar: FC<Props> = ({ categories }) => {
   const router = useRouter();
-  console.log(router.asPath === '/' || router.asPath === '');
   return (
     <div className="flex flex-row flex-wrap pt-8 gap-x-3 gap-y-2">
       <Link href={`/`}>
