@@ -36,7 +36,7 @@ const ProjectHeader: FC<Props> = ({ project }) => {
           <H1>{subTitle}</H1> */}
           <TextLarge>{description}</TextLarge>
         </div>
-        <div className="flex-1">
+        <div>
           <ProjectInfoBox project={project} />
         </div>
       </div>
