@@ -13,10 +13,10 @@ type Props = {
 
 const Header: FC<Props> = ({ className, filterBar, logotype }) => (
   <header
-    className={classNames('h-64 flex flex-col justify-between', className)}
+    className={classNames('pb-6 flex flex-col justify-between', className)}
   >
-    <div className="flex flex-row justify-between items-start w-100 mt-8">
-      <div className="w-40 flex flex-col justify-items-end">
+    <div className="flex flex-row justify-between items-start w-100 mt-8 mb-6">
+      <div className="w-40 flex flex-col justify-items-end sm:mr-4 mr-0">
         <Link href="/">
           <a>
             <Image

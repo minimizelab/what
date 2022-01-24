@@ -17,9 +17,11 @@ const ProjectPage: FC<Props> = ({ project, settings }) => {
   const images = project.images.map((obj) => obj.asset);
   return (
     <Page settings={settings}>
-      <ProjectHeader project={project} />
-      <ImageGrid images={images} />
-      <p className="mt-4">{project.credits}</p>
+      <div className="px-0 md:px-16 lg:px-40">
+        <ProjectHeader project={project} />
+        <ImageGrid images={images} />
+        <p className="mt-4">{project.credits}</p>
+      </div>
     </Page>
   );
 };

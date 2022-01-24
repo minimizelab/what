@@ -11,16 +11,16 @@ const ProjectInfoBox: FC<Props> = ({ project }) => {
     project;
 
   const projectInfoItem = (title: string, value: string | string[]) => (
-    <tr className="">
-      <td className="align-top py-3 pr-4 sm:pr-10">
+    <tr>
+      <td className="align-top pb-3 pr-4 sm:pr-10 lg:whitespace-nowrap">
         <TextMedium className="font-medium">{title}</TextMedium>
       </td>
       {typeof value === 'string' ? (
-        <td className="align-top py-3">
+        <td className="align-top pb-3 lg:whitespace-nowrap">
           <TextMedium>{value}</TextMedium>
         </td>
       ) : (
-        <td className="align-top py-3">
+        <td className="align-top pb-3 lg:whitespace-nowrap">
           {value.map((item: string, i: number) => (
             <TextMedium key={item + i}>{item}</TextMedium>
           ))}
@@ -29,7 +29,7 @@ const ProjectInfoBox: FC<Props> = ({ project }) => {
     </tr>
   );
   return (
-    <table className="mb-6">
+    <table>
       <tbody>
         {assignment && projectInfoItem('Uppdrag', assignment)}
         {clients && projectInfoItem('Beställare', clients)}
