@@ -23,7 +23,7 @@ const Header: FC<Props> = ({ className, filterBar, logotype }) => (
               layout="responsive"
               width="300"
               height="200"
-              objectFit="cover"
+              objectFit="contain"
               objectPosition="center"
               src={logotype.url}
               alt="Logotype"
