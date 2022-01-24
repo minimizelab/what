@@ -10,13 +10,15 @@ type Props = {
 
 const FilterBar: FC<Props> = ({ categories }) => {
   const router = useRouter();
+  console.log(router.asPath === '/' || router.asPath === '');
   return (
-    <div className="flex flex-row flex-wrap my-8 gap-x-3 gap-y-2">
+    <div className="flex flex-row flex-wrap pt-8 gap-x-3 gap-y-2">
       <Link href={`/`}>
         <a
-          className={classNames('cursor-pointer', {
-            'text-what-brick': router.asPath === '/' || router.asPath === '',
-          })}
+          className={classNames(
+            'cursor-pointer hover:text-what-brick',
+            (router.asPath === '/' || router.asPath === '') && 'text-what-brick'
+          )}
         >
           Alla
         </a>
@@ -25,11 +27,11 @@ const FilterBar: FC<Props> = ({ categories }) => {
         <span key={category._id}>
           <Link href={`/${category.path.current}`}>
             <a
-              className={`${
+              className={classNames(
+                'cursor-pointer hover:text-what-brick',
                 router.asPath === '/' + category.path.current &&
-                'text-what-brick'
-              } cursor-pointer
-                `}
+                  'text-what-brick'
+              )}
             >
               {category.title}
             </a>
