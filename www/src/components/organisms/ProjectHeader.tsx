@@ -10,7 +10,7 @@ type Props = {
   project: Project;
 };
 
-const Block: FC = ({ children }) => <p className="text-lg">{children}</p>;
+const Block: FC = ({ children }) => <p className="text-md">{children}</p>;
 
 const ProjectHeader: FC<Props> = ({ project }) => {
   const { title, images, textBody } = project;
