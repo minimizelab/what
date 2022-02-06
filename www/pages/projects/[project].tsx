@@ -14,7 +14,7 @@ type Props = {
 };
 
 const ProjectPage: FC<Props> = ({ project, settings }) => {
-  const images = project.images.map((obj) => obj.asset);
+  const images = project.images.slice(1).map((obj) => obj.asset);
   return (
     <Page settings={settings}>
       <div className="px-0 md:px-16 lg:px-40">

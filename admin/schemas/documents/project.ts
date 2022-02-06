@@ -81,7 +81,7 @@ const Project: Document = {
       fieldset: 'data',
     },
     {
-      title: 'Huvudbild',
+      title: 'Omslagsbild',
       name: 'mainImage',
       type: 'image',
       description: 'Omslagsbild för projektet',

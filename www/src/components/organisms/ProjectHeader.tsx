@@ -11,7 +11,8 @@ type Props = {
 };
 
 const ProjectHeader: FC<Props> = ({ project }) => {
-  const { title, description, mainImage /* categories , subTitle*/ } = project;
+  const { title, description, images } = project;
+  const mainImage = images[0]?.asset;
   return (
     <div className="mb-6 lg:mb-8 space-y-8">
       {mainImage && (
