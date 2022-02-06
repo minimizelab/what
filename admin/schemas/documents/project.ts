@@ -29,8 +29,8 @@ const Project: Document = {
     },
     {
       title: 'Beskrivning',
-      name: 'description',
-      type: 'text',
+      name: 'textBody',
+      type: 'richText',
       description: 'Beskrivning av projektet',
       validation: (R) => R.required(),
     },
@@ -81,7 +81,7 @@ const Project: Document = {
       fieldset: 'data',
     },
     {
-      title: 'Huvudbild',
+      title: 'Omslagsbild',
       name: 'mainImage',
       type: 'image',
       description: 'Omslagsbild för projektet',

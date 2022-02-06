@@ -1,17 +1,20 @@
 import React, { FC } from 'react';
 import { Project } from '../../types';
 import H1 from '../atoms/H1';
-import TextLarge from '../atoms/TextLarge';
-/* import TextUppercase from '../atoms/TextUppercase'; */
 import ProjectInfoBox from './ProjectInfoBox';
 import Image from 'next/image';
+import { PortableText } from '@portabletext/react';
+import serializers from '../../lib/serializers';
 
 type Props = {
   project: Project;
 };
 
+const Block: FC = ({ children }) => <p className="text-lg">{children}</p>;
+
 const ProjectHeader: FC<Props> = ({ project }) => {
-  const { title, description, mainImage /* categories , subTitle*/ } = project;
+  const { title, images, textBody } = project;
+  const mainImage = images[0]?.asset;
   return (
     <div className="mb-6 lg:mb-8 space-y-8">
       {mainImage && (
@@ -30,11 +33,10 @@ const ProjectHeader: FC<Props> = ({ project }) => {
       <H1 className="!text-4xl text-what-brick">{title}</H1>
       <div className="flex flex-row flex-wrap xl:flex-nowrap justify-between space-x-0 xl:space-x-12">
         <div className="flex-2 pb-8 xl:pb-0">
-          {/*    <TextUppercase>
-            {categories.map((category) => category.title)}
-          </TextUppercase>
-          <H1>{subTitle}</H1> */}
-          <TextLarge>{description}</TextLarge>
+          <PortableText
+            value={textBody}
+            components={{ ...serializers, block: Block }}
+          />
         </div>
         <div>
           <ProjectInfoBox project={project} />

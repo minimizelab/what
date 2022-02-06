@@ -1,4 +1,5 @@
 import { SanityImageAssetDocument } from '@sanity/client';
+import { PortableTextBlock } from '@portabletext/types';
 
 export type Category = {
   path: Path;
@@ -12,6 +13,7 @@ export type Project = {
   slug: string;
   subTitle: string;
   mainImage?: SanityImageAssetDocument;
+  textBody: PortableTextBlock[];
   description: string;
   images: { asset: SanityImageAssetDocument }[];
   categories: Category[];
@@ -54,5 +56,6 @@ export type Studio = {
   title: string;
   employees: Employee[];
   textContent: string;
+  pageContent: PortableTextBlock[];
   images: { asset: SanityImageAssetDocument }[];
 };

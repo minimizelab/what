@@ -10,6 +10,7 @@ import project from './documents/project';
 import employee from './documents/employee';
 import settings from './documents/settings';
 import studio from './documents/studio';
+import richText from './objects/richText';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -17,5 +18,12 @@ export default createSchema({
   name: 'what',
   // Then proceed to concatenate our document type
   // to the ones provided by any plugins that are installed
-  types: schemaTypes.concat([category, project, employee, settings, studio]),
+  types: schemaTypes.concat([
+    category,
+    project,
+    employee,
+    settings,
+    studio,
+    richText,
+  ]),
 });

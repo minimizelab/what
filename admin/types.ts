@@ -112,6 +112,10 @@ export type BlockField<Name extends string = string> = CommonFieldProps & {
     decorators?: Array<{
       title: string;
       value: string;
+      blockEditor?: {
+        icon?: ElementType;
+        render?: ReactNode;
+      };
       icon?: ElementType;
     }>;
   };
@@ -168,7 +172,7 @@ type FileField<Name extends string = string> = CommonFieldProps & {
 
 export type CustomField<Name extends string = string> = CommonFieldProps & {
   name: Name;
-  type: 'money' | 'color' | 'icon' | 'iconPicker' | 'blockContent' | 'metadata';
+  type: 'money' | 'color' | 'icon' | 'iconPicker' | 'blockContent' | 'metadata' | 'richText';
   options?: Record<string, any>;
 };
 
