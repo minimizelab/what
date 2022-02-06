@@ -12,6 +12,7 @@ export type Project = {
   slug: string;
   subTitle: string;
   mainImage?: SanityImageAssetDocument;
+  textBody: any[];
   description: string;
   images: { asset: SanityImageAssetDocument }[];
   categories: Category[];
@@ -54,5 +55,6 @@ export type Studio = {
   title: string;
   employees: Employee[];
   textContent: string;
+  pageContent: any[];
   images: { asset: SanityImageAssetDocument }[];
 };

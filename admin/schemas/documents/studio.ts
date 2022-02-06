@@ -16,10 +16,9 @@ const Studio: Document = {
     },
     {
       title: 'Text',
-      name: 'textContent',
-      type: 'text',
-      description: 'Sidans textinnehåll',
-      rows: 5,
+      name: 'pageContent',
+      type: 'richText',
+      description: 'Sidans innehåll',
     },
     {
       title: 'Bilder',

@@ -6,6 +6,7 @@
   ],
   "compilerOptions": {
     "jsx": "react",
+    "esModuleInterop": true,
     "strict": true,
     "importHelpers": true,
     "forceConsistentCasingInFileNames": true

@@ -29,8 +29,8 @@ const Project: Document = {
     },
     {
       title: 'Beskrivning',
-      name: 'description',
-      type: 'text',
+      name: 'textBody',
+      type: 'richText',
       description: 'Beskrivning av projektet',
       validation: (R) => R.required(),
     },
