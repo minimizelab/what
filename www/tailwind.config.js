@@ -10,7 +10,7 @@ module.exports = {
       },
       height: { 500: '500px' },
       screens: {
-        content: '1440px',
+        content: '1792px',
       },
     },
   },

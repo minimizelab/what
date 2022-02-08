@@ -17,7 +17,7 @@ const Block: FC = ({ children }) => (
 
 const StudioPage: FC<Props> = ({ employees, studio, settings }) => (
   <Page className="pb-8" settings={settings}>
-    <div className="flex flex-row justify-center mb-16">
+    <div className="flex flex-row justify-start mb-16">
       <PortableText
         value={studio.pageContent}
         components={{ ...serializers, block: Block }}

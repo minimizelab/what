@@ -3,11 +3,11 @@ import React, { FC } from 'react';
 import TextLarge from '../atoms/TextLarge';
 
 const Nav: FC = () => (
-  <nav className="flex flex-row space-x-6 flex-wrap sm:flex-nowrap h-full items-end justify-end sm:justify-start">
-    <TextLarge className="!text-3xl hover:text-what-brick">
+  <nav className="flex flex-col lg:flex-row space-x-6 h-full items-end justify-end">
+    <TextLarge className="!text-4xl hover:text-what-brick">
       <Link href="/">projekt</Link>
     </TextLarge>
-    <TextLarge className="!text-3xl hover:text-what-brick">
+    <TextLarge className="!text-4xl hover:text-what-brick">
       <Link href="/studio">studio </Link>
     </TextLarge>
   </nav>

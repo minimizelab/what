@@ -12,7 +12,7 @@ export const ImageGrid: FC<{ images: SanityImageAssetDocument[] }> = ({
     centeredImg = portraitImages.pop()?._id;
   }
   return (
-    <div className="grid grid-cols-4 grid-flow-row-dense gap-5 items-center justify-center">
+    <div className="grid grid-cols-4 grid-flow-row-dense gap-10 items-center justify-center">
       {images.map((img) => (
         <div
           key={img._id}
