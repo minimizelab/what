@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { FC } from 'react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
 import { siteTitle } from '../src/config/defaults';
 import Footer from '../src/components/organisms/Footer';
+import { DefaultPageProps } from '../src/types';
 
-const App = ({ Component, pageProps }: AppProps) => (
+type Props = AppProps<DefaultPageProps>;
+
+const App: FC<Props> = ({ Component, pageProps }) => (
   <div className="w-full min-h-screen flex flex-row justify-center">
     <div className="max-w-screen-content w-full flex flex-col">
       <Head>
-        <title>{siteTitle}</title>
+        <title>{pageProps.settings.title ?? siteTitle}</title>
       </Head>
       <Component {...pageProps} />
-      <Footer />
+      <Footer email={pageProps.settings.email} />
     </div>
   </div>
 );

@@ -8,6 +8,13 @@ const Settings: Document = {
   icon: MdSettings,
   type: 'document',
   __experimental_actions: ['update', 'publish'],
+  fieldsets: [
+    {
+      name: 'contact',
+      title: 'Kontaktuppgifter',
+      options: { collapsible: true, collapsed: false, columns: 1 },
+    },
+  ],
   fields: [
     {
       title: 'Titel',
@@ -17,13 +24,45 @@ const Settings: Document = {
       validation: (R) => R.required(),
     },
     {
-      title: 'Footer email',
-      name: 'contactEmail',
+      title: 'Epost',
+      name: 'email',
       type: 'string',
-      description: 'Emailadress som visas i footer',
+      fieldset: 'contact',
+      description: 'Epostadress för kontakt',
       validation: (R) =>
         R.required().custom(async (str) =>
-          (await emailSchema.isValid(str)) ? true : 'Needs to be a valid email'
+          (await emailSchema.isValid(str))
+            ? true
+            : 'Måste vara en korrekt epostadress'
+        ),
+    },
+    {
+      title: 'Telefonnummer',
+      name: 'phone',
+      type: 'string',
+      fieldset: 'contact',
+      description: 'Telefonnummer för kontakt',
+      validation: (R) => R.required(),
+    },
+    {
+      title: 'Adress',
+      name: 'address',
+      type: 'array',
+      fieldset: 'contact',
+      of: [{ type: 'string' }],
+      validation: (R) => R.required(),
+    },
+    {
+      title: 'Epost Jobb',
+      name: 'emailJob',
+      type: 'string',
+      fieldset: 'contact',
+      description: 'Epostadress för kontakt gällande jobb',
+      validation: (R) =>
+        R.required().custom(async (str) =>
+          (await emailSchema.isValid(str))
+            ? true
+            : 'Måste vara en korrekt epostadress'
         ),
     },
     {

@@ -37,7 +37,10 @@ type Path = {
 
 export type Settings = {
   title: string;
-  contactEmail?: string;
+  email: string;
+  address: string[];
+  emailJob: string;
+  phone: string;
   featuredProjects?: Project[];
   categoriesOrder: Category[];
   logotype: SanityImageAssetDocument;
@@ -58,4 +61,8 @@ export type Studio = {
   textContent: string;
   pageContent: PortableTextBlock[];
   images: { asset: SanityImageAssetDocument }[];
+};
+
+export type DefaultPageProps = {
+  settings: Settings;
 };
