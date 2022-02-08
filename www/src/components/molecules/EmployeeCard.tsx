@@ -23,8 +23,10 @@ const EmployeeCard: FC<Props> = ({ employee }) => {
           />
         )}
       </div>
-      <TextMedium className="leading-snug">{employee.name} </TextMedium>
-      <TextMedium className="leading-snug"> {employee.titles} </TextMedium>
+      <TextMedium className="leading-snug text-what-brick">
+        {employee.name}
+      </TextMedium>
+      <TextMedium className="leading-snug">{employee.titles}</TextMedium>
       <TextMedium className="leading-snug">
         <a className="hover:text-what-brick" href={`mailto:${employee.email}`}>
           {employee.email}
