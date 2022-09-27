@@ -114,7 +114,7 @@ export type BlockField<Name extends string = string> = CommonFieldProps & {
       value: string;
       blockEditor?: {
         icon?: ElementType;
-        render?: ReactNode;
+        render?: ElementType;
       };
       icon?: ElementType;
     }>;
