@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import Head from 'next/head';
-import React, { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { siteTitle } from '../../config/defaults';
 import { Settings } from '../../types';
 import Section from '../atoms/Section';
@@ -8,9 +8,10 @@ import Header from '../organisms/Header';
 
 type Props = {
   className?: string;
-  filterBar?: React.ReactNode;
+  filterBar?: ReactNode;
   title?: string;
   settings: Settings;
+  children: ReactNode;
 };
 
 const Page: FC<Props> = ({

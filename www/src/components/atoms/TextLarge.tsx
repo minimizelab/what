@@ -1,9 +1,10 @@
 import classNames from 'classnames';
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 
 interface Props {
   className?: string;
   white?: boolean;
+  children?: ReactNode;
 }
 
 const TextLarge: FunctionComponent<Props> = ({ children, className }) => (

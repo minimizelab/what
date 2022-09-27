@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 
-const HighlightRender: FC = ({ children }) => (
+const HighlightRender: FC<{ children?: ReactNode }> = ({ children }) => (
   <span style={{ fontWeight: 'bold', color: '#e73c29' }}>{children}</span>
 );
 

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Section from '../atoms/Section';
 
 const Footer: FC<{ email: string }> = ({ email }) => (

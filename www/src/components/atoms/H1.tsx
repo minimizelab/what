@@ -1,7 +1,10 @@
 import classNames from 'classnames';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
-const H1: FC<{ className?: string }> = ({ children, className }) => {
+const H1: FC<{ className?: string; children?: ReactNode }> = ({
+  children,
+  className,
+}) => {
   return <h1 className={classNames('text-2xl', className)}>{children}</h1>;
 };
 

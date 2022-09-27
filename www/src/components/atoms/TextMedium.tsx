@@ -1,11 +1,12 @@
-import React, { FunctionComponent } from 'react';
+import { FC, ReactNode } from 'react';
 import classNames from 'classnames';
 
 interface Props {
   className?: string;
+  children?: ReactNode;
 }
 
-const TextMedium: FunctionComponent<Props> = ({ children, className }) => (
+const TextMedium: FC<Props> = ({ children, className }) => (
   <p className={classNames('text-md', className)}>{children}</p>
 );
 

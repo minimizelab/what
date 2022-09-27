@@ -1,6 +1,6 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
-const H2: FC = ({ children }) => {
+const H2: FC<{ children?: ReactNode }> = ({ children }) => {
   return <h2 className="text-xl">{children}</h2>;
 };
 

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { Project } from '../../types';
 import H1 from '../atoms/H1';
 import ProjectInfoBox from './ProjectInfoBox';
@@ -10,7 +10,9 @@ type Props = {
   project: Project;
 };
 
-const Block: FC = ({ children }) => <p className="text-md">{children}</p>;
+const Block: FC<{ children?: ReactNode }> = ({ children }) => (
+  <p className="text-md">{children}</p>
+);
 
 const ProjectHeader: FC<Props> = ({ project }) => {
   const { title, images, textBody } = project;
