@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Page from '../src/components/templates/Page';
-import { PortableText } from '@portabletext/react';
+import { PortableText, PortableTextBlockComponent } from '@portabletext/react';
 import sanity from '../src/services/sanity';
 import { GetStaticProps } from 'next';
 import { revalidate } from '../src/config/defaults';
@@ -12,7 +12,7 @@ import TextMedium from '../src/components/atoms/TextMedium';
 
 type Props = DefaultPageProps & { employees: Employee[]; studio: Studio };
 
-const Block: FC = ({ children }) => (
+const Block: PortableTextBlockComponent = ({ children }) => (
   <p className="lg:w-2/3 w-full text-3xl">{children}</p>
 );
 

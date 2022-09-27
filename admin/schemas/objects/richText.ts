@@ -1,6 +1,6 @@
 import HighlightIcon from '../../components/HighlightIcon';
 import HighlightRender from '../../components/HighlightRender';
-import { ArrayField, CustomField } from '../../types';
+import { ArrayField } from '../../types';
 
 const RichText: ArrayField = {
   name: 'richText',

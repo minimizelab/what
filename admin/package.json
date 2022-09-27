@@ -11,7 +11,7 @@
     "sanity"
   ],
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   },
   "dependencies": {
     "@sanity/base": "^2.34.0",
@@ -23,10 +23,10 @@
     "@sanity/desk-tool": "^2.34.0",
     "@sanity/vision": "^2.34.0",
     "prop-types": "^15.8.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
     "react-icons": "^4.4.0",
-    "react-is": "^17.0.2",
+    "react-is": "^17.0.0",
     "redux": "^4.2.0",
     "sanity-plugin-media": "^1.4.11",
     "styled-components": "^5.3.6",
@@ -37,7 +37,7 @@
     "url": "https://github.com/minimizelab/what.git"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.1",
+    "@babel/core": "^7.19.3",
     "@sanity/cli": "^2.34.0",
     "caniuse-lite": "^1.0.30001412",
     "webpack": "^5.74.0"

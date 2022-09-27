@@ -10,7 +10,7 @@
     "admin"
   ],
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   },
   "scripts": {
     "dev": "vercel dev --listen 3333"
