@@ -5,7 +5,7 @@
   "main": "package.json",
   "scripts": {
     "start": "sanity start",
-    "build": "sanity build public -y"
+    "build": "sanity build dist -y"
   },
   "keywords": [
     "sanity"
