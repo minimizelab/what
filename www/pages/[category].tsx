@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import FilterBar from '../src/components/molecules/FilterBar';
 import Page from '../src/components/templates/Page';
 import ProjectsGrid from '../src/components/organisms/ProjectsGrid';
@@ -39,6 +39,9 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
 }) => {
   const category = await sanity.getCategory(params?.category);
+  if (!category) {
+    return { notFound: true };
+  }
   const [settings, allProjects] = await Promise.all([
     sanity.getSettings(),
     sanity.getProjectsByCategory(category._id),
