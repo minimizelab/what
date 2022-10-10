@@ -3,7 +3,6 @@ import Page from '../src/components/templates/Page';
 import { PortableText, PortableTextBlockComponent } from '@portabletext/react';
 import sanity from '../src/services/sanity';
 import { GetStaticProps } from 'next';
-import { revalidate } from '../src/config/defaults';
 import { DefaultPageProps, Employee, Studio } from '../src/types';
 import EmployeeCard from '../src/components/molecules/EmployeeCard';
 import getSortedArray from '../src/utils/getSortedArray';
@@ -83,7 +82,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   const employees = getSortedArray<Employee>(allEmployees, studio.employees);
   return {
     props: { employees, studio, settings },
-    revalidate,
   };
 };
 

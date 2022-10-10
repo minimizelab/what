@@ -1,28 +1,13 @@
 import { SanityImageAssetDocument } from '@sanity/client';
-import Image from 'next/image';
+import { SanityImage } from './components/atoms/SanityImage';
 
 type ImageNode = {
   asset: SanityImageAssetDocument;
 };
 
-const image = ({
-  node: {
-    asset: { url, metadata },
-  },
-}: {
-  node: ImageNode;
-}) => (
+const image = ({ node: { asset } }: { node: ImageNode }) => (
   <div className="mb-2 mt-4">
-    <Image
-      src={url}
-      alt=""
-      placeholder={metadata.lqip ? 'blur' : 'empty'}
-      layout="responsive"
-      width={metadata.dimensions.width}
-      height={metadata.dimensions.height}
-      objectFit="contain"
-      blurDataURL={metadata.lqip}
-    />
+    <SanityImage img={asset} layout="responsive" objectFit="contain" />
   </div>
 );
 

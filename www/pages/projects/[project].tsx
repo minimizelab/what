@@ -1,9 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { ImageGrid } from '../../src/components/molecules/ImageGrid';
 import ProjectHeader from '../../src/components/organisms/ProjectHeader';
 import Page from '../../src/components/templates/Page';
-import { revalidate } from '../../src/config/defaults';
 import sanity from '../../src/services/sanity';
 import { Project, Settings } from '../../src/types';
 
@@ -33,7 +32,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
   }));
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
   };
 };
 
@@ -46,7 +45,6 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   ]);
   return {
     props: { project, settings },
-    revalidate,
   };
 };
 

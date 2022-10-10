@@ -2,9 +2,9 @@ import { FC, ReactNode } from 'react';
 import { Project } from '../../types';
 import H1 from '../atoms/H1';
 import ProjectInfoBox from './ProjectInfoBox';
-import Image from 'next/image';
 import { PortableText } from '@portabletext/react';
 import serializers from '../../lib/serializers';
+import { SanityImage } from '../atoms/SanityImage';
 
 type Props = {
   project: Project;
@@ -20,16 +20,12 @@ const ProjectHeader: FC<Props> = ({ project }) => {
   return (
     <div className="mb-6 lg:mb-8 space-y-8">
       {mainImage && (
-        <Image
-          src={mainImage.url}
-          alt=""
+        <SanityImage
+          img={mainImage}
+          alt={'image for project ' + title}
           sizes="(max-width: 1440px) 100vw, 1440px"
-          placeholder={mainImage.metadata.lqip ? 'blur' : 'empty'}
           layout="responsive"
-          width={mainImage.metadata.dimensions.width}
-          height={mainImage.metadata.dimensions.height}
           objectFit="contain"
-          blurDataURL={mainImage.metadata.lqip}
         />
       )}
       <H1 className="!text-4xl text-what-brick">{title}</H1>
