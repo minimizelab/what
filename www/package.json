@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "whats.se - Website for What! Arkitektur",
   "private": true,
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
