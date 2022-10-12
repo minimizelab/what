@@ -28,12 +28,18 @@ const EmployeeCard: FC<Props> = ({ employee }) => {
       </TextMedium>
       <TextMedium className="leading-snug">{employee.titles}</TextMedium>
       <TextMedium className="leading-snug">
-        <a className="hover:text-what-brick" href={`mailto:${employee.email}`}>
+        <a
+          className="hover:text-what-brick cursor-pointer"
+          href={`mailto:${employee.email}`}
+        >
           {employee.email}
         </a>
       </TextMedium>
       <TextMedium className="leading-snug">
-        <a className="hover:text-what-brick" href={`callto:${employee.phone}`}>
+        <a
+          className="hover:text-what-brick cursor-pointer"
+          href={`callto:${employee.phone}`}
+        >
           {employee.phone}
         </a>{' '}
       </TextMedium>

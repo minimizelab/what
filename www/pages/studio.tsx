@@ -26,7 +26,7 @@ const StudioPage: FC<Props> = ({ employees, studio, settings }) => (
         <TextMedium className="font-medium w-32">Telefon</TextMedium>
         <TextMedium className="flex-1">
           <a
-            className="hover:text-what-brick"
+            className="hover:text-what-brick cursor-pointer"
             href={`callto:${settings.phone}`}
           >
             {settings.phone}
@@ -37,7 +37,7 @@ const StudioPage: FC<Props> = ({ employees, studio, settings }) => (
         <TextMedium className="font-medium w-32">Mail</TextMedium>
         <TextMedium className="flex-1">
           <a
-            className="hover:text-what-brick"
+            className="hover:text-what-brick cursor-pointer"
             href={`mailto:${settings.email}`}
           >
             {settings.email}
@@ -57,7 +57,7 @@ const StudioPage: FC<Props> = ({ employees, studio, settings }) => (
         <TextMedium className="flex-1">
           {'Skicka CV & portfolio till '}
           <a
-            className="hover:text-what-brick"
+            className="hover:text-what-brick cursor-pointer"
             href={`mailto:${settings.emailJob}`}
           >
             {settings.emailJob}

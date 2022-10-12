@@ -12,6 +12,10 @@ module.exports = {
       screens: {
         content: '1792px',
       },
+      cursor: {
+        dot: 'url(/cursor-dot.png) 12 12, auto',
+        pointer: 'url(/cursor-red-dot.png) 12 12, pointer',
+      },
     },
   },
 };
