@@ -1,7 +1,7 @@
 import { SanityImageAssetDocument } from '@sanity/client';
 import { FC } from 'react';
-import Image from 'next/image';
 import classNames from 'classnames';
+import { SanityImage } from '../atoms/SanityImage';
 
 export const ImageGrid: FC<{ images: SanityImageAssetDocument[] }> = ({
   images,
@@ -22,16 +22,11 @@ export const ImageGrid: FC<{ images: SanityImageAssetDocument[] }> = ({
             img._id === centeredImg && 'md:col-start-2'
           )}
         >
-          <Image
-            src={img.url}
-            alt=""
+          <SanityImage
+            img={img}
             sizes="(max-width: 1440px) 100vw, 1440px"
-            placeholder={img.metadata.lqip ? 'blur' : 'empty'}
             layout="responsive"
-            width={img.metadata.dimensions.width}
-            height={img.metadata.dimensions.height}
             objectFit="contain"
-            blurDataURL={img.metadata.lqip}
           />
         </div>
       ))}

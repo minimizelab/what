@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import Image from 'next/image';
+import { FC } from 'react';
 import { Employee } from '../../types';
 import TextMedium from '../atoms/TextMedium';
+import { SanityImage } from '../atoms/SanityImage';
 
 type Props = {
   employee: Employee;
@@ -12,14 +12,14 @@ const EmployeeCard: FC<Props> = ({ employee }) => {
     <div className="flex flex-col">
       <div className="relative flex-1 mb-2">
         {employee.image && (
-          <Image
+          <SanityImage
+            img={employee.image}
             layout="responsive"
             width="360"
             height="400"
             objectFit="cover"
             objectPosition="center"
-            src={employee.image.url}
-            alt="Main image"
+            alt={'image of employee ' + employee.name}
           />
         )}
       </div>

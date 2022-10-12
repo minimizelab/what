@@ -3,7 +3,6 @@ import { FC } from 'react';
 import FilterBar from '../src/components/molecules/FilterBar';
 import Page from '../src/components/templates/Page';
 import ProjectsGrid from '../src/components/organisms/ProjectsGrid';
-import { revalidate } from '../src/config/defaults';
 import sanity from '../src/services/sanity';
 import { Category, Project, Settings } from '../src/types';
 import getSortedArray from '../src/utils/getSortedArray';
@@ -31,7 +30,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
   }));
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
   };
 };
 
@@ -52,7 +51,6 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   );
   return {
     props: { settings, projects, category },
-    revalidate,
   };
 };
 

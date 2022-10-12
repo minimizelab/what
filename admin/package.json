@@ -7,9 +7,6 @@
     "start": "sanity start",
     "build": "sanity build dist -y"
   },
-  "keywords": [
-    "sanity"
-  ],
   "engines": {
     "node": "16.x"
   },
@@ -28,7 +25,7 @@
     "react-icons": "^4.4.0",
     "react-is": "^17.0.0",
     "redux": "^4.2.0",
-    "sanity-plugin-media": "^1.4.11",
+    "sanity-plugin-media": "^1.4.13",
     "styled-components": "^5.3.6",
     "yup": "^0.32.11"
   },
@@ -39,7 +36,7 @@
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@sanity/cli": "^2.34.0",
-    "caniuse-lite": "^1.0.30001412",
+    "caniuse-lite": "^1.0.30001418",
     "webpack": "^5.74.0"
   }
 }

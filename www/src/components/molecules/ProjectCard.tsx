@@ -1,8 +1,9 @@
+import { SanityImageAssetDocument } from '@sanity/client';
 import { FC } from 'react';
-import Image from 'next/image';
+import { SanityImage } from '../atoms/SanityImage';
 
 type Props = {
-  img?: string;
+  img?: SanityImageAssetDocument;
 };
 
 const ProjectCard: FC<Props> = ({ img }) => {
@@ -10,14 +11,14 @@ const ProjectCard: FC<Props> = ({ img }) => {
     <div className="flex flex-col">
       <div className="relative flex-1">
         {img && (
-          <Image
+          <SanityImage
+            img={img}
             sizes="(max-width: 1000px) 50vw, 1440px"
             layout="responsive"
             width="300"
             height="200"
             objectFit="cover"
             objectPosition="center"
-            src={img}
             alt="Main image"
           />
         )}
