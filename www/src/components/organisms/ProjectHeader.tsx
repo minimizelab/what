@@ -28,7 +28,7 @@ const ProjectHeader: FC<Props> = ({ project }) => {
           objectFit="contain"
         />
       )}
-      <H1 className="!text-4xl text-what-brick">{title}</H1>
+      <H1 className="!text-4xl text-what-brick ">{title}</H1>
       <div className="flex flex-row flex-wrap xl:flex-nowrap justify-between space-x-0 xl:space-x-12">
         <div className="flex-2 pb-8 xl:pb-0">
           <PortableText
