@@ -1,25 +1,25 @@
-import { SanityImageAssetDocument } from '@sanity/client';
 import { FC } from 'react';
+import { Project } from '../../types';
 import { SanityImage } from '../atoms/SanityImage';
 
 type Props = {
-  img?: SanityImageAssetDocument;
+  project: Project;
 };
 
-const ProjectCard: FC<Props> = ({ img }) => {
+const ProjectCard: FC<Props> = ({ project }) => {
   return (
     <div className="flex flex-col">
       <div className="relative flex-1">
-        {img && (
+        {project.mainImage && (
           <SanityImage
-            img={img}
-            sizes="(max-width: 1000px) 50vw, 1440px"
+            img={project.mainImage}
+            sizes="(min-width: 1280px) 45vw, (min-width: 1024px) 67vw, 134vw"
             layout="responsive"
-            width="300"
-            height="200"
+            width="4"
+            height="3"
             objectFit="cover"
             objectPosition="center"
-            alt="Main image"
+            alt={'image for project ' + project.title}
           />
         )}
       </div>

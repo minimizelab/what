@@ -23,7 +23,7 @@ const ProjectHeader: FC<Props> = ({ project }) => {
         <SanityImage
           img={mainImage}
           alt={'image for project ' + title}
-          sizes="(max-width: 1440px) 100vw, 1440px"
+          sizes="(min-width: 1792px) 1792p, 100vw"
           layout="responsive"
           objectFit="contain"
         />
