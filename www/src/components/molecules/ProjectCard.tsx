@@ -4,9 +4,10 @@ import { SanityImage } from '../atoms/SanityImage';
 
 type Props = {
   project: Project;
+  prio?: boolean;
 };
 
-const ProjectCard: FC<Props> = ({ project }) => {
+const ProjectCard: FC<Props> = ({ project, prio = false }) => {
   return (
     <div className="flex flex-col">
       <div className="relative flex-1">
@@ -18,6 +19,7 @@ const ProjectCard: FC<Props> = ({ project }) => {
             width="4"
             height="3"
             objectFit="cover"
+            priority={prio}
             objectPosition="center"
             alt={'image for project ' + project.title}
           />

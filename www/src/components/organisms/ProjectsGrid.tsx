@@ -9,10 +9,10 @@ type Props = {
 
 const ProjectsGrid: FC<Props> = ({ projects }) => (
   <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
-    {projects.map((project) => (
+    {projects.map((project, i) => (
       <Link href={`/projects/${project.path.current}`} key={project._id}>
         <a className="cursor-pointer">
-          <ProjectCard project={project} />
+          <ProjectCard project={project} prio={i < 3} />
         </a>
       </Link>
     ))}

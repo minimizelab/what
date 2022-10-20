@@ -25,6 +25,7 @@ const ProjectHeader: FC<Props> = ({ project }) => {
           alt={'image for project ' + title}
           sizes="(min-width: 1792px) 1792p, 100vw"
           layout="responsive"
+          priority
           objectFit="contain"
         />
       )}
