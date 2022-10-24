@@ -3,10 +3,15 @@ import Section from '../atoms/Section';
 
 const Footer: FC<{ email: string }> = ({ email }) => (
   <footer>
-    <Section className="flex flex-row justify-between py-12 flex-wrap">
-      <div className="text-3xl">what! arkitektur</div>
+    <Section className="flex flex-row justify-between pt-16 pb-12 flex-wrap">
       <a
-        className="text-3xl hover:text-what-brick cursor-pointer"
+        className="md:text-3xl text-2xl hover:text-what-brick cursor-pointer"
+        href={'/'}
+      >
+        what! arkitektur
+      </a>
+      <a
+        className="md:text-3xl text-2xl hover:text-what-brick cursor-pointer"
         href={'mailto:' + email}
       >
         {email}
