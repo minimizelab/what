@@ -17,6 +17,7 @@ const EmployeeCard: FC<Props> = ({ employee }) => {
             layout="responsive"
             width="360"
             height="400"
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
             objectFit="cover"
             objectPosition="center"
             alt={'image of employee ' + employee.name}

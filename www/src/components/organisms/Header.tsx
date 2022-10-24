@@ -28,6 +28,8 @@ const Header: FC<Props> = ({ className, filterBar, logotype }) => (
               height="200"
               objectFit="contain"
               objectPosition="center"
+              priority
+              quality={100}
               img={logotype}
               alt="Logotype"
             />

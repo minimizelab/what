@@ -7,7 +7,12 @@ type ImageNode = {
 
 const image = ({ node: { asset } }: { node: ImageNode }) => (
   <div className="mb-2 mt-4">
-    <SanityImage img={asset} layout="responsive" objectFit="contain" />
+    <SanityImage
+      img={asset}
+      layout="responsive"
+      objectFit="contain"
+      sizes="(min-width: 1792px) 1792p, 100vw"
+    />
   </div>
 );
 
