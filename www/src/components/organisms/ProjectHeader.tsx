@@ -18,27 +18,31 @@ const ProjectHeader: FC<Props> = ({ project }) => {
   const { title, images, textBody } = project;
   const mainImage = images[0]?.asset;
   return (
-    <div className="mb-6 lg:mb-8 space-y-8">
+    <div className="mb-10 lg:mb-20 space-y-10 lg:space-y-20 flex flex-col">
       {mainImage && (
-        <SanityImage
-          img={mainImage}
-          alt={'image for project ' + title}
-          sizes="(min-width: 1792px) 1792p, 100vw"
-          layout="responsive"
-          priority
-          objectFit="contain"
-        />
-      )}
-      <H1 className="!text-4xl text-what-brick ">{title}</H1>
-      <div className="flex flex-row flex-wrap xl:flex-nowrap justify-between space-x-0 xl:space-x-12">
-        <div className="flex-2 pb-8 xl:pb-0">
-          <PortableText
-            value={textBody}
-            components={{ ...serializers, block: Block }}
+        <div>
+          <SanityImage
+            img={mainImage}
+            alt={'image for project ' + title}
+            sizes="(min-width: 1440px) 1280px, 100vw"
+            layout="responsive"
+            priority
+            objectFit="contain"
           />
         </div>
-        <div>
-          <ProjectInfoBox project={project} />
+      )}
+      <div className="max-w-5xl space-y-6 self-center">
+        <H1 className="!text-4xl text-what-brick">{title}</H1>
+        <div className="flex flex-row flex-wrap lg:flex-nowrap justify-between lg:space-y-0 space-y-8 space-x-0 lg:space-x-16">
+          <div>
+            <PortableText
+              value={textBody}
+              components={{ ...serializers, block: Block }}
+            />
+          </div>
+          <div>
+            <ProjectInfoBox project={project} />
+          </div>
         </div>
       </div>
     </div>
