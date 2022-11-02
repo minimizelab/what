@@ -9,6 +9,12 @@ import getSortedArray from '../src/utils/getSortedArray';
 import serializers from '../src/lib/serializers';
 import TextMedium from '../src/components/atoms/TextMedium';
 
+const socials: { title: string; link: string }[] = [
+  { title: 'Instagram', link: 'https://www.instagram.com/whatarkitektur/' },
+  { title: 'LinkedIn', link: 'https://se.linkedin.com/company/whatarkitektur' },
+  { title: 'Facebook', link: 'https://www.facebook.com/whatark/' },
+];
+
 type Props = DefaultPageProps & { employees: Employee[]; studio: Studio };
 
 const Block: PortableTextBlockComponent = ({ children }) => (
@@ -62,6 +68,23 @@ const StudioPage: FC<Props> = ({ employees, studio, settings }) => (
           >
             {settings.emailJob}
           </a>
+        </TextMedium>
+      </div>
+      <div className="flex flex-row mt-4 w-full">
+        <TextMedium className="font-medium w-32">Socials</TextMedium>
+        <TextMedium className="flex flex-col flex-1">
+          {socials.map((social) => (
+            <span key={social.link}>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={social.link}
+                className="hover:text-what-brick cursor-pointer"
+              >
+                {social.title}
+              </a>
+            </span>
+          ))}
         </TextMedium>
       </div>
     </div>
