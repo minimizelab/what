@@ -11,9 +11,10 @@ type Props = {
 
 const ProjectCard: FC<Props> = ({ project, prio = false }) => {
   const [hover, setHover] = useState<boolean>(false);
+  const projectPath = `/projekt/${project.path.current}`;
   return (
     <div className="flex flex-col">
-      <Link href={`/projects/${project.path.current}`}>
+      <Link href={projectPath}>
         <a
           className="relative flex-1 cursor-pointer"
           onMouseEnter={() => setHover(true)}
@@ -34,7 +35,7 @@ const ProjectCard: FC<Props> = ({ project, prio = false }) => {
           )}
         </a>
       </Link>
-      <Link href={`/projects/${project.path.current}`}>
+      <Link href={projectPath}>
         <a
           className={classNames(
             'text-xl pt-2 self-start hover:text-what-brick cursor-pointer',

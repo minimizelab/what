@@ -5,6 +5,7 @@
     "./**/*.tsx"
   ],
   "compilerOptions": {
+    "lib": ["ES2016"],
     "jsx": "react",
     "esModuleInterop": true,
     "strict": true,
