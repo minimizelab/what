@@ -15,10 +15,12 @@ type Props = {
 const ProjectPage: FC<Props> = ({ project, settings }) => {
   const images = project.images.slice(1).map((obj) => obj.asset);
   return (
-    <Page settings={settings}>
-      <ProjectHeader project={project} />
-      <ImageGrid images={images} />
-      <p className="mt-4">{project.credits}</p>
+    <Page settings={settings} className="items-center">
+      <article className="w-full max-w-7xl">
+        <ProjectHeader project={project} />
+        <ImageGrid images={images} />
+        <p className="mt-4">{project.credits}</p>
+      </article>
     </Page>
   );
 };
