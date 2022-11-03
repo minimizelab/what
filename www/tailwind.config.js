@@ -1,7 +1,6 @@
 module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    fontFamily: { space: ['Space Grotesk'] },
     extend: {
       colors: {
         'what-mushroom': '#EBEBEB',

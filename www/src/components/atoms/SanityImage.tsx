@@ -1,6 +1,6 @@
 import { SanityImageAssetDocument } from '@sanity/client';
 import { UseNextSanityImageOptions } from 'next-sanity-image';
-import Image, { ImageProps } from 'next/image';
+import Image, { ImageProps } from 'next/legacy/image';
 import { FC } from 'react';
 import { useSanityImage } from '../../hooks/useSanityImage';
 

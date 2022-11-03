@@ -13,12 +13,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@portabletext/react": "^1.0.6",
-    "@portabletext/types": "^1.0.3",
+    "@next/font": "^13.0.1",
+    "@portabletext/react": "^2.0.0",
+    "@portabletext/types": "^2.0.0",
     "@sanity/client": "^3.4.1",
     "classnames": "^2.3.2",
     "groq": "^2.33.2",
-    "next": "12.3.1",
+    "next": "13.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -29,7 +30,7 @@
     "@types/react": "18.0.24",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.26.0",
-    "eslint-config-next": "12.3.1",
+    "eslint-config-next": "13.0.1",
     "eslint-config-prettier": "^8.5.0",
     "next-sanity-image": "^4.1.0",
     "postcss": "^8.4.18",

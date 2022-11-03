@@ -14,36 +14,34 @@ const ProjectCard: FC<Props> = ({ project, prio = false }) => {
   const projectPath = `/projekt/${project.path.current}`;
   return (
     <div className="flex flex-col">
-      <Link href={projectPath}>
-        <a
-          className="relative flex-1 cursor-pointer"
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-        >
-          {project.mainImage && (
-            <SanityImage
-              img={project.mainImage}
-              sizes="(min-width: 1280px) 45vw, (min-width: 1024px) 67vw, 134vw"
-              layout="responsive"
-              width="400"
-              height="300"
-              objectFit="cover"
-              priority={prio}
-              objectPosition="center"
-              alt={'image for project ' + project.title}
-            />
-          )}
-        </a>
+      <Link
+        href={projectPath}
+        className="relative flex-1 cursor-pointer"
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
+        {project.mainImage && (
+          <SanityImage
+            img={project.mainImage}
+            sizes="(min-width: 1280px) 45vw, (min-width: 1024px) 67vw, 134vw"
+            layout="responsive"
+            width="400"
+            height="300"
+            objectFit="cover"
+            priority={prio}
+            objectPosition="center"
+            alt={'image for project ' + project.title}
+          />
+        )}
       </Link>
-      <Link href={projectPath}>
-        <a
-          className={classNames(
-            'pt-2 self-start hover:text-what-brick cursor-pointer text-base',
-            hover && 'text-what-brick'
-          )}
-        >
-          {project.title}
-        </a>
+      <Link
+        href={projectPath}
+        className={classNames(
+          'pt-2 self-start hover:text-what-brick cursor-pointer text-base',
+          hover && 'text-what-brick'
+        )}
+      >
+        {project.title}
       </Link>
     </div>
   );

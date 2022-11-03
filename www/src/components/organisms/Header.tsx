@@ -17,23 +17,21 @@ const Header: FC<Props> = ({ className, filterBar, logotype }) => (
   >
     <div className="flex flex-row justify-between items-start w-100 mt-8 mb-6">
       <div className="w-40 flex flex-col justify-items-end sm:mr-4 mr-0 pb-1.5">
-        <Link href="/">
-          <a className="cursor-pointer">
-            <SanityImage
-              layout="responsive"
-              options={{
-                enableBlurUp: false,
-              }}
-              width="300"
-              height="200"
-              objectFit="contain"
-              objectPosition="bottom"
-              priority
-              quality={100}
-              img={logotype}
-              alt="Logotype"
-            />
-          </a>
+        <Link href="/" className="cursor-pointer">
+          <SanityImage
+            layout="responsive"
+            options={{
+              enableBlurUp: false,
+            }}
+            width="300"
+            height="200"
+            objectFit="contain"
+            objectPosition="bottom"
+            priority
+            quality={100}
+            img={logotype}
+            alt="Logotype"
+          />
         </Link>
       </div>
       <Nav />

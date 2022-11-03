@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
+import { Space_Grotesk } from '@next/font/google';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
@@ -8,16 +9,27 @@ import { DefaultPageProps } from '../src/types';
 
 type Props = AppProps<DefaultPageProps>;
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+});
+
 const App: FC<Props> = ({ Component, pageProps }) => (
-  <div className="w-full min-h-screen flex flex-row justify-center">
-    <div className="max-w-screen-content w-full flex flex-col">
-      <Head>
-        <title>{pageProps?.settings?.title ?? siteTitle}</title>
-      </Head>
-      <Component {...pageProps} />
-      <Footer email={pageProps?.settings?.email ?? email} />
+  <>
+    <style jsx global>{`
+      html {
+        font-family: ${spaceGrotesk.style.fontFamily};
+      }
+    `}</style>
+    <div className="w-full min-h-screen flex flex-row justify-center">
+      <div className="max-w-screen-content w-full flex flex-col">
+        <Head>
+          <title>{pageProps?.settings?.title ?? siteTitle}</title>
+        </Head>
+        <Component {...pageProps} />
+        <Footer email={pageProps?.settings?.email ?? email} />
+      </div>
     </div>
-  </div>
+  </>
 );
 
 export default App;
