@@ -13,8 +13,8 @@ module.exports = {
         content: '1792px',
       },
       cursor: {
-        dot: 'url(/cursor-dot.svg) 12 12, auto',
-        pointer: 'url(/cursor-red-dot.svg) 12 12, pointer',
+        dot: 'url(/cursor-dot.svg) 6.8 6.8, auto',
+        pointer: 'url(/cursor-red-dot.svg) 6.8 6.8, pointer',
       },
     },
   },
