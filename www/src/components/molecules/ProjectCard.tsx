@@ -38,7 +38,7 @@ const ProjectCard: FC<Props> = ({ project, prio = false }) => {
       <Link href={projectPath}>
         <a
           className={classNames(
-            'text-xl pt-2 self-start hover:text-what-brick cursor-pointer',
+            'pt-2 self-start hover:text-what-brick cursor-pointer text-base',
             hover && 'text-what-brick'
           )}
         >
