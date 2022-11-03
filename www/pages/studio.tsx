@@ -71,7 +71,7 @@ const StudioPage: FC<Props> = ({ employees, studio, settings }) => (
         </TextMedium>
       </div>
       <div className="flex flex-row mt-4 w-full">
-        <TextMedium className="font-medium w-32">Socials</TextMedium>
+        <TextMedium className="font-medium w-32">Socialt</TextMedium>
         <TextMedium className="flex flex-col flex-1">
           {socials.map((social) => (
             <span key={social.link}>
