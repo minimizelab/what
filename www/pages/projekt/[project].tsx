@@ -27,10 +27,6 @@ const ProjectPage: FC<Props> = ({ project, settings }) => {
     <Page settings={settings} className="items-center">
       <Head>
         <title>{project.title}</title>
-        <meta
-          property="og:url"
-          content={`https://www.whats.se/projekt/${project.path.current}`}
-        ></meta>
         <meta property="og:image" content={ogImageSrc} />
         <meta property="og:title" content={project.title} />
         <meta property="og:type" content="website" />
