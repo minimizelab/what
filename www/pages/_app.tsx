@@ -24,6 +24,12 @@ const App: FC<Props> = ({ Component, pageProps }) => (
       <div className="max-w-screen-content w-full flex flex-col">
         <Head>
           <title>{pageProps?.settings?.title ?? siteTitle}</title>
+          <meta property="og:url" content={`https://www.whats.se`}></meta>
+          <meta
+            property="og:title"
+            content={pageProps?.settings?.title ?? siteTitle}
+          />
+          <meta property="og:type" content="website" />
         </Head>
         <Component {...pageProps} />
         <Footer email={pageProps?.settings?.email ?? email} />
