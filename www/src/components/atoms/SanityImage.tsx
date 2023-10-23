@@ -1,6 +1,7 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { SanityImageAssetDocument } from '@sanity/client';
 import { UseNextSanityImageOptions } from 'next-sanity-image';
-import Image, { ImageProps } from 'next/legacy/image';
+import Image, { ImageProps } from 'next/image';
 import { FC } from 'react';
 import { useSanityImage } from '../../hooks/useSanityImage';
 
@@ -16,11 +17,10 @@ export const SanityImage: FC<Props> = ({
   blur = true,
   ...rest
 }) => {
-  const sanityImage = useSanityImage(img, options);
+  const { width, height, ...sanityImage } = useSanityImage(img, options);
   if (blur) {
     return (
       <Image
-        alt=""
         {...sanityImage}
         {...rest}
         placeholder="blur"
@@ -28,5 +28,5 @@ export const SanityImage: FC<Props> = ({
       />
     );
   }
-  return <Image placeholder="empty" alt="" {...sanityImage} {...rest} />;
+  return <Image placeholder="empty" {...sanityImage} {...rest} />;
 };

@@ -20,14 +20,14 @@ const ProjectHeader: FC<Props> = ({ project }) => {
   return (
     <div className="mb-10 lg:mb-20 space-y-10 lg:space-y-20 flex flex-col">
       {mainImage && (
-        <div>
+        <div className="relative block w-full pt-75">
           <SanityImage
             img={mainImage}
+            fill
+            className="object-contain object-center"
             alt={'image for project ' + title}
             sizes="(min-width: 1440px) 1280px, 100vw"
-            layout="responsive"
             priority
-            objectFit="contain"
           />
         </div>
       )}

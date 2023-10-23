@@ -16,20 +16,17 @@ const ProjectCard: FC<Props> = ({ project, prio = false }) => {
     <div className="flex flex-col">
       <Link
         href={projectPath}
-        className="relative flex-1 cursor-pointer"
+        className="relative block flex-1 cursor-pointer pt-75"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
         {project.mainImage && (
           <SanityImage
+            className="object-cover object-center"
             img={project.mainImage}
+            fill
             sizes="(min-width: 1280px) 45vw, (min-width: 1024px) 67vw, 134vw"
-            layout="responsive"
-            width="400"
-            height="300"
-            objectFit="cover"
             priority={prio}
-            objectPosition="center"
             alt={'image for project ' + project.title}
           />
         )}

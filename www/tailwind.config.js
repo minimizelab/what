@@ -11,6 +11,7 @@ module.exports = {
         'what-red-01': '#FF0222',
       },
       height: { 500: '500px' },
+      padding: { 67: '67%', 75: '75%', 111: '111%' },
       screens: {
         content: '1792px',
       },
