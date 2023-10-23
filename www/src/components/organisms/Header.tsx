@@ -20,9 +20,7 @@ const Header: FC<Props> = ({ className, filterBar, logotype }) => (
         <Link href="/" className="cursor-pointer">
           <SanityImage
             layout="responsive"
-            options={{
-              enableBlurUp: false,
-            }}
+            blur={false}
             width="300"
             height="150"
             objectFit="contain"
