@@ -8,7 +8,7 @@
     "build": "sanity build dist -y"
   },
   "engines": {
-    "node": "16.x"
+    "node": "18.x"
   },
   "dependencies": {
     "@sanity/base": "^2.35.0",

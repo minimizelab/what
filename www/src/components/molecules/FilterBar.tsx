@@ -19,7 +19,7 @@ const FilterBar: FC<Props> = ({ categories }) => {
           (router.asPath === '/' || router.asPath === '') && 'text-what-brick'
         )}
       >
-        alla
+        utvalt
       </Link>
       {categories.map((category) => (
         <span key={category._id}>
