@@ -36,7 +36,7 @@ const ProjectPage: FC<Props> = ({ project, settings }) => {
         <ImageGrid images={images} />
         <div className="flex flex-col-reverse items-start sm:flex-row justify-between mt-8">
           <button
-            className="underline hover:text-what-brick cursor-pointer"
+            className="underline hover:text-what-red-01 cursor-pointer"
             onClick={router.back}
           >
             tillbaka

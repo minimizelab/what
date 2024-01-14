@@ -15,8 +15,8 @@ const FilterBar: FC<Props> = ({ categories }) => {
       <Link
         href={`/`}
         className={classNames(
-          'cursor-pointer hover:text-what-brick text-base',
-          (router.asPath === '/' || router.asPath === '') && 'text-what-brick'
+          'cursor-pointer hover:text-what-red-01 text-base',
+          (router.asPath === '/' || router.asPath === '') && 'text-what-red-01'
         )}
       >
         utvalt
@@ -26,8 +26,8 @@ const FilterBar: FC<Props> = ({ categories }) => {
           <Link
             href={`/${category.path.current}`}
             className={classNames(
-              'cursor-pointer hover:text-what-brick text-base',
-              router.asPath === '/' + category.path.current && 'text-what-brick'
+              'cursor-pointer hover:text-what-red-01 text-base',
+              router.asPath === '/' + category.path.current && 'text-what-red-01'
             )}
           >
             {category.title}

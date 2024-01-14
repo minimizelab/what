@@ -3,9 +3,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'what-mushroom': '#EBEBEB',
-        'what-forest': '#2C4431',
-        'what-brick': '#e73c29',
+        'what-white': '#F2EFEB',
+        'what-red-01': '#FF0222',
       },
       height: { 500: '500px' },
       screens: {

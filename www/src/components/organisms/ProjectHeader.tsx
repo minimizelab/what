@@ -32,7 +32,7 @@ const ProjectHeader: FC<Props> = ({ project }) => {
         </div>
       )}
       <div className="max-w-5xl space-y-6 self-center">
-        <H1 className="!text-4xl text-what-brick">{title}</H1>
+        <H1 className="!text-4xl text-what-red-01">{title}</H1>
         <div className="flex flex-row flex-wrap lg:flex-nowrap justify-between lg:space-y-0 space-y-8 space-x-0 lg:space-x-16">
           <div>
             <PortableText
