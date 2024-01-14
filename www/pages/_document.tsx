@@ -5,7 +5,7 @@ class MyDocument extends Document {
     return (
       <Html lang="sv">
         <Head />
-        <body className="font-space bg-what-white cursor-dot">
+        <body className="bg-what-white cursor-dot">
           <Main />
           <NextScript />
         </body>

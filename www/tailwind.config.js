@@ -2,6 +2,10 @@ module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        'what': ['var(--font-montserrat)'],
+        'what-mono': ['var(--font-ibm-plex-mono)'],
+      },
       colors: {
         'what-white': '#F2EFEB',
         'what-red-01': '#FF0222',

@@ -30,7 +30,7 @@ const StudioPage: FC<Props> = ({ employees, studio, settings }) => (
       />
       <div className="flex flex-row mt-10 w-full">
         <TextMedium className="font-medium w-32">Telefon</TextMedium>
-        <TextMedium className="flex-1">
+        <TextMedium className="flex-1 font-what-mono">
           <a
             className="hover:text-what-red-01 cursor-pointer"
             href={`callto:${settings.phone}`}
@@ -41,7 +41,7 @@ const StudioPage: FC<Props> = ({ employees, studio, settings }) => (
       </div>
       <div className="flex flex-row mt-4 w-full">
         <TextMedium className="font-medium w-32">Mail</TextMedium>
-        <TextMedium className="flex-1">
+        <TextMedium className="flex-1 font-what-mono">
           <a
             className="hover:text-what-red-01 cursor-pointer"
             href={`mailto:${settings.email}`}
@@ -52,7 +52,7 @@ const StudioPage: FC<Props> = ({ employees, studio, settings }) => (
       </div>
       <div className="flex flex-row mt-4 w-full">
         <TextMedium className="font-medium w-32">Address</TextMedium>
-        <TextMedium className="flex flex-col flex-1">
+        <TextMedium className="flex flex-col flex-1 font-what-mono">
           {settings.address.map((line) => (
             <span key={line}>{line}</span>
           ))}
@@ -60,7 +60,7 @@ const StudioPage: FC<Props> = ({ employees, studio, settings }) => (
       </div>
       <div className="flex flex-row mt-4 w-full">
         <TextMedium className="font-medium w-32">Jobb</TextMedium>
-        <TextMedium className="flex-1">
+        <TextMedium className="flex-1 font-what-mono">
           {'Skicka CV & portfolio till '}
           <a
             className="hover:text-what-red-01 cursor-pointer"
@@ -72,7 +72,7 @@ const StudioPage: FC<Props> = ({ employees, studio, settings }) => (
       </div>
       <div className="flex flex-row mt-4 w-full">
         <TextMedium className="font-medium w-32">Socialt</TextMedium>
-        <TextMedium className="flex flex-col flex-1">
+        <TextMedium className="flex flex-col flex-1 font-what-mono">
           {socials.map((social) => (
             <span key={social.link}>
               <a

@@ -16,11 +16,11 @@ const ProjectInfoBox: FC<Props> = ({ project }) => {
         <TextMedium className="font-medium">{title}</TextMedium>
       </td>
       {typeof value === 'string' ? (
-        <td className="align-top pb-3 lg:whitespace-nowrap">
+        <td className="align-top pb-3 lg:whitespace-nowrap font-what-mono">
           <TextMedium>{value}</TextMedium>
         </td>
       ) : (
-        <td className="align-top pb-3 lg:whitespace-nowrap">
+        <td className="align-top pb-3 lg:whitespace-nowrap font-what-mono">
           {value.map((item: string, i: number) => (
             <TextMedium key={item + i}>{item}</TextMedium>
           ))}
