@@ -24,7 +24,7 @@ type Props = AppProps<DefaultPageProps>;
 
 const App: FC<Props> = ({ Component, pageProps }) => (
   <div
-    className={`${montserrat.variable} ${IBMPlexMono.variable} w-full min-h-screen flex flex-row justify-center font-what`}
+    className={`${montserrat.variable} ${IBMPlexMono.variable} w-full min-h-screen flex flex-row justify-center font-what font-medium`}
   >
     <div className="max-w-screen-content w-full flex flex-col">
       <Head>

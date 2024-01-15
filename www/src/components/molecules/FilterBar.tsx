@@ -19,7 +19,7 @@ const FilterBar: FC<Props> = ({ categories }) => {
           (router.asPath === '/' || router.asPath === '') && 'text-what-red-01'
         )}
       >
-        utvalt
+        Utvalt
       </Link>
       {categories.map((category) => (
         <span key={category._id}>
@@ -27,7 +27,8 @@ const FilterBar: FC<Props> = ({ categories }) => {
             href={`/${category.path.current}`}
             className={classNames(
               'cursor-pointer hover:text-what-red-01 text-base',
-              router.asPath === '/' + category.path.current && 'text-what-red-01'
+              router.asPath === '/' + category.path.current &&
+                'text-what-red-01'
             )}
           >
             {category.title}
