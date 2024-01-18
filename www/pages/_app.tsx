@@ -29,7 +29,7 @@ const App: FC<Props> = ({ Component, pageProps }) => (
     <div className="max-w-screen-content w-full flex flex-col">
       <Head>
         <title>{pageProps?.settings?.title ?? siteTitle}</title>
-        <link rel="shortcut icon" type="image/jpg" href="favicon.png"/>
+        <link rel="shortcut icon" type="image/jpg" href="favicon.png" />
         <meta property="og:url" content={`https://www.whats.se`}></meta>
         <meta
           property="og:title"
