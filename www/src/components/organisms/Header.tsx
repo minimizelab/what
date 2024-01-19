@@ -16,7 +16,7 @@ const Header: FC<Props> = ({ className, filterBar, logotype }) => (
     className={classNames('pb-8 flex flex-col justify-between', className)}
   >
     <div className="flex flex-row justify-between items-start w-100 mt-8 mb-6">
-      <div className="w-40 flex flex-col justify-items-end sm:mr-4 mr-0 pb-1.5">
+      <div className="flex flex-col justify-items-end sm:mr-4 mr-0 pb-1.5 w-56">
         <Link href="/" className="cursor-pointer">
           <SanityImage
             layout="responsive"
@@ -24,7 +24,7 @@ const Header: FC<Props> = ({ className, filterBar, logotype }) => (
               enableBlurUp: false,
             }}
             width="300"
-            height="200"
+            height="150"
             objectFit="contain"
             objectPosition="bottom"
             priority
