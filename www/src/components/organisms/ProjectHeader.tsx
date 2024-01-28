@@ -20,11 +20,11 @@ const ProjectHeader: FC<Props> = ({ project }) => {
   return (
     <div className="mb-10 lg:mb-20 space-y-10 lg:space-y-20 flex flex-col">
       {mainImage && (
-        <div className="relative block w-full pt-75">
+        <div className="w-full">
           <SanityImage
             img={mainImage}
-            fill
-            className="object-contain object-center"
+            height={mainImage.metadata.dimensions.height * 10}
+            width={mainImage.metadata.dimensions.width * 10}
             alt={'image for project ' + title}
             sizes="(min-width: 1440px) 1280px, 100vw"
             priority

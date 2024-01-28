@@ -17,7 +17,7 @@ export const ImageGrid: FC<{ images: SanityImageAssetDocument[] }> = ({
         <div
           key={img._id}
           className={classNames(
-            'col-span-4 relative block',
+            'col-span-4',
             !isLandscape(img) && 'md:col-span-2',
             img._id === centeredImg && 'md:col-start-2'
           )}
@@ -25,8 +25,8 @@ export const ImageGrid: FC<{ images: SanityImageAssetDocument[] }> = ({
           <SanityImage
             alt=""
             img={img}
-            className="object-contain object-center"
-            fill
+            width={img.metadata.dimensions.width * 10}
+            height={img.metadata.dimensions.height * 10}
             sizes="(min-width: 1792px) 1792p, 100vw"
           />
         </div>
