@@ -1,9 +1,11 @@
-module.exports = {
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       fontFamily: {
-        'what': ['var(--font-montserrat)'],
+        what: ['var(--font-montserrat)'],
         'what-mono': ['var(--font-ibm-plex-mono)'],
       },
       colors: {
@@ -22,3 +24,5 @@ module.exports = {
     },
   },
 };
+
+export default config;
