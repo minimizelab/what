@@ -6,11 +6,12 @@ type ImageNode = {
 };
 
 const image = ({ node: { asset } }: { node: ImageNode }) => (
-  <div className="mb-2 mt-4">
+  <div className="mb-2 mt-4 flex items-center justify-center">
     <SanityImage
+      alt=""
       img={asset}
-      layout="responsive"
-      objectFit="contain"
+      width={asset.metadata.dimensions.width}
+      height={asset.metadata.dimensions.height}
       sizes="(min-width: 1792px) 1792p, 100vw"
     />
   </div>

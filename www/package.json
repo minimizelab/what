@@ -4,38 +4,38 @@
   "description": "whats.se - Website for What! Arkitektur",
   "private": true,
   "engines": {
-    "node": "18.x"
+    "node": "20.x",
+    "npm": "10.x"
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "^13.0.3",
-    "@portabletext/react": "^2.0.0",
-    "@portabletext/types": "^2.0.0",
-    "@sanity/client": "^3.4.1",
-    "@sanity/image-url": "^1.0.1",
-    "classnames": "^2.3.2",
-    "groq": "^2.33.2",
-    "next": "13.0.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@portabletext/react": "3.0.11",
+    "@portabletext/types": "2.0.8",
+    "@sanity/client": "6.12.1",
+    "@sanity/image-url": "1.0.2",
+    "classnames": "2.5.1",
+    "groq": "3.26.1",
+    "next": "14.1.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.2",
-    "@babel/eslint-parser": "^7.19.1",
-    "@types/node": "^18.11.9",
-    "@types/react": "18.0.25",
-    "autoprefixer": "^10.4.13",
-    "eslint": "^8.27.0",
-    "eslint-config-next": "13.0.3",
-    "eslint-config-prettier": "^8.5.0",
-    "next-sanity-image": "^4.1.0",
-    "postcss": "^8.4.19",
-    "tailwindcss": "^3.2.4",
-    "typescript": "4.9.3"
+    "@babel/core": "7.23.9",
+    "@babel/eslint-parser": "7.23.9",
+    "@types/node": "20.11.10",
+    "@types/react": "18.2.48",
+    "autoprefixer": "10.4.17",
+    "eslint": "8.56.0",
+    "eslint-config-next": "14.1.0",
+    "eslint-config-prettier": "9.1.0",
+    "next-sanity-image": "6.1.1",
+    "postcss": "8.4.33",
+    "tailwindcss": "3.4.1",
+    "typescript": "5.3.3"
   }
 }

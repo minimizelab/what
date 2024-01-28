@@ -5,7 +5,7 @@ import 'tailwindcss/tailwind.css';
 import { email, siteTitle } from '../src/config/defaults';
 import Footer from '../src/components/organisms/Footer';
 import { DefaultPageProps } from '../src/types';
-import { Montserrat, IBM_Plex_Mono } from '@next/font/google';
+import { Montserrat, IBM_Plex_Mono } from 'next/font/google';
 
 const montserrat = Montserrat({
   subsets: ['latin'],

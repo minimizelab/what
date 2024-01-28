@@ -17,19 +17,14 @@ const Header: FC<Props> = ({ className, filterBar, logotype }) => (
   >
     <div className="flex flex-row justify-between items-start w-100 mt-8 mb-6">
       <div className="flex flex-col justify-items-end sm:mr-4 mr-0 pb-1.5 w-56">
-        <Link href="/" className="cursor-pointer">
+        <Link href="/" className="cursor-pointer relative block h-20">
           <SanityImage
-            layout="responsive"
-            options={{
-              enableBlurUp: false,
-            }}
-            width="300"
-            height="150"
-            objectFit="contain"
-            objectPosition="bottom"
+            fill
+            blur={false}
             priority
             quality={100}
             img={logotype}
+            className="object-contain object-bottom"
             alt="Logotype"
           />
         </Link>

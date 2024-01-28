@@ -1,9 +1,9 @@
-import sanityClient from '@sanity/client';
+import { createClient } from '@sanity/client';
 import config from './config';
 
-export const client = sanityClient(config.sanity);
+export const client = createClient(config.sanity);
 
-export const previewClient = sanityClient({
+export const previewClient = createClient({
   ...config.sanity,
   useCdn: false,
   token: process.env.SANITY_API_TOKEN,
