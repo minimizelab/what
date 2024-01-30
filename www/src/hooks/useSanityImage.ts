@@ -4,7 +4,7 @@ import {
   UseNextSanityImageProps,
 } from 'next-sanity-image';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
-import { getClient } from '../lib/sanity.server';
+import { getClient } from '../lib/sanityClient';
 
 export const useSanityImage = (
   image: SanityImageSource,

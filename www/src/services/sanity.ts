@@ -1,5 +1,5 @@
 import groq from 'groq';
-import { getClient } from '../lib/sanity.server';
+import { getClient } from '../lib/sanityClient';
 import { Project, Category, Settings, Employee, Studio } from '../types';
 
 const getCategories = async (preview = false): Promise<Category[]> => {
