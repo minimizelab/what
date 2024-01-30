@@ -1,10 +1,7 @@
-import { Document } from '../../types';
-
-const Studio: Document = {
+const Studio = {
   title: 'Studio',
   name: 'studio',
   type: 'document',
-  __experimental_actions: ['update', 'publish'],
   fields: [
     {
       title: 'Titel',

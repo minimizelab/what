@@ -1,8 +1,6 @@
-import { Document } from '../../types';
-
 const categorySlugBlacklist = ['projekt'];
 
-const Category: Document = {
+const Category = {
   title: 'Kategorier',
   name: 'category',
   type: 'document',

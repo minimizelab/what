@@ -1,8 +1,6 @@
-import { Document } from '../../types';
 import { emailSchema } from '../../utils';
 
-
-const Employee: Document = {
+const Employee = {
   title: 'Medarbetare',
   name: 'employee',
   type: 'document',

@@ -1,6 +1,4 @@
-import { Document } from '../../types';
-
-const Project: Document = {
+const Project = {
   title: 'Projekt',
   name: 'project',
   type: 'document',

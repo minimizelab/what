@@ -1,8 +1,7 @@
 import HighlightIcon from '../../components/HighlightIcon';
 import HighlightRender from '../../components/HighlightRender';
-import { ArrayField } from '../../types';
 
-const RichText: ArrayField = {
+const RichText = {
   name: 'richText',
   type: 'array',
   of: [
@@ -15,10 +14,8 @@ const RichText: ArrayField = {
           {
             title: 'Highlight',
             value: 'highlight',
-            blockEditor: {
-              icon: HighlightIcon,
-              render: HighlightRender,
-            },
+            icon: HighlightIcon,
+            component: HighlightRender,
           },
         ],
         annotations: [],

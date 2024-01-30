@@ -1,13 +1,11 @@
 import { MdSettings } from 'react-icons/md';
-import { Document } from '../../types';
 import { emailSchema } from '../../utils';
 
-const Settings: Document = {
+const Settings = {
   title: 'Inställningar',
   name: 'settings',
   icon: MdSettings,
   type: 'document',
-  __experimental_actions: ['update', 'publish'],
   fieldsets: [
     {
       name: 'contact',
