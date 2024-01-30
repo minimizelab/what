@@ -1,6 +1,8 @@
+import { Slug, defineType } from 'sanity';
+
 const categorySlugBlacklist = ['projekt'];
 
-const Category = {
+const Category = defineType({
   title: 'Kategorier',
   name: 'category',
   type: 'document',
@@ -19,7 +21,7 @@ const Category = {
       type: 'slug',
       description: 'Kategorins unika sökväg',
       validation: (R) =>
-        R.required().custom((slug) => {
+        R.required().custom((slug: Slug) => {
           if (!slug) return true;
           return categorySlugBlacklist.includes(slug.current)
             ? 'Path not allowed, try another one!'
@@ -42,6 +44,6 @@ const Category = {
       ],
     },
   ],
-};
+});
 
 export default Category;

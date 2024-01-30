@@ -1,4 +1,6 @@
-const Studio = {
+import { defineType } from 'sanity';
+
+const Studio = defineType({
   title: 'Studio',
   name: 'studio',
   type: 'document',
@@ -33,6 +35,6 @@ const Studio = {
       of: [{ type: 'reference', to: [{ type: 'employee' }] }],
     },
   ],
-};
+});
 
 export default Studio;

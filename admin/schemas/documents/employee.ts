@@ -1,6 +1,7 @@
+import { defineType } from 'sanity';
 import { emailSchema } from '../../utils';
 
-const Employee = {
+const Employee = defineType({
   title: 'Medarbetare',
   name: 'employee',
   type: 'document',
@@ -21,7 +22,7 @@ const Employee = {
       name: 'email',
       type: 'string',
       validation: (R) =>
-        R.custom(async (str) =>
+        R.custom(async (str: string) =>
           (await emailSchema.isValid(str)) ? true : 'Needs to be a valid email'
         ),
     },
@@ -36,6 +37,6 @@ const Employee = {
       type: 'string',
     },
   ],
-};
+});
 
 export default Employee;

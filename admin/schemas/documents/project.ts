@@ -1,4 +1,6 @@
-const Project = {
+import { defineType } from 'sanity';
+
+const Project = defineType({
   title: 'Projekt',
   name: 'project',
   type: 'document',
@@ -116,6 +118,6 @@ const Project = {
       description: 'Credits för foto och bilder',
     },
   ],
-};
+});
 
 export default Project;

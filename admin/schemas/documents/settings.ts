@@ -1,7 +1,8 @@
 import { MdSettings } from 'react-icons/md';
 import { emailSchema } from '../../utils';
+import { defineType } from 'sanity';
 
-const Settings = {
+const Settings = defineType({
   title: 'Inställningar',
   name: 'settings',
   icon: MdSettings,
@@ -85,6 +86,6 @@ const Settings = {
       validation: (R) => R.required().min(1),
     },
   ],
-};
+});
 
 export default Settings;

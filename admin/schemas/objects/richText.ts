@@ -1,7 +1,8 @@
+import { defineField } from 'sanity';
 import HighlightIcon from '../../components/HighlightIcon';
 import HighlightRender from '../../components/HighlightRender';
 
-const RichText = {
+const RichText = defineField({
   name: 'richText',
   type: 'array',
   of: [
@@ -22,6 +23,6 @@ const RichText = {
       },
     },
   ],
-};
+});
 
 export default RichText;

@@ -1,8 +1,9 @@
 import { IoMdSettings } from 'react-icons/io';
+import { StructureBuilder } from 'sanity/structure';
 
 const hiddenTypes = ['settings', 'media.tag', 'studio'];
 
-export default (S) =>
+export default (S: StructureBuilder) =>
   S.list()
     .title('Innehåll')
     .items(S.documentTypeListItems())
@@ -16,6 +17,6 @@ export default (S) =>
         .child(S.editor().schemaType('studio').documentId('studio')),
       S.divider(),
       ...S.documentTypeListItems().filter(
-        (listItem) => !hiddenTypes.includes(listItem.getId())
+        (listItem) => !hiddenTypes.includes(listItem.getId() ?? '')
       ),
     ]);
