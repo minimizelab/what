@@ -7,4 +7,6 @@ import studio from './documents/studio';
 import richText from './objects/richText';
 
 // Then we give our schema to the builder and provide the result to Sanity
-export default [category, project, employee, settings, studio, richText];
+const schema = [category, project, employee, settings, studio, richText];
+
+export default schema;

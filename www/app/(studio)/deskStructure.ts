@@ -3,7 +3,7 @@ import { StructureBuilder } from 'sanity/structure';
 
 const hiddenTypes = ['settings', 'media.tag', 'studio'];
 
-export default (S: StructureBuilder) =>
+const deskStructure = (S: StructureBuilder) =>
   S.list()
     .title('Innehåll')
     .items(S.documentTypeListItems())
@@ -20,3 +20,5 @@ export default (S: StructureBuilder) =>
         (listItem) => !hiddenTypes.includes(listItem.getId() ?? '')
       ),
     ]);
+
+export default deskStructure;
