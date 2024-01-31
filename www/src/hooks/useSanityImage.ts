@@ -10,7 +10,7 @@ export const useSanityImage = (
   image: SanityImageSource,
   options?: UseNextSanityImageOptions
 ): UseNextSanityImageProps => {
-  const client = getClient(false);
+  const client = getClient();
   const imageProps = useNextSanityImage(client, image, options);
   return imageProps;
 };
