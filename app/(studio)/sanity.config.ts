@@ -1,6 +1,7 @@
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
+import { media } from 'sanity-plugin-media';
 import schema from './schemas/schema';
 import deskStructure from './deskStructure';
 
@@ -14,7 +15,7 @@ export default defineConfig({
   projectId,
   dataset,
   basePath: '/admin',
-  plugins: [structureTool({ structure: deskStructure }), visionTool()],
+  plugins: [structureTool({ structure: deskStructure }), visionTool(), media()],
   schema: {
     types: schema,
   },
@@ -30,7 +31,8 @@ export default defineConfig({
     actions: (prev, { schemaType }) => {
       if (singletons.includes(schemaType)) {
         return prev.filter(
-          ({ action }) => !['unpublish', 'delete', 'duplicate'].includes(action ?? '')
+          ({ action }) =>
+            !['unpublish', 'delete', 'duplicate'].includes(action ?? '')
         );
       }
       return prev;
