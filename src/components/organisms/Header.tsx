@@ -16,7 +16,7 @@ const Header: FC<Props> = ({ className, filterBar, logotype }) => (
     className={classNames('pb-8 flex flex-col justify-between', className)}
   >
     <div className="flex flex-row justify-between items-start w-100 mt-8 mb-6">
-      <div className="flex flex-col justify-items-end sm:mr-4 mr-0 pb-1.5 w-56">
+      <div className="flex flex-col justify-items-end sm:mr-4 mr-0 pb-1.5 w-60">
         <Link href="/" className="cursor-pointer relative block h-20">
           <SanityImage
             fill
@@ -26,6 +26,7 @@ const Header: FC<Props> = ({ className, filterBar, logotype }) => (
             img={logotype}
             className="object-contain object-bottom"
             alt="Logotype"
+            sizes="240px"
           />
         </Link>
       </div>
