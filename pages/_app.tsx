@@ -2,7 +2,7 @@ import { FC } from 'react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
-import { email, siteTitle } from '../src/config/defaults';
+import { email, footerText, siteTitle } from '../src/config/defaults';
 import Footer from '../src/components/organisms/Footer';
 import { DefaultPageProps } from '../src/types';
 import { Montserrat, IBM_Plex_Mono } from 'next/font/google';
@@ -38,7 +38,7 @@ const App: FC<Props> = ({ Component, pageProps }) => (
         <meta property="og:type" content="website" />
       </Head>
       <Component {...pageProps} />
-      <Footer email={pageProps?.settings?.email ?? email} />
+      <Footer email={pageProps?.settings?.email ?? email} title={footerText} />
     </div>
   </div>
 );
