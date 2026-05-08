@@ -34,3 +34,6 @@ yarn-error.log*
 .vercel
 
 .env.local
+
+# claude code per-developer state
+.claude/
