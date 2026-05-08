@@ -15,7 +15,7 @@ export type Project = {
   mainImage?: SanityImageAssetDocument;
   textBody: PortableTextBlock[];
   description: string;
-  images: { asset: SanityImageAssetDocument }[];
+  images?: { asset: SanityImageAssetDocument }[];
   categories: Category[];
   credits?: string;
   _id: string;
