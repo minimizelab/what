@@ -19,7 +19,25 @@ const RichText = defineField({
             component: HighlightRender,
           },
         ],
-        annotations: [],
+        annotations: [
+          {
+            name: 'link',
+            type: 'object',
+            title: 'Länk',
+            fields: [
+              {
+                name: 'href',
+                type: 'url',
+                title: 'URL',
+                validation: (R) =>
+                  R.required().uri({
+                    scheme: ['http', 'https', 'mailto', 'tel'],
+                    allowRelative: true,
+                  }),
+              },
+            ],
+          },
+        ],
       },
     },
   ],
