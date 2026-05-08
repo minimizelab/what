@@ -15,7 +15,8 @@ const Block: FC<{ children?: ReactNode }> = ({ children }) => (
 );
 
 const ProjectHeader: FC<Props> = ({ project }) => {
-  const { title, images, textBody } = project;
+  const { title, textBody } = project;
+  const images = project.images ?? [];
   const mainImage = images[0]?.asset;
   return (
     <div className="mb-10 lg:mb-20 space-y-10 lg:space-y-20 flex flex-col">
