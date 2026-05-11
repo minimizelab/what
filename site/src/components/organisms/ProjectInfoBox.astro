@@ -1,0 +1,45 @@
+---
+import TextMedium from '../atoms/TextMedium.astro';
+import type { Project } from '../../types';
+
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+const { assignment, clients, awards, year, location, size, collaborators } =
+  project;
+
+type Row = { title: string; value: string | string[] | undefined };
+const rows: Row[] = [
+  { title: 'Uppdrag', value: assignment },
+  { title: 'Beställare', value: clients },
+  { title: 'Samarbetspartners', value: collaborators },
+  { title: 'Plats', value: location },
+  { title: 'Storlek', value: size },
+  { title: 'År', value: year },
+  { title: 'Utmärkelser', value: awards },
+].filter((r) => r.value !== undefined && r.value !== null) as Row[];
+---
+
+<table>
+  <tbody>
+    {rows.map((row) => (
+      <tr>
+        <td class="align-top pb-3 pr-4 sm:pr-10 lg:whitespace-nowrap">
+          <TextMedium class="font-medium">{row.title}</TextMedium>
+        </td>
+        {typeof row.value === 'string' ? (
+          <td class="align-top pb-3 lg:whitespace-nowrap font-what-mono">
+            <TextMedium>{row.value}</TextMedium>
+          </td>
+        ) : (
+          <td class="align-top pb-3 lg:whitespace-nowrap font-what-mono">
+            {(row.value as string[]).map((item) => (
+              <TextMedium>{item}</TextMedium>
+            ))}
+          </td>
+        )}
+      </tr>
+    ))}
+  </tbody>
+</table>

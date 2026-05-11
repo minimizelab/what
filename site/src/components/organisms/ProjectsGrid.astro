@@ -1,0 +1,15 @@
+---
+import ProjectCard from '../molecules/ProjectCard.astro';
+import type { Project } from '../../types';
+
+interface Props {
+  projects: Project[];
+}
+const { projects } = Astro.props;
+---
+
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-x-12 gap-y-8">
+  {projects.map((project, i) => (
+    <ProjectCard project={project} prio={i < 3} />
+  ))}
+</div>

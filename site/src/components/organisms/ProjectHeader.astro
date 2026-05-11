@@ -1,0 +1,38 @@
+---
+import SanityImage from '../atoms/SanityImage.astro';
+import H1 from '../atoms/H1.astro';
+import ProjectInfoBox from './ProjectInfoBox.astro';
+import type { Project } from '../../types';
+
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+const { title } = project;
+const images = project.images ?? [];
+const mainImage = images[0]?.asset;
+---
+
+<div class="mb-10 lg:mb-20 space-y-10 lg:space-y-20 flex flex-col">
+  {mainImage && (
+    <div class="w-full flex items-center justify-center">
+      <SanityImage
+        asset={mainImage}
+        alt={`image for project ${title}`}
+        sizes="(min-width: 1440px) 1280px, 100vw"
+        priority
+      />
+    </div>
+  )}
+  <div class="max-w-5xl space-y-6 self-center">
+    <H1 class="!text-4xl text-what-red-01">{title}</H1>
+    <div class="flex flex-row flex-wrap lg:flex-nowrap justify-between lg:space-y-0 space-y-8 space-x-0 lg:space-x-16">
+      <div>
+        <!-- TODO Task 11: render textBody via astro-portabletext with projectTextComponents -->
+      </div>
+      <div>
+        <ProjectInfoBox project={project} />
+      </div>
+    </div>
+  </div>
+</div>

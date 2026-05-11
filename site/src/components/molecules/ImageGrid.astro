@@ -1,0 +1,37 @@
+---
+import SanityImage from '../atoms/SanityImage.astro';
+import type { SanityImageAssetDocument } from '@sanity/client';
+
+interface Props {
+  images: SanityImageAssetDocument[];
+}
+const { images } = Astro.props;
+
+const isLandscape = (img: SanityImageAssetDocument) =>
+  (img.metadata?.dimensions?.height ?? 0) <
+  (img.metadata?.dimensions?.width ?? 0);
+
+const portraitImages = images.filter((img) => !isLandscape(img));
+const centeredImgId =
+  portraitImages.length % 2 === 1
+    ? portraitImages[portraitImages.length - 1]?._id
+    : undefined;
+---
+
+<div class="grid grid-cols-4 grid-flow-row-dense gap-10 items-center justify-center">
+  {images.map((img) => (
+    <div
+      class:list={[
+        'col-span-4 h-full flex justify-center items-center',
+        !isLandscape(img) && 'md:col-span-2',
+        img._id === centeredImgId && 'md:col-start-2',
+      ]}
+    >
+      <SanityImage
+        asset={img}
+        alt=""
+        sizes="(min-width: 1792px) 1792px, 100vw"
+      />
+    </div>
+  ))}
+</div>

@@ -1,0 +1,35 @@
+---
+import SanityImage from '../atoms/SanityImage.astro';
+import type { Project } from '../../types';
+
+interface Props {
+  project: Project;
+  prio?: boolean;
+}
+const { project, prio = false } = Astro.props;
+const projectPath = `/projekt/${project.path.current}`;
+---
+
+<div class="flex flex-col group">
+  <a
+    href={projectPath}
+    class="relative block flex-1 cursor-pointer pt-75"
+  >
+    {project.mainImage && (
+      <SanityImage
+        class="object-cover object-center"
+        asset={project.mainImage}
+        fill
+        sizes="(min-width: 1280px) 45vw, (min-width: 1024px) 67vw, 134vw"
+        priority={prio}
+        alt={`image for project ${project.title}`}
+      />
+    )}
+  </a>
+  <a
+    href={projectPath}
+    class="pt-2 self-start cursor-pointer text-base hover:text-what-red-01 group-hover:text-what-red-01"
+  >
+    {project.title}
+  </a>
+</div>
