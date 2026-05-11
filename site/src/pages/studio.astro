@@ -1,0 +1,80 @@
+---
+import Page from '../layouts/Page.astro';
+import EmployeeCard from '../components/molecules/EmployeeCard.astro';
+import TextMedium from '../components/atoms/TextMedium.astro';
+import { PortableText } from 'astro-portabletext';
+import { studioTextComponents } from '../lib/portableTextComponents';
+import sanity from '../services/sanity';
+import getSortedArray from '../utils/getSortedArray';
+import type { Employee } from '../types';
+
+const socials: { title: string; link: string }[] = [
+  { title: 'Instagram', link: 'https://www.instagram.com/whatarkitektur/' },
+  { title: 'LinkedIn', link: 'https://se.linkedin.com/company/whatarkitektur' },
+  { title: 'Facebook', link: 'https://www.facebook.com/whatark/' },
+];
+
+const [allEmployees, studio, settings] = await Promise.all([
+  sanity.getEmployees(),
+  sanity.getStudio(),
+  sanity.getSettings(),
+]);
+const employees = getSortedArray<Employee>(allEmployees, studio.employees);
+---
+
+<Page settings={settings} class="pb-8">
+  <div class="flex flex-col items-start">
+    <PortableText value={studio.pageContent} components={studioTextComponents} />
+    <div class="flex flex-row mt-10 w-full">
+      <TextMedium class="font-medium w-32">Telefon</TextMedium>
+      <TextMedium class="flex-1 font-what-mono">
+        <a class="hover:text-what-red-01 cursor-pointer" href={`tel:${settings.phone}`}>
+          {settings.phone}
+        </a>
+      </TextMedium>
+    </div>
+    <div class="flex flex-row mt-4 w-full">
+      <TextMedium class="font-medium w-32">Mail</TextMedium>
+      <TextMedium class="flex-1 font-what-mono">
+        <a class="hover:text-what-red-01 cursor-pointer" href={`mailto:${settings.email}`}>
+          {settings.email}
+        </a>
+      </TextMedium>
+    </div>
+    <div class="flex flex-row mt-4 w-full">
+      <TextMedium class="font-medium w-32">Address</TextMedium>
+      <TextMedium class="flex flex-col flex-1 font-what-mono">
+        {settings.address.map((line) => <span>{line}</span>)}
+      </TextMedium>
+    </div>
+    <div class="flex flex-row mt-4 w-full">
+      <TextMedium class="font-medium w-32">Jobb</TextMedium>
+      <TextMedium class="flex-1 font-what-mono">
+        Skicka CV & portfolio till{' '}
+        <a class="hover:text-what-red-01 cursor-pointer" href={`mailto:${settings.emailJob}`}>
+          {settings.emailJob}
+        </a>
+      </TextMedium>
+    </div>
+    <div class="flex flex-row mt-4 w-full">
+      <TextMedium class="font-medium w-32">Socialt</TextMedium>
+      <TextMedium class="flex flex-col flex-1 font-what-mono">
+        {socials.map((social) => (
+          <span>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={social.link}
+              class="hover:text-what-red-01 cursor-pointer"
+            >
+              {social.title}
+            </a>
+          </span>
+        ))}
+      </TextMedium>
+    </div>
+  </div>
+  <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+    {employees.map((employee) => <EmployeeCard employee={employee} />)}
+  </div>
+</Page>

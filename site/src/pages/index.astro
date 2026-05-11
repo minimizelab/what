@@ -1,17 +1,13 @@
 ---
+import Page from '../layouts/Page.astro';
+import FilterBar from '../components/molecules/FilterBar.astro';
+import ProjectsGrid from '../components/organisms/ProjectsGrid.astro';
+import sanity from '../services/sanity';
 
+const settings = await sanity.getSettings();
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Page settings={settings} title={settings.title} class="pb-8">
+  <FilterBar slot="filterBar" categories={settings.categoriesOrder ?? []} />
+  <ProjectsGrid projects={settings.featuredProjects ?? []} />
+</Page>

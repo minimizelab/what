@@ -1,0 +1,35 @@
+---
+import Page from '../layouts/Page.astro';
+import FilterBar from '../components/molecules/FilterBar.astro';
+import ProjectsGrid from '../components/organisms/ProjectsGrid.astro';
+import sanity from '../services/sanity';
+import getSortedArray from '../utils/getSortedArray';
+import type { Project } from '../types';
+
+export async function getStaticPaths() {
+  const settings = await sanity.getSettings();
+  return settings.categoriesOrder.map((category) => ({
+    params: { category: category.path.current },
+    props: { categoryId: category._id, categorySlug: category.path.current },
+  }));
+}
+
+const { categoryId, categorySlug } = Astro.props;
+
+const [settings, category, allProjects] = await Promise.all([
+  sanity.getSettings(),
+  sanity.getCategory(categorySlug),
+  sanity.getProjectsByCategory(categoryId),
+]);
+
+if (!category) {
+  return Astro.redirect('/404');
+}
+
+const projects = getSortedArray<Project>(allProjects, category.sortedProjects);
+---
+
+<Page settings={settings} title={settings.title}>
+  <FilterBar slot="filterBar" categories={settings.categoriesOrder} />
+  <ProjectsGrid projects={projects} />
+</Page>

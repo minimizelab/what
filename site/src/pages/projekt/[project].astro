@@ -1,0 +1,51 @@
+---
+import Page from '../../layouts/Page.astro';
+import ProjectHeader from '../../components/organisms/ProjectHeader.astro';
+import ImageGrid from '../../components/molecules/ImageGrid.astro';
+import { imageBuilder } from '../../lib/imageBuilder';
+import sanity from '../../services/sanity';
+import type { Project } from '../../types';
+
+export async function getStaticPaths() {
+  const projects = await sanity.getProjects();
+  return projects.map((project) => ({
+    params: { project: project.path.current },
+  }));
+}
+
+const { project: projectSlug } = Astro.params;
+
+const [project, settings] = await Promise.all([
+  sanity.getProject(projectSlug),
+  sanity.getSettings(),
+]);
+
+const allImages = project.images ?? [];
+const gridImages = allImages.slice(1).map((obj) => obj.asset);
+const ogImageSrc = project.mainImage
+  ? imageBuilder(project.mainImage).width(1200).height(630).url()
+  : undefined;
+---
+
+<Page
+  settings={settings}
+  title={project.title}
+  class="items-center"
+  ogImage={ogImageSrc}
+  ogTitle={project.title}
+>
+  <article class="w-full max-w-7xl flex flex-col">
+    <ProjectHeader project={project} />
+    <ImageGrid images={gridImages} />
+    <div class="flex flex-col-reverse items-start sm:flex-row justify-between mt-8">
+      <a
+        href="/"
+        class="underline hover:text-what-red-01 cursor-pointer"
+        onclick="event.preventDefault(); if (window.history.length > 1) { window.history.back(); } else { window.location.href = '/'; }"
+      >
+        tillbaka
+      </a>
+      <p>{project.credits}</p>
+    </div>
+  </article>
+</Page>
