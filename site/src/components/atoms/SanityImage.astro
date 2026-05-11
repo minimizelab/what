@@ -36,9 +36,11 @@ const lqip = asset.metadata?.lqip;
 
 const styles: string[] = [];
 if (fill) {
-  styles.push(
-    'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;'
-  );
+  // Fill mode positions the image absolutely, filling its parent.
+  // object-fit is intentionally NOT set here so callers can choose
+  // `object-cover` / `object-contain` via the `class` prop without
+  // being overridden by inline styles.
+  styles.push('position:absolute;inset:0;width:100%;height:100%;');
 }
 if (lqip) {
   styles.push(`background:url(${lqip}) center/cover no-repeat;`);
