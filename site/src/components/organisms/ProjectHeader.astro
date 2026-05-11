@@ -2,13 +2,15 @@
 import SanityImage from '../atoms/SanityImage.astro';
 import H1 from '../atoms/H1.astro';
 import ProjectInfoBox from './ProjectInfoBox.astro';
+import { PortableText } from 'astro-portabletext';
+import { projectTextComponents } from '../../lib/portableTextComponents';
 import type { Project } from '../../types';
 
 interface Props {
   project: Project;
 }
 const { project } = Astro.props;
-const { title } = project;
+const { title, textBody } = project;
 const images = project.images ?? [];
 const mainImage = images[0]?.asset;
 ---
@@ -28,7 +30,7 @@ const mainImage = images[0]?.asset;
     <H1 class="!text-4xl text-what-red-01">{title}</H1>
     <div class="flex flex-row flex-wrap lg:flex-nowrap justify-between lg:space-y-0 space-y-8 space-x-0 lg:space-x-16">
       <div>
-        <!-- TODO Task 11: render textBody via astro-portabletext with projectTextComponents -->
+        <PortableText value={textBody} components={projectTextComponents} />
       </div>
       <div>
         <ProjectInfoBox project={project} />
