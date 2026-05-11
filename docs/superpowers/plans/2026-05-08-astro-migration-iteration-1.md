@@ -6,7 +6,9 @@
 
 **Architecture:** Two new pnpm subprojects coexist with the untouched Next code at the repo root. `/studio/` is a standalone Sanity v3 Studio running locally only (no new hosted URL). `/site/` is an Astro 5 static-export project that consumes the same Sanity dataset. Production keeps building from the root unchanged.
 
-**Tech Stack:** Astro 5 (static export), Sanity v3 (existing), Tailwind 3 (carried over), `@sanity/client`, `@sanity/image-url`, `astro-portabletext`, `@fontsource/*` for fonts, pnpm for new subprojects.
+**Tech Stack:** Astro 6 (static export), Sanity v3 (existing), Tailwind v4 with CSS-first config (`@theme` directives, no JS config), `@sanity/client`, `@sanity/image-url`, `astro-portabletext`, `@fontsource/*` for fonts, pnpm for new subprojects.
+
+**Note (added 2026-05-08 during execution):** The Task 4 scaffold installed Astro 6 + Tailwind v4 instead of the originally-spec'd Astro 5 + Tailwind v3 (a result of dispatching `astro@latest`). After review, the user opted to stay on current versions. Tasks 5–12 below have been amended to use Tailwind v4 CSS-first config (`@theme` directives) instead of a JS `tailwind.config.ts`. Class names in components are unchanged because v4 derives utilities from `@theme` variables (e.g., `--color-what-white` produces `bg-what-white`, `text-what-white`).
 
 **Spec:** `docs/superpowers/specs/2026-05-08-astro-migration-iteration-1-design.md`
 
@@ -503,68 +505,78 @@ Refs #54"
 
 ---
 
-## Task 5 — Carry over Tailwind config and global styles (#54 part 2)
+## Task 5 — Tailwind v4 design tokens and global styles (#54 part 2)
 
 **Files:**
-- Modify: `site/tailwind.config.ts` (replace with adapted version)
-- Create: `site/src/styles/global.css`
+- Modify: `site/src/styles/global.css` (replace the bare `@import "tailwindcss"` from the scaffold with the full design-token CSS)
 - Copy: `public/cursor-point.svg`, `public/cursor-red-point.svg`, `public/favicon.png`, `public/_redirects` → `site/public/`
 
-- [ ] **Step 1: Replace `site/tailwind.config.ts` with the design tokens from the legacy config**
+(No `tailwind.config.ts` — Tailwind v4 uses CSS-first `@theme` config, defined inline in the stylesheet.)
 
-Write:
-```ts
-import type { Config } from 'tailwindcss';
+- [ ] **Step 1: Rewrite `site/src/styles/global.css`**
 
-const config: Config = {
-  content: ['./src/**/*.{astro,html,js,ts,jsx,tsx,md,mdx}'],
-  theme: {
-    extend: {
-      fontFamily: {
-        what: ['var(--font-montserrat)'],
-        'what-mono': ['var(--font-ibm-plex-mono)'],
-      },
-      colors: {
-        'what-white': '#F2EFEB',
-        'what-red-01': '#FF0222',
-      },
-      height: { 500: '500px' },
-      padding: { 67: '67%', 75: '75%', 111: '111%' },
-      screens: {
-        content: '1792px',
-      },
-      cursor: {
-        dot: 'url(/cursor-point.svg) 6.8 6.8, auto',
-        pointer: 'url(/cursor-red-point.svg) 6.8 6.8, pointer',
-      },
-    },
-  },
-};
-
-export default config;
-```
-
-(Identical tokens to legacy `tailwind.config.ts`; only the `content` glob differs to point at Astro source files.)
-
-- [ ] **Step 2: Create `site/src/styles/global.css`**
+Replace the existing one-line `@import "tailwindcss";` with this complete file. The `@theme` block defines every custom token the legacy `tailwind.config.ts` had, in Tailwind v4 syntax. Each `--color-*`, `--font-*`, `--breakpoint-*`, `--container-*`, etc. auto-generates the corresponding utility classes (`bg-what-white`, `font-what`, `content:` variant, `max-w-screen-content`, etc.).
 
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --font-montserrat: 'Montserrat', system-ui, sans-serif;
-  --font-ibm-plex-mono: 'IBM Plex Mono', monospace;
+@theme {
+  /* Custom design tokens for what! arkitektur — equivalent to the legacy
+     tailwind.config.ts extensions. */
+
+  /* Brand colors */
+  --color-what-white: #F2EFEB;
+  --color-what-red-01: #FF0222;
+
+  /* Custom font families (CSS vars are populated by @fontsource imports
+     in Task 7, plus the :root block below as a static fallback). */
+  --font-what: 'Montserrat', system-ui, sans-serif;
+  --font-what-mono: 'IBM Plex Mono', monospace;
+
+  /* Custom breakpoint + container so `content:` variant works as a media
+     query and `max-w-screen-content` works as a max-width utility. */
+  --breakpoint-content: 1792px;
+  --container-content: 1792px;
 }
 
+/* Body baseline (replaces legacy <body className="bg-what-white cursor-dot">) */
 body {
-  background-color: #F2EFEB;
+  background-color: var(--color-what-white);
+  font-family: var(--font-what);
+  font-weight: 500;
   cursor: url(/cursor-point.svg) 6.8 6.8, auto;
+}
+
+/* Custom cursor utility classes — Tailwind v4 doesn't auto-generate `cursor-*`
+   utilities from theme variables for non-standard cursor values (which are
+   url() strings, not keyword cursors). Define explicitly. */
+.cursor-dot {
+  cursor: url(/cursor-point.svg) 6.8 6.8, auto;
+}
+.cursor-pointer {
+  cursor: url(/cursor-red-point.svg) 6.8 6.8, pointer;
+}
+
+/* Custom percentage padding utilities used by the project/employee card
+   aspect ratios. Tailwind v4 doesn't generate arbitrary-keyed padding
+   utilities from theme; explicit. */
+.pt-67 {
+  padding-top: 67%;
+}
+.pt-75 {
+  padding-top: 75%;
+}
+.pt-111 {
+  padding-top: 111%;
+}
+
+/* Custom fixed-pixel height (legacy `height: { 500: '500px' }`). */
+.h-500 {
+  height: 500px;
 }
 ```
 
-(The body styles replace what the legacy code set via `<body className="bg-what-white cursor-dot">` in `pages/_document.tsx` and `app/layout.tsx`.)
+(The custom utility classes for cursor, percent padding, and fixed height are written explicitly because Tailwind v4's auto-generation from `@theme` doesn't cover non-standard token shapes well. Class names are kept identical to the legacy site so component class lists port cleanly.)
 
 - [ ] **Step 3: Copy static public assets**
 
@@ -596,18 +608,19 @@ Expected: `out/` contains `index.html` and the copied static files (`cursor-poin
 
 ```bash
 cd ..
-git add site/tailwind.config.ts site/src/styles/global.css site/public/
+git add site/src/styles/global.css site/public/
 git status
 ```
 
 Then prompt and commit:
 ```bash
-git commit -m "Carry over Tailwind tokens, global styles, and static assets
+git commit -m "Carry over design tokens to Tailwind v4 and static assets
 
-Tailwind config matches the legacy site verbatim except for the content
-glob. CSS variables for the fonts are defined in global.css (next/font
-replacement happens in a later task). Public assets (cursors, favicon)
-and the trimmed _redirects (no /admin rule) copied into site/public/.
+global.css defines @theme variables for the brand colors, fonts,
+breakpoint+container, plus explicit utility classes for the legacy
+cursor, percent-padding, and fixed-height tokens that Tailwind v4
+doesn't auto-generate. Public assets (cursors, favicon) and the
+trimmed _redirects (no /admin rule) copied into site/public/.
 
 Refs #54"
 ```
@@ -920,33 +933,74 @@ cd site
 pnpm add @fontsource/montserrat @fontsource/ibm-plex-mono
 ```
 
-- [ ] **Step 2: Update `site/src/styles/global.css` to import fonts**
+- [ ] **Step 2: Update `site/src/styles/global.css` to prepend font imports**
 
-Replace the file contents with:
+The file already exists from Task 5 with `@import "tailwindcss"`, the `@theme` block, body styles, and custom utility classes. **Prepend** the three `@fontsource` imports at the very top of the file (CSS imports must come before any other rules). The complete file after this edit should look like:
 
 ```css
 @import '@fontsource/montserrat/400.css';
 @import '@fontsource/montserrat/500.css';
 @import '@fontsource/ibm-plex-mono/400.css';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --font-montserrat: 'Montserrat', system-ui, sans-serif;
-  --font-ibm-plex-mono: 'IBM Plex Mono', monospace;
+@theme {
+  /* Custom design tokens for what! arkitektur — equivalent to the legacy
+     tailwind.config.ts extensions. */
+
+  /* Brand colors */
+  --color-what-white: #F2EFEB;
+  --color-what-red-01: #FF0222;
+
+  /* Custom font families (CSS vars are populated by @fontsource imports
+     in Task 7, plus the :root block below as a static fallback). */
+  --font-what: 'Montserrat', system-ui, sans-serif;
+  --font-what-mono: 'IBM Plex Mono', monospace;
+
+  /* Custom breakpoint + container so `content:` variant works as a media
+     query and `max-w-screen-content` works as a max-width utility. */
+  --breakpoint-content: 1792px;
+  --container-content: 1792px;
 }
 
+/* Body baseline (replaces legacy <body className="bg-what-white cursor-dot">) */
 body {
-  background-color: #F2EFEB;
-  cursor: url(/cursor-point.svg) 6.8 6.8, auto;
-  font-family: var(--font-montserrat);
+  background-color: var(--color-what-white);
+  font-family: var(--font-what);
   font-weight: 500;
+  cursor: url(/cursor-point.svg) 6.8 6.8, auto;
+}
+
+/* Custom cursor utility classes — Tailwind v4 doesn't auto-generate `cursor-*`
+   utilities from theme variables for non-standard cursor values (which are
+   url() strings, not keyword cursors). Define explicitly. */
+.cursor-dot {
+  cursor: url(/cursor-point.svg) 6.8 6.8, auto;
+}
+.cursor-pointer {
+  cursor: url(/cursor-red-point.svg) 6.8 6.8, pointer;
+}
+
+/* Custom percentage padding utilities used by the project/employee card
+   aspect ratios. Tailwind v4 doesn't generate arbitrary-keyed padding
+   utilities from theme; explicit. */
+.pt-67 {
+  padding-top: 67%;
+}
+.pt-75 {
+  padding-top: 75%;
+}
+.pt-111 {
+  padding-top: 111%;
+}
+
+/* Custom fixed-pixel height (legacy `height: { 500: '500px' }`). */
+.h-500 {
+  height: 500px;
 }
 ```
 
-(Body classes from legacy `_app.tsx`: `w-full min-h-screen flex flex-row justify-center font-what font-medium` will be re-applied via the `Page.astro` layout in Task 11, but the font-family + weight defaults belong here as a baseline.)
+(The `@fontsource` packages ship CSS files that register `@font-face` declarations using the same font names as our `@theme` variables (`'Montserrat'`, `'IBM Plex Mono'`), so no further wiring is needed — once these imports are present, the fonts render correctly via the `--font-what` / `--font-what-mono` tokens.)
 
 - [ ] **Step 3: Verify the global stylesheet imports work**
 
