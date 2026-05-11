@@ -1,1 +1,56 @@
 @import "tailwindcss";
+
+@theme {
+  /* Custom design tokens for what! arkitektur — equivalent to the legacy
+     tailwind.config.ts extensions. */
+
+  /* Brand colors */
+  --color-what-white: #F2EFEB;
+  --color-what-red-01: #FF0222;
+
+  /* Custom font families. The @fontsource imports added in Task 7 will
+     register the actual @font-face declarations. */
+  --font-what: 'Montserrat', system-ui, sans-serif;
+  --font-what-mono: 'IBM Plex Mono', monospace;
+
+  /* Custom breakpoint + container so `content:` variant works as a media
+     query and `max-w-screen-content` works as a max-width utility. */
+  --breakpoint-content: 1792px;
+  --container-content: 1792px;
+}
+
+/* Body baseline (replaces legacy <body className="bg-what-white cursor-dot">) */
+body {
+  background-color: var(--color-what-white);
+  font-family: var(--font-what);
+  font-weight: 500;
+  cursor: url(/cursor-point.svg) 6.8 6.8, auto;
+}
+
+/* Custom cursor utility classes — Tailwind v4 doesn't auto-generate `cursor-*`
+   utilities from theme variables for non-standard cursor values (which are
+   url() strings, not keyword cursors). Define explicitly. */
+.cursor-dot {
+  cursor: url(/cursor-point.svg) 6.8 6.8, auto;
+}
+.cursor-pointer {
+  cursor: url(/cursor-red-point.svg) 6.8 6.8, pointer;
+}
+
+/* Custom percentage padding utilities used by the project/employee card
+   aspect ratios. Tailwind v4 doesn't generate arbitrary-keyed padding
+   utilities from theme; explicit. */
+.pt-67 {
+  padding-top: 67%;
+}
+.pt-75 {
+  padding-top: 75%;
+}
+.pt-111 {
+  padding-top: 111%;
+}
+
+/* Custom fixed-pixel height (legacy `height: { 500: '500px' }`). */
+.h-500 {
+  height: 500px;
+}
