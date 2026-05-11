@@ -1,0 +1,61 @@
+---
+import { imageBuilder } from '../../lib/imageBuilder';
+import type { SanityImageAssetDocument } from '@sanity/client';
+
+interface Props {
+  asset: SanityImageAssetDocument;
+  alt: string;
+  sizes?: string;
+  priority?: boolean;
+  fill?: boolean;
+  class?: string;
+}
+
+const {
+  asset,
+  alt,
+  sizes = '100vw',
+  priority = false,
+  fill = false,
+  class: className,
+} = Astro.props;
+
+const widths = [320, 640, 960, 1280, 1920, 2560];
+
+const srcSet = widths
+  .map(
+    (w) =>
+      `${imageBuilder(asset).width(w).auto('format').quality(75).url()} ${w}w`
+  )
+  .join(', ');
+
+const src = imageBuilder(asset).width(1280).auto('format').quality(75).url();
+const nativeWidth = asset.metadata?.dimensions?.width;
+const nativeHeight = asset.metadata?.dimensions?.height;
+const lqip = asset.metadata?.lqip;
+
+const styles: string[] = [];
+if (fill) {
+  styles.push(
+    'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;'
+  );
+}
+if (lqip) {
+  styles.push(`background:url(${lqip}) center/cover no-repeat;`);
+}
+const style = styles.join('') || undefined;
+---
+
+<img
+  src={src}
+  srcset={srcSet}
+  sizes={sizes}
+  width={nativeWidth}
+  height={nativeHeight}
+  loading={priority ? 'eager' : 'lazy'}
+  decoding="async"
+  fetchpriority={priority ? 'high' : 'auto'}
+  alt={alt}
+  class={className}
+  style={style}
+/>
