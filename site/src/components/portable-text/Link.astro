@@ -1,9 +1,10 @@
 ---
-interface Props {
-  node: { href?: string };
-}
+import type { MarkProps } from 'astro-portabletext/types';
+
+type Props = MarkProps<{ href?: string }>;
+
 const { node } = Astro.props;
-const href = node?.href ?? '';
+const href = node.markDef.href ?? '';
 const isExternal = /^https?:\/\//.test(href);
 ---
 <a
