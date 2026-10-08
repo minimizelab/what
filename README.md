@@ -7,7 +7,7 @@ Public website for What! Arkitektur.
 This repo is mid-migration from Next.js to Astro. Until the cutover lands:
 
 - `site/` — Astro public site (under construction, deploys to a preview Cloudflare Pages project)
-- `studio/` — extracted Sanity v3 Studio (runs locally only during this iteration)
+- `studio/` — extracted Sanity v6 Studio (runs locally only during this iteration)
 - Root (`pages/`, `app/`, `src/`, `next.config.mjs`, …) — current Next.js production site, still building and deploying
 
 See `docs/superpowers/specs/2026-05-08-astro-migration-iteration-1-design.md` for the plan.

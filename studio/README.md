@@ -1,6 +1,6 @@
 # whats.se — Sanity Studio
 
-Extracted Sanity v3 Studio for the whats.se site. Runs locally only during this migration iteration; no hosted URL.
+Extracted Sanity v6 Studio for the whats.se site. Runs locally only during this migration iteration; no hosted URL.
 
 ## Run locally
 
@@ -12,7 +12,7 @@ pnpm dev   # opens at http://localhost:3333, connected to the `development` data
 To explicitly target the production dataset (read-mostly spot-checks only — be careful):
 
 ```bash
-pnpm dev -- --dataset production
+SANITY_STUDIO_DATASET=production pnpm dev
 ```
 
 ## Notes
