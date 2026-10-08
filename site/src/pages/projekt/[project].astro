@@ -4,7 +4,6 @@ import ProjectHeader from '../../components/organisms/ProjectHeader.astro';
 import ImageGrid from '../../components/molecules/ImageGrid.astro';
 import { imageBuilder } from '../../lib/imageBuilder';
 import sanity from '../../services/sanity';
-import type { Project } from '../../types';
 
 export async function getStaticPaths() {
   const projects = await sanity.getProjects();
