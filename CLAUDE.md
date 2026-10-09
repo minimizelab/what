@@ -8,63 +8,84 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-`whats.se` — public website for What! Arkitektur. Next.js 14 frontend statically exported, with an embedded Sanity Studio admin at `/admin`. Content (projects, categories, employees, site settings) lives in Sanity and is pulled at build time via GROQ.
+`whats.se` — public website for What! Arkitektur. Content (projects, categories, employees, site settings) lives in Sanity (project `lu0lnnx1`) and is pulled at build time via GROQ. Hosted as a static site on Cloudflare Pages.
+
+The repo is **mid-migration from Next.js to Astro** (branch `astro-rewrite`). Three independent projects live side by side, with no workspace tooling between them:
+
+| Path | What | Package manager | Status |
+|---|---|---|---|
+| `site/` | Astro 7 public site | pnpm | New. Target of the migration. |
+| `studio/` | Standalone Sanity v6 Studio | pnpm | New. Runs locally only for now. |
+| Root (`pages/`, `app/`, `src/`, `next.config.mjs`, …) | Next.js 14 site + embedded Studio at `/admin` | npm | Legacy. Still what production builds and deploys from `main`. |
+
+New public-site work goes in `site/`. Touch the root Next app only for fixes that must reach production before the cutover. How the switch to production works is described in `docs/hosting.md`.
+
+## Toolchain
+
+Node and pnpm are pinned in `mise.toml` (Node 26.11.1, pnpm 12.9.1). Run `mise install` once. `.nvmrc` must stay in sync with the Node version in `mise.toml` — Cloudflare Pages reads `.nvmrc`. The root `package.json` enforces `engines` (`node 26.x`, `npm 11.x`).
 
 ## Commands
 
-- `npm run dev` — Next dev server (http://localhost:3000). Studio at `/admin`.
-- `npm run build` — Static export (writes to `out/`, since `next.config.mjs` sets `output: 'export'`).
-- `npm run start` — Serve the production build.
-- `npm run lint` — `next lint` (ESLint with `eslint:recommended` + `next/core-web-vitals` + `prettier`).
+Astro site (`cd site`):
+- `pnpm dev` — dev server at http://localhost:4321
+- `pnpm build` — static build to `site/out/`
+- `pnpm check` — `astro check` (type checking for `.astro` and `.ts`)
 
-No test runner is configured.
+Studio (`cd studio`):
+- `pnpm dev` — Studio at http://localhost:3333 against the `development` dataset
+- `pnpm typecheck`, `pnpm lint`, `pnpm build`
 
-Node version is pinned to `22.x` (`.nvmrc` → 22.16.0). Use that exact major or `npm install` will reject (`engines` enforced).
+Legacy Next site (repo root):
+- `npm run dev`, `npm run build` (static export to `out/`), `npm run lint`
 
-## Architecture
+No test runner is configured in any project.
 
-### Two routers in one app
-This is a hybrid Pages-Router + App-Router project, deliberately split:
+## Astro site (`site/`)
 
-- **Public site → `pages/`** (Pages Router). All visitor-facing pages: `index.tsx`, `[category].tsx`, `projekt/[project].tsx`, `studio.tsx`. They use `getStaticProps` / `getStaticPaths` and render at build time — required because the whole site is statically exported.
-- **Sanity Studio → `app/(studio)/admin/`** (App Router). The `(studio)` route group hosts the embedded Sanity Studio (mounted via `next-sanity/studio`), its `sanity.config.ts`, schemas, and desk structure. `app/layout.tsx` is the App-Router root layout but only the `/admin` subtree actually uses it.
+Fully static (`output: 'static'`, `outDir: './out'`). No UI framework integration — components are plain `.astro` files and the site ships no client-side JavaScript; keep it that way.
 
-When adding a new public page, use Pages Router conventions and `getStaticProps`. Don't add public pages under `app/` — `output: 'export'` plus the existing pattern assumes Pages Router for the site.
+The Astro site must render the same as the legacy Next site. `build.format: 'file'` + `trailingSlash: 'never'` reproduce Next's URLs (`/bostad`, served from `bostad.html`); don't change them. Watch for Tailwind v3 → v4 behaviour changes (e.g. `space-x-*` margins moved sides, preflight zeroes table-cell padding).
 
 ### Data layer
-All Sanity reads go through **`src/services/sanity.ts`** — a single object exposing `getSettings`, `getProject(s)`, `getCategory`, `getProjectsByCategory`, `getEmployees`, `getStudio`. Each function is a GROQ query against the `next-sanity` client configured in `src/lib/sanityClient.ts` + `src/lib/config.ts` (uses `NEXT_PUBLIC_SANITY_PROJECT_ID` / `NEXT_PUBLIC_SANITY_DATASET`, `useCdn: false`).
+All Sanity reads go through **`site/src/services/sanity.ts`** — a single object exposing `getSettings`, `getProjects`, `getCategory`, `getProjectsByCategory`, `getEmployees`, `getStudio`. The `@sanity/client` instance is in `src/lib/sanityClient.ts`, configured from `src/lib/config.ts`. Env vars are declared in the `env.schema` in `astro.config.mjs` and read through `astro:env/server`.
 
-When adding a new query, add it to `sanity.ts` rather than calling the client directly from a page — the rest of the codebase assumes this single entry point. Image assets are normally projected with `"mainImage": mainImage.asset->` so consumers get the resolved asset document; follow that pattern.
+Add new queries to `sanity.ts` rather than calling the client from a page. Each query is a named `defineQuery` constant so Sanity TypeGen can type it. After changing a query or a schema, run `pnpm typegen` in `studio/`; it regenerates `studio/schema.json` and `site/src/sanity.types.ts` (both committed, never hand-edited). `src/types.ts` holds short aliases of the generated query result types. Image assets are projected with `"mainImage": mainImage.asset->` so consumers get the resolved asset document; follow that pattern.
 
-### Sanity content model
-Schemas live in `app/(studio)/schemas/` (registered in `schema.ts`):
+Several documents store a manually curated ordering as a separate array of references (`category.sortedProjects`, `studio.sortedEmployees`, `settings.featuredProjects`). Fetch all items and the curated order, then merge with `getSortedArray<T>(allItems, sortedRefs)` from `src/utils/getSortedArray.ts`. See `src/pages/[category].astro` and `src/pages/studio.astro`.
+
+### Pages and components
+- Pages in `src/pages/`: `index.astro`, `[category].astro`, `projekt/[project].astro`, `studio.astro`. Data is fetched in frontmatter; dynamic routes use `getStaticPaths`.
+- Every page wraps content in `src/layouts/Page.astro` (head/meta, `Header`, `Footer`, global CSS).
+- Components follow atomic design under `src/components/` — `atoms/`, `molecules/`, `organisms/`, plus `portable-text/`.
+
+### Styling
+Tailwind v4 via `@tailwindcss/vite`. There is no `tailwind.config` — tokens are defined in `@theme` in `src/styles/global.css`:
+- Colors `what-white` (#F2EFEB), `what-red-01` (#FF0222)
+- Fonts `font-what` (Montserrat) and `font-what-mono` (IBM Plex Mono), loaded through the Astro Fonts API (`fonts` in `astro.config.mjs`, `<Font>` in `layouts/Page.astro`) from Google Fonts, the same files next/font used
+- `content` breakpoint / container at 1792px
+- Custom cursors `.cursor-dot` / `.cursor-pointer` (SVGs in `public/`) and a few legacy utilities (`.pt-67`, `.pt-75`, `.pt-111`, `.h-500`) are hand-written classes, since v4 doesn't generate them from theme values
+
+### Images
+Use `src/components/atoms/SanityImage.astro` for Sanity images. It builds a `srcset` through `src/lib/imageBuilder.ts` (`@sanity/image-url`) with the same widths and URL parameters next/image used, and uses the asset's LQIP as a background placeholder (`placeholder={false}` turns it off). Don't use Astro's `<Image>` for Sanity assets.
+
+### Portable Text
+Rendered with `astro-portabletext`. Component maps live in `src/lib/portableTextComponents.ts` (`projectTextComponents`, `studioTextComponents`); the mark and block components are in `src/components/portable-text/`.
+
+### Environment
+`site/.env.development` and `site/.env.production` (committed, non-secret) set `PUBLIC_SANITY_PROJECT_ID` and `PUBLIC_SANITY_DATASET`. Local overrides go in `.env*.local` (gitignored).
+
+## Sanity Studio (`studio/`)
+
+Standalone Sanity v6 Studio. Defaults to the `development` dataset; target production explicitly with `SANITY_STUDIO_DATASET=production pnpm dev`, and only with care. It is hosted at https://whats.sanity.studio (`pnpm deploy`); the legacy `/admin` Studio on the Next site keeps working until cutover.
+
+Schemas live in `studio/schemas/` (registered in `schema.ts`):
 - Documents: `category`, `project`, `employee`, `settings`, `studio`
 - Objects: `richText`
 
-`settings` and `studio` are **singletons** (enforced in `sanity.config.ts` — `unpublish`/`delete`/`duplicate` actions are stripped and they're hidden from `newDocumentOptions`). Don't add a second instance; edit the existing one.
+`settings` and `studio` are **singletons**, registered with the built-in `document.singletons` API (beta) in `sanity.config.ts`, which also strips `unpublish`/`delete`. Don't add a second instance.
 
-Several documents store a manually-curated ordering as a separate array of references (e.g. `category.sortedProjects`, `studio.sortedEmployees`, `settings.featuredProjects`). The pattern is: fetch all items, fetch the curated order, then call `getSortedArray<T>(allItems, sortedRefs)` from `src/utils/getSortedArray.ts` to merge them. See `pages/[category].tsx` and `pages/studio.tsx` for the canonical usage.
+`studio/schemas/` is currently identical to the legacy `app/(studio)/schemas/`. Until the cutover, a schema change has to be made in both places, because production editors use the legacy copy.
 
-### Components
-Atomic design under `src/components/` — `atoms/`, `molecules/`, `organisms/`, `templates/`. Pages compose `templates/Page.tsx` (which renders `Header` + `Nav` + content + filter bar) and pass settings + a `filterBar` slot.
+## Legacy Next site (repo root)
 
-### Styling
-Tailwind, with project-specific tokens in `tailwind.config.ts`:
-- Custom colors: `what-white` (#F2EFEB), `what-red-01` (#FF0222)
-- Custom fonts: `font-what` (Montserrat) and `font-what-mono` (IBM Plex Mono), loaded via `next/font/google` in `pages/_app.tsx` and exposed as CSS variables
-- Custom cursors `cursor-dot` / `cursor-pointer` use SVGs in `public/`
-- `screens.content: 1792px` is the max content width breakpoint
-
-### Portable Text
-Rich text rendering uses `@portabletext/react` with custom serializers in `src/lib/serializers.tsx` (note: there's also a `src/serializers.tsx` — the `lib/` one is the one currently imported).
-
-### Image handling
-`next.config.mjs` uses a custom image loader and whitelists `cdn.sanity.io`. Sanity image URLs are built via `src/lib/imageBuilder.ts` and the `useSanityImage` hook in `src/hooks/`. Use these rather than `<Image>` defaults.
-
-## Environment variables
-
-Required at build/dev time:
-- `NEXT_PUBLIC_SANITY_PROJECT_ID`
-- `NEXT_PUBLIC_SANITY_DATASET`
-
-Files: `.env`, `.env.development`, `.env.production` (already present).
+Pages Router for the public site (`pages/`, `getStaticProps`), App Router only for the embedded Studio under `app/(studio)/admin/`. Data layer in `src/services/sanity.ts`, env vars `NEXT_PUBLIC_SANITY_PROJECT_ID` / `NEXT_PUBLIC_SANITY_DATASET`. The root `tsconfig.json` excludes `site/` and `studio/` so `next build` doesn't type-check them. Production redirects are in `public/_redirects`.

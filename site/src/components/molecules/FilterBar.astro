@@ -1,0 +1,39 @@
+---
+import type { Category } from '../../types';
+
+interface Props {
+  categories: Category[];
+  /** Slug of the current category; omit on the home page. */
+  activeCategory?: string;
+}
+const { categories, activeCategory } = Astro.props;
+const onHome = activeCategory === undefined;
+---
+
+<div class="flex flex-row flex-wrap pt-8 gap-x-3 gap-y-2">
+  <a
+    href="/"
+    class:list={[
+      'cursor-pointer hover:text-what-red-01 text-base',
+      onHome && 'text-what-red-01',
+    ]}
+  >
+    Utvalt
+  </a>
+  {categories.map((category) => {
+    const active = category.path.current === activeCategory;
+    return (
+      <span>
+        <a
+          href={`/${category.path.current}`}
+          class:list={[
+            'cursor-pointer hover:text-what-red-01 text-base',
+            active && 'text-what-red-01',
+          ]}
+        >
+          {category.title}
+        </a>
+      </span>
+    );
+  })}
+</div>

@@ -1,0 +1,36 @@
+---
+import SanityImage from '../atoms/SanityImage.astro';
+import TextMedium from '../atoms/TextMedium.astro';
+import type { Employee } from '../../types';
+
+interface Props {
+  employee: Employee;
+}
+const { employee } = Astro.props;
+---
+
+<div class="flex flex-col">
+  <div class="relative block flex-1 mb-2 pt-111">
+    {employee.image && (
+      <SanityImage
+        class="object-cover object-center"
+        asset={employee.image}
+        fill
+        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+        alt={`image of employee ${employee.name}`}
+      />
+    )}
+  </div>
+  <TextMedium class="leading-snug text-what-red-01">{employee.name}</TextMedium>
+  <TextMedium class="leading-snug">{employee.titles}</TextMedium>
+  <TextMedium class="leading-snug">
+    <a class="hover:text-what-red-01 cursor-pointer" href={`mailto:${employee.email}`}>
+      {employee.email}
+    </a>
+  </TextMedium>
+  <TextMedium class="leading-snug">
+    <a class="hover:text-what-red-01 cursor-pointer" href={`tel:${employee.phone}`}>
+      {employee.phone}
+    </a>
+  </TextMedium>
+</div>
