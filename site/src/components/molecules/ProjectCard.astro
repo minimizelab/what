@@ -1,9 +1,9 @@
 ---
 import SanityImage from '../atoms/SanityImage.astro';
-import type { Project } from '../../types';
+import type { ProjectSummary } from '../../types';
 
 interface Props {
-  project: Project;
+  project: ProjectSummary;
   prio?: boolean;
 }
 const { project, prio = false } = Astro.props;

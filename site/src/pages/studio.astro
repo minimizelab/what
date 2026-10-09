@@ -24,7 +24,7 @@ const employees = getSortedArray<Employee>(allEmployees, studio.employees);
 
 <Page settings={settings} class="pb-8">
   <div class="flex flex-col items-start">
-    <PortableText value={studio.pageContent} components={studioTextComponents} />
+    <PortableText value={studio.pageContent ?? []} components={studioTextComponents} />
     <div class="flex flex-row mt-10 w-full">
       <TextMedium class="font-medium w-32">Telefon</TextMedium>
       <TextMedium class="flex-1 font-what-mono">

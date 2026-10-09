@@ -12,4 +12,15 @@ export default defineCliConfig({
      */
     autoUpdates: true,
   },
+  schemaExtraction: {
+    path: 'schema.json',
+    enforceRequiredFields: true,
+  },
+  // Types for the site's GROQ queries, generated from this schema.
+  typegen: {
+    path: '../site/src/**/*.ts',
+    schema: 'schema.json',
+    generates: '../site/src/sanity.types.ts',
+    overloadClientMethods: true,
+  },
 })

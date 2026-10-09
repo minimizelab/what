@@ -4,7 +4,7 @@ import FilterBar from '../components/molecules/FilterBar.astro';
 import ProjectsGrid from '../components/organisms/ProjectsGrid.astro';
 import sanity from '../services/sanity';
 import getSortedArray from '../utils/getSortedArray';
-import type { Project } from '../types';
+import type { ProjectSummary } from '../types';
 
 export async function getStaticPaths() {
   const settings = await sanity.getSettings();
@@ -23,7 +23,7 @@ const [settings, category, allProjects] = await Promise.all([
 ]);
 if (!category) throw new Error(`Category not found: ${categorySlug}`);
 
-const projects = getSortedArray<Project>(allProjects, category.sortedProjects);
+const projects = getSortedArray<ProjectSummary>(allProjects, category.sortedProjects);
 ---
 
 <Page settings={settings} title={settings.title}>

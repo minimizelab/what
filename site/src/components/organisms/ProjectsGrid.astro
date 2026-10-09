@@ -1,9 +1,9 @@
 ---
 import ProjectCard from '../molecules/ProjectCard.astro';
-import type { Project } from '../../types';
+import type { ProjectSummary } from '../../types';
 
 interface Props {
-  projects: Project[];
+  projects: ProjectSummary[];
 }
 const { projects } = Astro.props;
 ---

@@ -9,8 +9,7 @@ const { project } = Astro.props;
 const { assignment, clients, awards, year, location, size, collaborators } =
   project;
 
-type Row = { title: string; value: string | string[] | undefined };
-const rows: Row[] = [
+const candidates: { title: string; value?: string | string[] }[] = [
   { title: 'Uppdrag', value: assignment },
   { title: 'Beställare', value: clients },
   { title: 'Samarbetspartners', value: collaborators },
@@ -18,7 +17,11 @@ const rows: Row[] = [
   { title: 'Storlek', value: size },
   { title: 'År', value: year },
   { title: 'Utmärkelser', value: awards },
-].filter((r) => r.value !== undefined && r.value !== null) as Row[];
+];
+// Truthiness check matches the legacy site: empty strings are skipped too.
+const rows = candidates.flatMap(({ title, value }) =>
+  value ? [{ title, value }] : []
+);
 ---
 
 <table>
@@ -34,7 +37,7 @@ const rows: Row[] = [
           </td>
         ) : (
           <td class="align-top pb-3 lg:whitespace-nowrap font-what-mono">
-            {(row.value as string[]).map((item) => (
+            {row.value.map((item) => (
               <TextMedium>{item}</TextMedium>
             ))}
           </td>

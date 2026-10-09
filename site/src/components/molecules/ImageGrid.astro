@@ -1,13 +1,13 @@
 ---
 import SanityImage from '../atoms/SanityImage.astro';
-import type { SanityImageAssetDocument } from '@sanity/client';
+import type { ImageAsset } from '../../types';
 
 interface Props {
-  images: SanityImageAssetDocument[];
+  images: ImageAsset[];
 }
 const { images } = Astro.props;
 
-const isLandscape = (img: SanityImageAssetDocument) =>
+const isLandscape = (img: ImageAsset) =>
   (img.metadata?.dimensions?.height ?? 0) <
   (img.metadata?.dimensions?.width ?? 0);
 

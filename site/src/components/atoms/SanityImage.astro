@@ -1,9 +1,9 @@
 ---
 import { imageBuilder } from '../../lib/imageBuilder';
-import type { SanityImageAssetDocument } from '@sanity/client';
+import type { ImageAsset } from '../../types';
 
 interface Props {
-  asset: SanityImageAssetDocument;
+  asset: ImageAsset;
   alt: string;
   sizes?: string;
   priority?: boolean;
