@@ -14,3 +14,7 @@
 
 /speculation-rules.json
   Content-Type: application/speculationrules+json
+
+# Keep the pages.dev hostnames out of search results; www.whats.se is canonical.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
