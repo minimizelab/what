@@ -18,5 +18,6 @@ SANITY_STUDIO_DATASET=production pnpm dev
 ## Notes
 
 - Project ID is `lu0lnnx1` (hardcoded in `sanity.config.ts`).
-- Schemas are copied verbatim from `app/(studio)/schemas/` in the parent repo. Do not edit them here during this iteration.
+- `schemas/` is identical to `app/(studio)/schemas/`, which the live Next site's `/admin` Studio uses. Until the Next site is retired, make any schema change in both copies in the same commit.
+- `pnpm typegen` extracts the schema to `schema.json` and generates `../site/src/sanity.types.ts` from the site's GROQ queries.
 - Editors continue to use the production `/admin` URL on the live Next site. This standalone Studio is for verification only.
