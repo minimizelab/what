@@ -22,14 +22,14 @@ const [settings, category, allProjects] = await Promise.all([
   sanity.getProjectsByCategory(categoryId),
 ]);
 
-if (!category) {
-  return Astro.redirect('/404');
-}
-
 const projects = getSortedArray<Project>(allProjects, category.sortedProjects);
 ---
 
 <Page settings={settings} title={settings.title}>
-  <FilterBar slot="filterBar" categories={settings.categoriesOrder} />
+  <FilterBar
+    slot="filterBar"
+    categories={settings.categoriesOrder}
+    activeCategory={categorySlug}
+  />
   <ProjectsGrid projects={projects} />
 </Page>

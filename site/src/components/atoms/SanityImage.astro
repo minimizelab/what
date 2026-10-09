@@ -8,6 +8,8 @@ interface Props {
   sizes?: string;
   priority?: boolean;
   fill?: boolean;
+  placeholder?: boolean;
+  quality?: number;
   class?: string;
 }
 
@@ -17,22 +19,30 @@ const {
   sizes = '100vw',
   priority = false,
   fill = false,
+  placeholder = true,
+  quality = 75,
   class: className,
 } = Astro.props;
 
-const widths = [320, 640, 960, 1280, 1920, 2560];
+// Same candidate widths and URL parameters as next/image with the
+// next-sanity-image loader, so browsers pick the same files as the legacy site.
+const allWidths = [
+  16, 32, 48, 64, 96, 128, 256, 384, 640, 750, 828, 1080, 1200, 1920, 2048, 3840,
+];
+const viewportPercents = [...sizes.matchAll(/(^|\s)(1?\d?\d)vw/g)].map((m) =>
+  Number(m[2])
+);
+const widths = viewportPercents.length
+  ? allWidths.filter((w) => w >= (640 * Math.min(...viewportPercents)) / 100)
+  : allWidths;
 
-const srcSet = widths
-  .map(
-    (w) =>
-      `${imageBuilder(asset).width(w).auto('format').quality(75).url()} ${w}w`
-  )
-  .join(', ');
-
-const src = imageBuilder(asset).width(1280).auto('format').quality(75).url();
+const url = (w: number) =>
+  imageBuilder(asset).width(w).quality(quality).fit('clip').auto('format').url();
+const srcSet = widths.map((w) => `${url(w)} ${w}w`).join(', ');
+const src = url(widths[widths.length - 1]);
 const nativeWidth = asset.metadata?.dimensions?.width;
 const nativeHeight = asset.metadata?.dimensions?.height;
-const lqip = asset.metadata?.lqip;
+const lqip = placeholder ? asset.metadata?.lqip : undefined;
 
 const styles: string[] = [];
 if (fill) {

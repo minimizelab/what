@@ -3,10 +3,11 @@ import type { Category } from '../../types';
 
 interface Props {
   categories: Category[];
+  /** Slug of the current category; omit on the home page. */
+  activeCategory?: string;
 }
-const { categories } = Astro.props;
-const pathname = Astro.url.pathname;
-const onHome = pathname === '/' || pathname === '';
+const { categories, activeCategory } = Astro.props;
+const onHome = activeCategory === undefined;
 ---
 
 <div class="flex flex-row flex-wrap pt-8 gap-x-3 gap-y-2">
@@ -20,7 +21,7 @@ const onHome = pathname === '/' || pathname === '';
     Utvalt
   </a>
   {categories.map((category) => {
-    const active = pathname === `/${category.path.current}`;
+    const active = category.path.current === activeCategory;
     return (
       <span>
         <a

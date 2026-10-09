@@ -23,6 +23,15 @@
   --container-content: 1792px;
 }
 
+/* Tailwind v4's preflight zeroes all padding; v3 kept the browser default on
+   table cells, which the project info table was laid out with. */
+@layer base {
+  td,
+  th {
+    padding: 1px;
+  }
+}
+
 /* Body baseline (replaces legacy <body className="bg-what-white cursor-dot">) */
 body {
   background-color: var(--color-what-white);
