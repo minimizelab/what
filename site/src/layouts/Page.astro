@@ -27,6 +27,8 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    {/* Sanity serves every image; open the connection before the HTML is parsed. */}
+    <link rel="preconnect" href="https://cdn.sanity.io" />
     <Font cssVariable="--font-montserrat" preload />
     <Font cssVariable="--font-ibm-plex-mono" preload />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
