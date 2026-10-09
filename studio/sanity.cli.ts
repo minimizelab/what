@@ -6,6 +6,8 @@ export default defineCliConfig({
     dataset: 'development'
   },
   deployment: {
+    // Hosted at https://whats.sanity.studio
+    appId: 'ooh0kmphvyge4qm9p42wj1pa',
     /**
      * Enable auto-updates for studios.
      * Learn more at https://www.sanity.io/docs/cli#auto-updates

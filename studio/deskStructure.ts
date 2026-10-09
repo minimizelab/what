@@ -1,7 +1,7 @@
 import { IoMdSettings } from 'react-icons/io';
 import { StructureBuilder } from 'sanity/structure';
 
-const hiddenTypes = ['settings', 'media.tag', 'studio'];
+const hiddenTypes = ['settings', 'media.tag', 'media.folder', 'studio'];
 
 const deskStructure = (S: StructureBuilder) =>
   S.list()
