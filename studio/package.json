@@ -9,7 +9,6 @@
     "start": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "typegen": "sanity schema extract --force && sanity typegen generate"

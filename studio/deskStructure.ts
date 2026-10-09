@@ -6,15 +6,9 @@ const hiddenTypes = ['settings', 'media.tag', 'studio'];
 const deskStructure = (S: StructureBuilder) =>
   S.list()
     .title('Innehåll')
-    .items(S.documentTypeListItems())
     .items([
-      S.listItem()
-        .title('Inställningar')
-        .icon(IoMdSettings)
-        .child(S.editor().schemaType('settings').documentId('settings')),
-      S.listItem()
-        .title('Studio')
-        .child(S.editor().schemaType('studio').documentId('studio')),
+      S.listItem().singleton('settings').title('Inställningar').icon(IoMdSettings),
+      S.listItem().singleton('studio').title('Studio'),
       S.divider(),
       ...S.documentTypeListItems().filter(
         (listItem) => !hiddenTypes.includes(listItem.getId() ?? '')

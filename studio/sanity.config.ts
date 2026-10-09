@@ -1,4 +1,4 @@
-import { defineConfig } from 'sanity';
+import { defineConfig, defineSingleton } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 import { media } from 'sanity-plugin-media';
@@ -8,7 +8,11 @@ import deskStructure from './deskStructure';
 const projectId = 'lu0lnnx1';
 const dataset = process.env.SANITY_STUDIO_DATASET || 'development';
 
-const singletons = ['settings', 'studio'];
+const singletons = [
+  defineSingleton({ documentId: 'settings', schemaType: 'settings' }),
+  defineSingleton({ documentId: 'studio', schemaType: 'studio' }),
+];
+const singletonTypes: string[] = singletons.map((singleton) => singleton.schemaType);
 
 export default defineConfig({
   title: 'what',
@@ -19,19 +23,13 @@ export default defineConfig({
     types: schema,
   },
   document: {
-    newDocumentOptions: (prev, { creationContext }) => {
-      if (creationContext.type === 'global') {
-        return prev.filter(
-          (templateItem) => !singletons.includes(templateItem.templateId)
-        );
-      }
-      return prev;
-    },
+    // Hides them from create menus and default lists, and blocks duplicating.
+    singletons,
+    // The built-in singleton handling still allows these.
     actions: (prev, { schemaType }) => {
-      if (singletons.includes(schemaType)) {
+      if (singletonTypes.includes(schemaType)) {
         return prev.filter(
-          ({ action }) =>
-            !['unpublish', 'delete', 'duplicate'].includes(action ?? '')
+          ({ action }) => !['unpublish', 'delete'].includes(action ?? '')
         );
       }
       return prev;
