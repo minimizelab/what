@@ -18,7 +18,7 @@ The repo is **mid-migration from Next.js to Astro** (branch `astro-rewrite`). Th
 | `studio/` | Standalone Sanity v6 Studio | pnpm | New. Runs locally only for now. |
 | Root (`pages/`, `app/`, `src/`, `next.config.mjs`, …) | Next.js 14 site + embedded Studio at `/admin` | npm | Legacy. Still what production builds and deploys from `main`. |
 
-New public-site work goes in `site/`. Touch the root Next app only for fixes that must reach production before the cutover. The cutover (deleting the root Next app) is a separate, not-yet-made decision; see `docs/superpowers/specs/2026-05-08-astro-migration-iteration-1-design.md` and `docs/astro-migration-plan.md`.
+New public-site work goes in `site/`. Touch the root Next app only for fixes that must reach production before the cutover. How the switch to production works is described in `docs/hosting.md`.
 
 ## Toolchain
 
@@ -76,7 +76,7 @@ Rendered with `astro-portabletext`. Component maps live in `src/lib/portableText
 
 ## Sanity Studio (`studio/`)
 
-Standalone Sanity v6 Studio. Defaults to the `development` dataset; target production explicitly with `SANITY_STUDIO_DATASET=production pnpm dev`, and only with care. Editors still use `/admin` on the live Next site.
+Standalone Sanity v6 Studio. Defaults to the `development` dataset; target production explicitly with `SANITY_STUDIO_DATASET=production pnpm dev`, and only with care. It is hosted at https://whats.sanity.studio (`pnpm deploy`); the legacy `/admin` Studio on the Next site keeps working until cutover.
 
 Schemas live in `studio/schemas/` (registered in `schema.ts`):
 - Documents: `category`, `project`, `employee`, `settings`, `studio`
