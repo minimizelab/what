@@ -2,7 +2,7 @@
 import Page from '../../layouts/Page.astro';
 import ProjectHeader from '../../components/organisms/ProjectHeader.astro';
 import ImageGrid from '../../components/molecules/ImageGrid.astro';
-import { imageBuilder } from '../../lib/imageBuilder';
+import { excerpt, shareImage } from '../../lib/seo';
 import sanity from '../../services/sanity';
 
 export async function getStaticPaths() {
@@ -21,16 +21,14 @@ const gridImages = allImages
   .slice(1)
   .map((obj) => obj.asset)
   .filter((asset) => asset !== null);
-const ogImageSrc = project.mainImage
-  ? imageBuilder(project.mainImage).width(1200).height(630).url()
-  : undefined;
 ---
 
 <Page
   settings={settings}
   title={project.title}
+  description={excerpt(project.textBody)}
   class="items-center"
-  ogImage={ogImageSrc}
+  ogImage={shareImage(project.mainImage)}
   ogTitle={project.title}
 >
   <article class="w-full max-w-7xl flex flex-col">

@@ -31,7 +31,8 @@ Account: **What! Arkitektur**. Both projects build from GitHub `minimizelab/what
 ### In the repo
 
 - `site/public/_redirects`: `/projekt` → `/`, and `/admin`, `/admin/*` → the hosted Studio.
-- `site/public/_headers`: long-term caching for `/_astro/*`, security headers, and the `Speculation-Rules` header pointing at `site/public/speculation-rules.json`.
+- `site/public/_headers`: long-term caching for `/_astro/*`, security headers, the `Speculation-Rules` header pointing at `site/public/speculation-rules.json`, and `X-Robots-Tag: noindex` on `*.pages.dev` hostnames so only `www.whats.se` is indexed.
+- `site/public/robots.txt` points crawlers at the generated `sitemap-index.xml`.
 - The legacy Next site uses `public/_redirects` at the repo root.
 
 ### Content rebuilds

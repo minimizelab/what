@@ -31,10 +31,12 @@ const required = <T>(name: string) => (value: T | null): T => {
   return value;
 };
 
-// Every page needs the settings document; fetch it once per build.
+// Every page needs these singleton documents; fetch each once per build.
 let settings: ReturnType<typeof fetchSettings> | undefined;
 const fetchSettings = () =>
   client.fetch(SETTINGS_QUERY).then(required('settings'));
+let studio: ReturnType<typeof fetchStudio> | undefined;
+const fetchStudio = () => client.fetch(STUDIO_QUERY).then(required('studio'));
 
 const sanityService = {
   getSettings: () => (settings ??= fetchSettings()),
@@ -43,7 +45,7 @@ const sanityService = {
   getProjectsByCategory: (category: string) =>
     client.fetch(PROJECTS_BY_CATEGORY_QUERY, { category }),
   getEmployees: () => client.fetch(EMPLOYEES_QUERY),
-  getStudio: () => client.fetch(STUDIO_QUERY).then(required('studio')),
+  getStudio: () => (studio ??= fetchStudio()),
 };
 
 export default sanityService;

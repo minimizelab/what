@@ -55,7 +55,7 @@ Several documents store a manually curated ordering as a separate array of refer
 
 ### Pages and components
 - Pages in `src/pages/`: `index.astro`, `[category].astro`, `projekt/[project].astro`, `studio.astro`. Data is fetched in frontmatter; dynamic routes use `getStaticPaths`.
-- Every page wraps content in `src/layouts/Page.astro` (head/meta, `Header`, `Footer`, global CSS).
+- Every page wraps content in `src/layouts/Page.astro` (head/meta, `Header`, `Footer`, global CSS). It also sets the canonical URL, meta description and Open Graph tags; the description defaults to the opening of the Studio page text and the share image to the first featured project (helpers in `src/lib/seo.ts`). `@astrojs/sitemap` writes `sitemap-index.xml`.
 - Components follow atomic design under `src/components/` — `atoms/`, `molecules/`, `organisms/`, plus `portable-text/`.
 
 ### Styling
