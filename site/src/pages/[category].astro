@@ -21,6 +21,7 @@ const [settings, category, allProjects] = await Promise.all([
   sanity.getCategory(categorySlug),
   sanity.getProjectsByCategory(categoryId),
 ]);
+if (!category) throw new Error(`Category not found: ${categorySlug}`);
 
 const projects = getSortedArray<Project>(allProjects, category.sortedProjects);
 ---

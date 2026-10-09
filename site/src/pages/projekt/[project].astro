@@ -9,15 +9,12 @@ export async function getStaticPaths() {
   const projects = await sanity.getProjects();
   return projects.map((project) => ({
     params: { project: project.path.current },
+    props: { project },
   }));
 }
 
-const { project: projectSlug } = Astro.params;
-
-const [project, settings] = await Promise.all([
-  sanity.getProject(projectSlug),
-  sanity.getSettings(),
-]);
+const { project } = Astro.props;
+const settings = await sanity.getSettings();
 
 const allImages = project.images ?? [];
 const gridImages = allImages.slice(1).map((obj) => obj.asset);
