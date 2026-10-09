@@ -1,7 +1,3 @@
-@import '@fontsource/montserrat/400.css';
-@import '@fontsource/montserrat/500.css';
-@import '@fontsource/ibm-plex-mono/400.css';
-
 @import "tailwindcss";
 
 @theme {
@@ -12,10 +8,9 @@
   --color-what-white: #F2EFEB;
   --color-what-red-01: #FF0222;
 
-  /* Custom font families. The @fontsource imports added in Task 7 will
-     register the actual @font-face declarations. */
-  --font-what: 'Montserrat', system-ui, sans-serif;
-  --font-what-mono: 'IBM Plex Mono', monospace;
+  /* Font faces come from the `fonts` config in astro.config.mjs. */
+  --font-what: var(--font-montserrat);
+  --font-what-mono: var(--font-ibm-plex-mono);
 
   /* Custom breakpoint + container so `content:` variant works as a media
      query and `max-w-screen-content` works as a max-width utility. */

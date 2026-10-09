@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
@@ -10,6 +10,26 @@ export default defineConfig({
   // serves at `/bostad` without redirecting to a trailing slash.
   build: { format: 'file' },
   trailingSlash: 'never',
+  // Same Google Fonts files and subsets as the legacy next/font setup.
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: 'Montserrat',
+      cssVariable: '--font-montserrat',
+      weights: ['100 900'],
+      styles: ['normal'],
+      subsets: ['latin'],
+    },
+    {
+      provider: fontProviders.google(),
+      name: 'IBM Plex Mono',
+      cssVariable: '--font-ibm-plex-mono',
+      weights: [400],
+      styles: ['normal'],
+      subsets: ['latin'],
+      fallbacks: ['monospace'],
+    },
+  ],
   vite: {
     plugins: [tailwindcss()],
   },
