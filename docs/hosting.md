@@ -22,7 +22,7 @@ Account: **What! Arkitektur**. Both projects build from GitHub `minimizelab/what
 | Build command | `npx next build` | `pnpm build` |
 | Output directory | `out` | `out` |
 | Env vars | `NEXT_PUBLIC_SANITY_PROJECT_ID=lu0lnnx1`, `NEXT_PUBLIC_SANITY_DATASET=production`, `NODE_VERSION=22.16.0` | `PUBLIC_SANITY_PROJECT_ID=lu0lnnx1`, `PUBLIC_SANITY_DATASET=production`, `NODE_VERSION=26.11.1`, `PNPM_VERSION=12.9.1` |
-| Preview deployments | all branches | none; builds only when `site/**` changes |
+| Preview deployments | all branches | none; builds only when files under `site/` change (watch path `site/*`; Pages supports a single `*`, which matches across `/`) |
 | Web Analytics | on | off |
 | Deploy hook | called by the Sanity webhook | none; rebuild manually |
 
