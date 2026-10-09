@@ -38,7 +38,7 @@ Studio (`cd studio`):
 Legacy Next site (repo root):
 - `npm run dev`, `npm run build` (static export to `out/`), `npm run lint`
 
-No test runner is configured in any project.
+No test runner is configured in any project. CI (`.github/workflows/ci.yml`) runs `pnpm check` and `pnpm build` for the site, and typecheck, lint, build and a TypeGen drift check for the Studio, on every PR and on pushes to `main`.
 
 ## Astro site (`site/`)
 
