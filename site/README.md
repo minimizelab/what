@@ -1,6 +1,6 @@
 # whats.se — Astro public site
 
-The Astro-based public site, in development. Coexists with the legacy Next.js code at the repo root until cutover.
+The public site, built with Astro as a fully static site and deployed to Cloudflare Pages.
 
 ## Run locally
 
