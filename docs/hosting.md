@@ -22,7 +22,7 @@ The site is hosted on **Cloudflare Pages**, serving the static export from `out/
 | Production branch | `main` |
 | Build command | `npm run build` (assumed) |
 | Build output directory | `out` |
-| Node version | _TODO_ — should match `.nvmrc` (22.16.0) |
+| Node version | _TODO_ — should match `.nvmrc` (26.11.1) |
 | Env var: `NEXT_PUBLIC_SANITY_PROJECT_ID` | `lu0lnnx1` (also in `.env`) |
 | Env var: `NEXT_PUBLIC_SANITY_DATASET` | `production` (preview branches: `development`?) |
 | Custom domain | _TODO_ — `whats.se` / `www.whats.se`? |

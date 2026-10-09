@@ -14,6 +14,8 @@ See `docs/superpowers/specs/2026-05-08-astro-migration-iteration-1-design.md` fo
 
 ## Running things
 
+Node and pnpm versions are pinned in `mise.toml`. Run `mise install` once to get them.
+
 - **Current production site (Next.js, root):** `npm run dev`
 - **Astro public site:** `cd site && pnpm dev`
 - **Sanity Studio:** `cd studio && pnpm dev`
