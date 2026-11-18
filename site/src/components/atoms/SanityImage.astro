@@ -1,0 +1,73 @@
+---
+import { imageBuilder } from '../../lib/imageBuilder';
+import type { ImageAsset } from '../../types';
+
+interface Props {
+  asset: ImageAsset;
+  alt: string;
+  sizes?: string;
+  priority?: boolean;
+  fill?: boolean;
+  placeholder?: boolean;
+  quality?: number;
+  class?: string;
+}
+
+const {
+  asset,
+  alt,
+  sizes = '100vw',
+  priority = false,
+  fill = false,
+  placeholder = true,
+  quality = 75,
+  class: className,
+} = Astro.props;
+
+// Same candidate widths and URL parameters as next/image with the
+// next-sanity-image loader, so browsers pick the same files as the legacy site.
+const allWidths = [
+  16, 32, 48, 64, 96, 128, 256, 384, 640, 750, 828, 1080, 1200, 1920, 2048, 3840,
+];
+const viewportPercents = [...sizes.matchAll(/(^|\s)(1?\d?\d)vw/g)].map((m) =>
+  Number(m[2])
+);
+const widths = viewportPercents.length
+  ? allWidths.filter((w) => w >= (640 * Math.min(...viewportPercents)) / 100)
+  : allWidths;
+
+const url = (w: number) =>
+  imageBuilder(asset).width(w).quality(quality).fit('clip').auto('format').url();
+const srcSet = widths.map((w) => `${url(w)} ${w}w`).join(', ');
+const src = url(widths[widths.length - 1]);
+const nativeWidth = asset.metadata?.dimensions?.width;
+const nativeHeight = asset.metadata?.dimensions?.height;
+const lqip = placeholder ? asset.metadata?.lqip : undefined;
+
+const styles: string[] = [];
+if (fill) {
+  // Fill mode positions the image absolutely, filling its parent.
+  // object-fit is intentionally NOT set here so callers can choose
+  // `object-cover` / `object-contain` via the `class` prop without
+  // being overridden by inline styles.
+  styles.push('position:absolute;inset:0;width:100%;height:100%;');
+}
+if (lqip) {
+  styles.push(`background:url(${lqip}) center/cover no-repeat;`);
+}
+const style = styles.join('') || undefined;
+---
+
+<img
+  src={src}
+  srcset={srcSet}
+  sizes={sizes}
+  width={nativeWidth}
+  height={nativeHeight}
+  loading={priority ? 'eager' : 'lazy'}
+  decoding="async"
+  fetchpriority={priority ? 'high' : 'auto'}
+  alt={alt}
+  class={className}
+  style={style}
+/>

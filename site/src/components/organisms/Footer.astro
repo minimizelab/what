@@ -1,0 +1,18 @@
+---
+interface Props {
+  email: string;
+  title: string;
+}
+const { email, title } = Astro.props;
+---
+
+<footer>
+  <section class="mx-8 sm:mx-16 flex flex-row justify-between py-12 flex-wrap">
+    <a class="md:text-3xl text-2xl hover:text-what-red-01 cursor-pointer" href="/">
+      {title}
+    </a>
+    <a class="md:text-3xl text-2xl hover:text-what-red-01 cursor-pointer" href={`mailto:${email}`}>
+      {email}
+    </a>
+  </section>
+</footer>

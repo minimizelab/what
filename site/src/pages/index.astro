@@ -1,0 +1,13 @@
+---
+import Page from '../layouts/Page.astro';
+import FilterBar from '../components/molecules/FilterBar.astro';
+import ProjectsGrid from '../components/organisms/ProjectsGrid.astro';
+import sanity from '../services/sanity';
+
+const settings = await sanity.getSettings();
+---
+
+<Page settings={settings} title={settings.title} class="pb-8">
+  <FilterBar slot="filterBar" categories={settings.categoriesOrder ?? []} />
+  <ProjectsGrid projects={settings.featuredProjects ?? []} />
+</Page>

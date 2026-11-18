@@ -1,0 +1,48 @@
+---
+import TextMedium from '../atoms/TextMedium.astro';
+import type { Project } from '../../types';
+
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+const { assignment, clients, awards, year, location, size, collaborators } =
+  project;
+
+const candidates: { title: string; value?: string | string[] }[] = [
+  { title: 'Uppdrag', value: assignment },
+  { title: 'Beställare', value: clients },
+  { title: 'Samarbetspartners', value: collaborators },
+  { title: 'Plats', value: location },
+  { title: 'Storlek', value: size },
+  { title: 'År', value: year },
+  { title: 'Utmärkelser', value: awards },
+];
+// Truthiness check matches the legacy site: empty strings are skipped too.
+const rows = candidates.flatMap(({ title, value }) =>
+  value ? [{ title, value }] : []
+);
+---
+
+<table>
+  <tbody>
+    {rows.map((row) => (
+      <tr>
+        <td class="align-top pb-3 pr-4 sm:pr-10 lg:whitespace-nowrap">
+          <TextMedium class="font-medium">{row.title}</TextMedium>
+        </td>
+        {typeof row.value === 'string' ? (
+          <td class="align-top pb-3 lg:whitespace-nowrap font-what-mono">
+            <TextMedium>{row.value}</TextMedium>
+          </td>
+        ) : (
+          <td class="align-top pb-3 lg:whitespace-nowrap font-what-mono">
+            {row.value.map((item) => (
+              <TextMedium>{item}</TextMedium>
+            ))}
+          </td>
+        )}
+      </tr>
+    ))}
+  </tbody>
+</table>
